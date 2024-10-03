@@ -1,0 +1,150 @@
+.phone {
+  width: 25vw;
+  z-index: 1;
+}
+
+.containerPhone {
+  position: relative;
+  width: auto;
+}
+
+.phoneContent {
+  position: absolute;
+  min-width: 79%;
+  min-height: 93%;
+  max-width: 79%;
+  max-height: 93%;
+  top: 1.2%;
+  left: 10.5%;
+  background-color: var(--gray-2);
+  z-index: 2;
+  border-radius: 14% / 7%;
+  overflow: hidden;
+}
+
+.display {
+  position: inherit;
+  width: 100%;
+  min-height: 40%;
+  max-height: 40%;
+  background-color: var(--yellow-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.module-image {
+  width: 100%;
+  height: auto;
+}
+
+.tituloCurso {
+  position: inherit;
+  top: 40%;
+  height: 10%;
+  width: 100%;
+  font-size: .85vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.clasesCurso {
+  position: inherit;
+  top: 50%;
+  width: 100%;
+  min-height: 55%;
+  max-height: 55%;
+  overflow: auto;
+  padding: 2.5%;
+}
+
+.clasesCurso::-webkit-scrollbar {
+  display: none;
+}
+
+.clasesCurso {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.moduloClase {
+  position: relative;
+  width: 100%;
+  background-color: white;
+  min-height: 15%;
+  max-height: 15%;
+  margin-bottom: 1.5%;
+  z-index: 3;
+  border-radius: 2% / 17%;
+  padding: 1.5%;
+  cursor: pointer;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.moduloHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 3vh;
+}
+
+.cuadrito {
+  font-size: 0.80vw;
+  width: 70% !important;
+  height: auto;
+  aspect-ratio: 1/1 !important;
+  background-color: var(--gray-5);
+  color: var(--gray-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16%;
+  margin: 8px;
+}
+
+.tituloClase {
+  font-size: 0.7vw;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.minutos {
+  font-size: 0.3vw;
+  text-align: left;
+}
+
+.claseDetalle {
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.clase {
+  margin-left: .2rem;
+  margin-bottom: 0.5rem;
+}
+
+.claseTitulo {
+  font-size: 0.65vw;
+  font-weight: 500;
+  color: var(--gray-9);
+  text-align: left;
+  padding: 4px;
+}
+
+.barracourse {
+  border-bottom: var(--gray-2) 1px solid !important;
+}
+
+.claseTipo {
+  font-size: 0.3vw;
+  color: var(--gray-7);
+  text-align: left;
+}
+
+.moduloClase.active {
+}

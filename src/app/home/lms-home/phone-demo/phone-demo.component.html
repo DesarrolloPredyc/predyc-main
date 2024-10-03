@@ -1,0 +1,29 @@
+<div class="containerPhone">
+  <img [src]="phone" class="phone" alt="">
+  <div class="phoneContent">
+    <div class="display centertext rowCenter">
+      <img *ngIf="selectedImage" [src]="selectedImage" class="module-image" alt="Module Image">
+      <img *ngIf="!selectedImage" [src]="nonselectedImage" class="module-image">
+    </div>
+    <div class="tituloCurso ft600 gray-9 centertext">
+      {{ course.title }}
+    </div>
+    <div class="clasesCurso">
+      <div class="moduloClase" *ngFor="let module of modules; let i = index">
+        <div class="moduloHeader" (click)="toggleModule(i)">
+          <div class="w-10">
+            <div class="cuadrito ft500 ">{{ i + 1 }}</div>
+          </div>
+          <div class="column w-90 align-start">
+            <div class="tituloClase ft500 gray-9">{{ module.titulo }}</div>
+          </div>
+        </div>
+        <div class="claseDetalle mgt10" *ngIf="selectedModuleIndex === i">
+          <div *ngFor="let clase of module.clases" class="clase border-b">
+            <div class="claseTitulo barracourse">{{ clase.titulo }}</div>
+          </div>
+        </div>
+      </div>
+    </div>          
+  </div>
+</div>

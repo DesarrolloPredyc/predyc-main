@@ -1,0 +1,488 @@
+<div style="overflow-x: hidden;" [fxShow]="false" [fxShow.lt-md]="true">
+
+    <header class="banner-pc" style="height: calc(100vh - 165px);">
+        <div fxLayout="column" fxLayoutAlign="center center" class="content-container">
+            <div fxLayout="row" fxLayoutAlign="center center" class="fw">
+                <div class="fw pdb20" fxLayout="column" fxLayoutAlign="center center">
+                    <!-- Imagen del evento, centrada -->
+                    <div fxLayoutAlign="center center" class="pdb03">
+                        <img src="/assets/images/mantenimiento/340X220_LOGOS/340X220_PNG LOGO PRINCIPAL-BLANCO.png" style="width: 200px;" alt="img clases grabadas">
+                    </div>
+                    <!-- Otras dos imágenes, centradas y una al lado de la otra -->
+                    <div fxLayout="row" fxLayoutAlign="center center" class="pdb10">
+                        <img class="pdl05" src="/assets/images/design/p21-logo-blanco.png" style="width:130px;" alt="logo predictiva">
+                        <img class="pdl05" src="/assets/images/design/Predyc-logoblanco.webp" style="width: 150px;" alt="logo predyc">   
+                    </div>
+                </div>
+            </div>            
+            <div fxLayout="row" fxLayoutAlign=" center">
+                <div class="fw pdb20">
+                    <span class="ft18 ft600" style="color: #12aaf5;">
+                        En línea en vivo | 30 de septiembre, 1 y 2 de octubre | 7:00 p.m. hora CDMX
+                    </span>
+                    <ng-container  *ngIf="showInitMailForm">
+                        <span class="ft18 pdt20 pdb20 gray-1">
+                            Ingresa tu correo electrónico para confirmar tu asistencia.
+                        </span>
+                        <div *ngIf="reunionFormInit" class="inputContainer mgt05">
+                            <form class="fw"  [formGroup]="reunionForm" (ngSubmit)="onSubmit()">
+                                <input class="inputForm fw" formControlName="emailProfesional" type="text" placeholder="E-mail profesional">
+                                <div *ngIf="reunionForm.get('emailProfesional').hasError('email') && reunionForm.get('emailProfesional').touched"
+                                    class="formAlert">
+                                    Email no es válido
+                                </div>
+                                <button 
+                                class="mgt20 blueEventButton fw" 
+                                type="submit">
+                                    Confirmar Correo
+                                </button>
+                            </form>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="userData">
+                        <div fxLayout="column" fxLayoutGap="10px"> <!-- Contenedor con diseño en columna -->
+                            <span  class="ft18 pdt20 gray-1">Hola {{userData.name | titlecase}}, por favor valida tu asistencia en los días del evento para poder recibir tu certificado al finalizar.</span>
+                        </div>
+                    </ng-container>
+                    <ng-container  *ngIf="showRegister" >
+                        <span class="ft18 pdt20 pdb15 gray-1">
+                            Participa en nuestro evento en línea y consigue un diploma emitido por uno de los líderes más influyentes en el campo del mantenimiento en LATAM.
+                        </span>
+                        <app-reunion-form [emailIn]="reunionForm.get('emailProfesional').value" [askCantidad]="false" exitoText1="¡Gracias por registrarte en Mantenimiento en Acción!" exitoText2="Tu inscripción ha sido confirmada. Pronto recibirás un correo con más detalles del evento y algunas sorpresas. ¡Nos vemos allí!" btnText="Registrate" buttonColor="#12aaf5" buttonHoverColor="#2bb9ff" type="evento" campana="Mantenimiento en acción" [anuncio]="null" interes="Mantenimiento en acción"
+                        [subject]="'Nuevo registro mantenimiento en accion'" [recipients]="['lisset.chavez@predyc.com','desarrollo@predyc.com']"
+                        responsable="lisset.chavez@predyc.com" [origen]="currentUrl"
+                        lugar="Landing Mantenimiento en acción" (formSubmit)="handleFormSubmit($event)">
+                        </app-reunion-form>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <section  *ngIf="userReady" class="banner-pc-2 fw" style="padding-top: 2rem !important;">
+        <!-- Contenedor para el título y las fechas -->
+        <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex>
+            <!-- Contenedor para el icono y el título -->
+            <!-- <div id="iconCronogramaMovil" fxLayout="row" fxLayoutAlign="start center" fxFlex="none">
+                <img [src]="icon.calendar" alt="eventsalt" class="h40px makeBlueM mgb10">
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="none" class="mgb10">
+                <span class="ft28 ft500 gray-1">Cronograma de Clases</span>
+            </div> -->
+
+            <div id="iconCronogramaMovil" fxLayout="row" fxLayoutAlign="start center" fxFlex="none" class="mgb10" style="align-items: center;">
+                <img [src]="icon.calendar" alt="eventsalt" class="h40px makeBlueM mgr10">
+                <span class="ft24 ft500 gray-1">Cronograma de Clases</span>
+            </div>
+
+    
+            <!-- Contenedor del carrusel -->
+            <div class="carousel-container no-select " fxLayout="column" fxLayoutAlign="center center" fxFlex style="margin-top: 1rem;">
+                <div 
+                    *ngFor="let slide of slides; let currentIndex = index" 
+                    fxLayout="row" 
+                    fxLayoutAlign="space-between center" 
+                    fxFlex 
+                    fxLayout.lt-md="column" 
+                    fxLayoutAlign.lt-md="start stretch">
+                    
+                    <div class="carousel-slide" [ngClass]="{'mgt15': currentIndex > 0}" fxFlex fxFlex.lt-md="100%">
+                        <div class="carousel-content" fxLayout="row" fxLayout.lt-md="column" fxFlex>
+                            
+                            <!-- Parte izquierda que pasa a ser superior en móviles -->
+                            <div class="carousel-left">
+                                <img [src]="slides[currentIndex].imageUrl" alt="background" class="background-image">
+                                <div class="tags">
+                                    <span *ngFor="let tag of slides[currentIndex].tags" class="badge">{{ tag }}</span>
+                                </div>
+                                <div class="instructors-container">
+                                    <div *ngFor="let instructor of slides[currentIndex].instructors" class="instructor-in-card">
+                                        <img [src]="instructor.image" alt="instructor" class="instructor-img-card">
+                                    </div>
+                                </div>
+                                <div class="title-on-image">
+                                    <h2 class="ft24" style="color: white;">{{ slides[currentIndex].title }}</h2>
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-right">
+                                <div class="instructor-details">
+                                    <p><span><strong class="ft500">Expositor:</strong> {{ getInstructorNames() }}</span></p>
+                                    <p><span><strong class="ft500">Cargo:</strong> {{ getInstructorRoles() }}</span></p>
+                                </div>
+
+                                <div class="description">
+                                <!-- Título Descripción con Icono -->
+                                <div fxLayout="row" fxLayoutAlign="space-between center" style="cursor: pointer;" (click)="toggleDescription()">
+                                    <p><strong class="ft500">Descripción</strong></p>
+                                    <img [src]="isDescriptionVisible ? icon.chevronUp: icon.chevronDown" alt="Toggle Description">
+                                </div>
+                                
+                                <!-- Contenido de la Descripción -->
+                                <div *ngIf="isDescriptionVisible">
+                                    <p>{{ slides[currentIndex].description }}</p>
+                                </div>
+                                </div>
+
+
+                                <!-- <button (click)="registrarAsistencia(slide)" class="register-btn fw" style="width: 100% !important;">{{ slides[currentIndex].ctaText }}</button> -->
+                                <button 
+                                (click)="registrarAsistencia(slide)" 
+                                class="fw" 
+                                style="width: 100% !important; display: flex; align-items: center; justify-content: center;" 
+                                [ngClass]="{
+                                    'disabled-btn': !slide['canRegister'],
+                                    'green-btn': slide['registrado'],
+                                    'register-btn':slide['canRegister']
+                                }" 
+                                [disabled]="!slide['canRegister'] || slide['registrado']">
+                                <img *ngIf="slide['registrado']" [src]="icon.check" alt="eventsalt" class="h16px makeWhite pdr10">
+                                {{ slides[currentIndex].ctaText }}
+                            </button>
+                            </div>                                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+
+    
+    <section  *ngIf="userReady" class="banner-pc-3" style="padding-top: 2rem !important;">
+        <!-- Contenedor para el título y las fechas -->
+        <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex>
+            <!-- Contenedor para el icono y el título -->
+            <!-- <div fxLayout="row" fxLayoutAlign="start center" fxFlex="none">
+                <img [src]="icon.certificado" alt="eventsalt" class="h40px mgb10">
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="none" class="mgb10">
+                <span class="ft28 ft500">Tu certificado</span>
+            </div> -->
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="none" class="mgb10" style="align-items: center;">
+                <img [src]="icon.certificado" alt="eventsalt" class="h40px mgr10">
+                <span class="ft24 ft500">Tu certificado</span>
+            </div>
+
+            
+    
+            <!-- Contenedor del certificado aún no disponible -->
+            <div  fxLayout="column" fxLayoutAlign="center center" fxFlex="none" 
+                 style="background-color: #f0f0f0; border-radius: 10px; width: 90%; height: 40vh !important; margin: 0 auto; margin-top: 2rem !important;">
+                <span class="ft18 ft500">Certificado aún no disponible</span>
+            </div>
+        </div>
+    </section>
+    
+
+    <section class="banner-pc-3 backDark"  style="padding-top: 32px; padding-bottom: 32px;">
+        <div fxLayout="column" class="" fxLayoutAlign="">
+
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+                <div fxLayout="column">
+                    <span class="ft14 ft500 gray-2 pdb10">Organizado por</span>
+                    <img class="pdb10" src="assets/images/design/p21-logo-blanco.png" alt="" style="width:70%; max-width: 200px;" >
+                    <img src="assets/images/design/PredycWhite.png" alt="" style="width:75%; max-width: 200px; padding-left: 0rem;">
+                </div>
+                <div fxLayout="column">
+                    <span class="ft14 ft500 gray-2 pdb10">Con apoyo de</span>
+                    <img src="assets/images/logos-empresas/tractian.svg" alt="" class="makeWhite" style="width:70%; max-width: 200px;" >
+                </div>
+            </div>
+            <!-- <div fxLayout="column">
+                <div  fxLayout="row">
+                    <span class="ft14 ft500 gray-2 pdb10">Organizado por</span>
+                </div>
+                <div  fxLayout="column">
+                    <img class="pdb10" src="assets/images/design/p21-logo-blanco.png" alt="" style="width:80%; max-width: 200px;" >
+                    <img src="assets/images/design/PredycWhite.png" alt="" style="width:80%; max-width: 200px; padding-left: 0rem;">
+                </div>
+            </div> -->
+            <!-- <div fxLayout="column">
+                <span class="ft14 ft500 gray-2 pdb10">Con apoyo de</span>
+                <img src="assets/images/logos-empresas/tractian.svg" alt="" class="makeWhite" style="width:80%; max-width: 200px;" >
+            </div> -->
+        </div>
+    </section>
+    
+
+    <!-- <app-footer-mobile [onlyFooter]="true"></app-footer-mobile> -->
+</div>
+<div style="overflow-x: hidden;" [fxShow]="true" [fxShow.lt-md]="false">
+    <header class="banner-pc"  style="height: calc(100vh - 120px) !important;">
+        <div fxLayout="column" fxLayoutAlign="center center" class="content-container">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="content-row">
+                <div fxFlex="50" class="form-banner">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <img src="/assets/images/mantenimiento/340X220_LOGOS/340X220_PNG LOGO PRINCIPAL-BLANCO.png" style="width:30%; max-width: 200px;" alt="img clases grabadas">
+                        <img class="pdl20" src="/assets/images/design/p21-logo-blanco.png" style="width:30%; max-width: 180px;" alt="logo predictiva">
+                        <img class="pdl10" src="/assets/images/design/Predyc-logoblanco.webp" style="width:30%; max-width: 200px;" alt="logo predyc">                  
+                    </div>
+                    
+                    <span class="ft18 ft600 mgt05" style="color: #12aaf5;">
+                        En línea en vivo | 30 de septiembre, 1 y 2 de octubre | 7:00 p.m. hora CDMX
+                    </span>
+                    <ng-container  *ngIf="showInitMailForm">
+                        <span class="ft18 pdt20 pdb20 gray-1">
+                            Ingresa tu correo electrónico para confirmar tu asistencia.
+                        </span>
+                        <div *ngIf="reunionFormInit" class="inputContainer mgt05">
+                            <form class="fw"  [formGroup]="reunionForm" (ngSubmit)="onSubmit()">
+                                <input class="inputForm w-80" formControlName="emailProfesional" type="text" placeholder="E-mail profesional">
+                                <div *ngIf="reunionForm.get('emailProfesional').hasError('email') && reunionForm.get('emailProfesional').touched"
+                                    class="formAlert">
+                                    Email no es válido
+                                </div>
+                                <button 
+                                class="mgt20 blueEventButton w-80" 
+                                type="submit">
+                                    Confirmar Correo
+                                </button>
+                            </form>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="showRegister">
+                        <span class="ft18 pdt20 pdb15 gray-1">
+                            Participa en nuestro evento en línea y consigue un diploma emitido por uno de los líderes más influyentes en el campo del mantenimiento en LATAM.
+                        </span>
+                        <app-reunion-form [emailIn]="reunionForm.get('emailProfesional').value" [askCantidad]="false" exitoText1="¡Gracias por registrarte en Mantenimiento en Acción!" exitoText2="Tu inscripción ha sido confirmada. Pronto recibirás un correo con más detalles del evento y algunas sorpresas. ¡Nos vemos allí!" btnText="Registrate" buttonColor="#12aaf5" buttonHoverColor="#2bb9ff" type="evento" campana="Mantenimiento en acción" [anuncio]="null" interes="Mantenimiento en acción"
+                        [subject]="'Nuevo registro mantenimiento en accion'" [recipients]="['lisset.chavez@predyc.com','desarrollo@predyc.com']"
+                        responsable="lisset.chavez@predyc.com" [origen]="currentUrl"
+                        lugar="Landing Mantenimiento en acción" (formSubmit)="handleFormSubmit($event)">
+                    </app-reunion-form>
+                    </ng-container>
+                    <ng-container *ngIf="userData">
+                        <div fxLayout="column" fxLayoutGap="10px"> <!-- Contenedor con diseño en columna -->
+                            <!-- <span class="ft18 pdt10 gray-1">
+                                Nombre: {{userData.name}}
+                            </span>
+                            <span class="ft18 pdt10 gray-1">
+                                Empresa: {{userData.empresa}}
+                            </span>
+                            <span class="ft18 pdt10 gray-1">
+                                Cargo: {{userData.cargo}}
+                            </span> -->
+                            <span  class="ft22 pdt20 gray-1">Hola {{userData.name | titlecase}}, por favor valida tu asistencia en los días del evento para poder recibir tu certificado al finalizar.</span>
+                        </div>
+                    </ng-container>
+                </div>
+                <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+                    <div class="custom-grid-container">
+                        <div class="grid-item item2 procesos" 
+                        [ngClass]="{'ItemGridActive': activeElements['procesos']}">
+                     <img [src]="icon.settings" alt="settings" [ngClass]="{'makeWhite': activeElements['procesos'], 'makeInactive': !activeElements['procesos']}">
+                     <span *ngIf="activeElements['procesos']" class="item-text">Procesos</span>
+                   </div>
+                   
+                   <div class="grid-item item4 kpis" 
+                        [ngClass]="{'ItemGridActive': activeElements['kpis']}">
+                     <img [src]="icon.kpis" alt="kpis" [ngClass]="{'makeWhite': activeElements['kpis'], 'makeInactive': !activeElements['kpis']}">
+                     <span *ngIf="activeElements['kpis']" class="item-text">KPIs</span>
+                   </div>
+                   
+                   <div class="grid-item item5 industria" 
+                        [ngClass]="{'ItemGridActive': activeElements['industria']}">
+                     <img [src]="icon.industry" alt="industry" [ngClass]="{'makeWhite': activeElements['industria'], 'makeInactive': !activeElements['industria']}">
+                     <span *ngIf="activeElements['industria']" class="item-text">Industria</span>
+                   </div>
+                   
+                   <div class="grid-item item7 factura" 
+                        [ngClass]="{'ItemGridActive': activeElements['factura']}">
+                     <img [src]="icon.resultnew" alt="resultnew" [ngClass]="{'makeWhite': activeElements['factura'], 'makeInactive': !activeElements['factura']}">
+                     <span *ngIf="activeElements['factura']" class="item-text">Estrategias</span>
+                   </div>
+                   
+                   <div class="grid-item item9 monitoreo" 
+                        [ngClass]="{'ItemGridActive': activeElements['monitoreo']}">
+                     <img [src]="icon.areacustom" alt="areacustom" [ngClass]="{'makeWhite': activeElements['monitoreo'], 'makeInactive': !activeElements['monitoreo']}">
+                     <span *ngIf="activeElements['monitoreo']" class="item-text">Diagnóstico</span>
+                   </div>
+                   
+                   <div class="grid-item item10 soluciones" 
+                        [ngClass]="{'ItemGridActive': activeElements['soluciones']}">
+                     <img [src]="icon.solutions" alt="solutions" [ngClass]="{'makeWhite': activeElements['soluciones'], 'makeInactive': !activeElements['soluciones']}">
+                     <span *ngIf="activeElements['soluciones']" class="item-text">Soluciones</span>
+                   </div>
+                   
+                   <div class="grid-item item11 iso" 
+                        [ngClass]="{'ItemGridActive': activeElements['iso']}">
+                     <img [src]="icon.toolkit" alt="toolkit" [ngClass]="{'makeWhite': activeElements['iso'], 'makeInactive': !activeElements['iso']}">
+                     <!-- <span *ngIf="!activeElements['iso']"class="item-text-inactive">5001</span> -->
+                     <span *ngIf="activeElements['iso']" class="item-text">Mantenimiento</span>
+                   </div>
+                   
+                   <div class="grid-item item14 oee" 
+                        [ngClass]="{'ItemGridActive': activeElements['oee']}">
+                     <img [src]="icon.portfolio" alt="portfolio" [ngClass]="{'makeWhite': activeElements['oee'], 'makeInactive': !activeElements['oee']}">
+                     <span *ngIf="activeElements['oee']" class="item-text">Gestión</span>
+                   </div>
+                   
+                   <div class="grid-item item16 energia" 
+                        [ngClass]="{'ItemGridActive': activeElements['energia']}">
+                     <img [src]="icon.analytics" alt="analytics" [ngClass]="{'makeWhite': activeElements['energia'], 'makeInactive': !activeElements['energia']}">
+                     <span *ngIf="activeElements['energia']" class="item-text">Resultados</span>
+                   </div>
+                   
+                   <div class="grid-item item17 calidadE" 
+                        [ngClass]="{'ItemGridActive': activeElements['calidadE']}">
+                     <img [src]="icon.analyticsReference" alt="analyticsReference" [ngClass]="{'makeWhite': activeElements['calidadE'], 'makeInactive': !activeElements['calidadE']}">
+                     <span *ngIf="activeElements['calidadE']" class="item-text">Mejoras en el departamento</span>
+                   </div>
+                   
+                   <div class="grid-item item20 analisis" 
+                        [ngClass]="{'ItemGridActive': activeElements['analisis']}">
+                     <img [src]="icon.eventsalt" alt="eventsalt" [ngClass]="{'makeWhite': activeElements['analisis'], 'makeInactive': !activeElements['analisis']}">
+                     <span *ngIf="activeElements['analisis']" class="item-text">Equipo</span>
+                   </div>                   
+                        <!-- Tus elementos grid van aquí -->
+                        <svg class="svg-connector" xmlns="http://www.w3.org/2000/svg"></svg>
+                    </div>
+                </div>
+            </div>
+            <!-- <div fxLayout="row" fxLayoutAlign="center center" class="countdown-container">
+                <div class="countdown-item">
+                    <div class="countdown-value">{{ days }}</div>
+                    <div class="countdown-label">DÍAS</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value">{{ hours }}</div>
+                    <div class="countdown-label">HORAS</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value">{{ minutes }}</div>
+                    <div class="countdown-label">MINUTOS</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value">{{ seconds }}</div>
+                    <div class="countdown-label">SEGUNDOS</div>
+                </div>
+            </div> -->
+        </div>
+    </header>
+
+    <section *ngIf="userReady" class="banner-pc-2" style="padding-top: 2rem !important;">
+        <!-- Contenedor para el título y las fechas -->
+        <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex>
+            <!-- Contenedor para el icono y el título -->
+            <!-- <div id="iconCronograma" fxLayout="row" fxLayoutAlign="start center" fxFlex="none">
+                <img [src]="icon.calendar" alt="eventsalt" class="h40px makeBlueM mgb10">
+            </div> -->
+            <div id="iconCronograma" fxLayout="row" fxLayoutAlign="start center" fxFlex="none" class="mgb10" style="align-items: center;">
+                <img [src]="icon.calendar" alt="eventsalt" class="h40px makeBlueM mgr10">
+                <span class="ft28 ft500 gray-1">Cronograma de Clases</span>
+            </div>
+    
+            <!-- Contenedor del carrusel -->
+            <div  class="carousel-container no-select " fxLayout="column" fxLayoutAlign="center center" fxFlex style="margin-top: 1rem;">
+                <div *ngFor="let slide of slides; let currentIndex = index" fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+                    <div class="carousel-slide" fxFlex [ngClass]="{'mgt15': currentIndex > 0}">
+                        <div class="carousel-content" fxLayout="row" fxFlex>
+                            <div class="carousel-left" fxFlex="50">
+                                <img [src]="slides[currentIndex].imageUrl" alt="background" class="background-image">
+                                <div class="tags">
+                                    <span *ngFor="let tag of slides[currentIndex].tags" class="badge">{{ tag }}</span>
+                                </div>
+                                <div class="title-on-image">
+                                    <h2 style="color: white;">{{ slides[currentIndex].title }}</h2>
+                                </div>
+                            </div>
+                            <div class="carousel-right" fxFlex="50">
+                                <div fxLayout="row" class="instructor-details">
+                                    <!-- Columna izquierda: Imágenes de los instructores -->
+                                    <div fxLayout="column" class="mgr10" fxLayoutAlign="start center">
+                                        <!-- Aquí puedes colocar las imágenes -->
+                                        <img *ngFor="let instructor of slides[currentIndex].instructors" 
+                                             [src]="instructor.image" 
+                                             alt="{{ instructor.name }}" 
+                                             class="instructor-image">
+                                    </div>
+                            
+                                    <!-- Columna derecha: Nombres y cargos de los instructores -->
+                                    <div fxLayout="column">
+                                        <p><span><strong class="ft500">Expositor:</strong> {{ getInstructorNames(currentIndex) }}</span></p>
+                                        <p><span><strong class="ft500">Cargo:</strong> {{ getInstructorRoles(currentIndex) }}</span></p>
+                                    </div>
+                                </div>
+                            
+                                <!-- Descripción abajo -->
+                                <div fxLayout="column" class="description">
+                                    <p>{{ slides[currentIndex].description }}</p>
+                                </div>
+                            
+                                <!-- Botón de registro abajo estoy aqui -->
+                                <button 
+                                    (click)="registrarAsistencia(slide)" 
+                                    class="fw" 
+                                    style="width: 100% !important; display: flex; align-items: center; justify-content: center;" 
+                                    [ngClass]="{
+                                        'disabled-btn': !slide['canRegister'],
+                                        'green-btn': slide['registrado'],
+                                        'register-btn':slide['canRegister']
+                                    }" 
+                                    [disabled]="!slide['canRegister'] || slide['registrado']">
+                                    <img *ngIf="slide['registrado']" [src]="icon.check" alt="eventsalt" class="h16px makeWhite pdr10">
+                                    {{ slides[currentIndex].ctaText }}
+                                </button>
+                            </div>                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section *ngIf="userReady" class="banner-pc-3" style="padding-top: 2rem !important;">
+        <!-- Contenedor para el título y las fechas -->
+        <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex>
+            <!-- Contenedor para el icono y el título -->
+            <!-- <div fxLayout="row" fxLayoutAlign="start center" fxFlex="none">
+                <img [src]="icon.certificado" alt="eventsalt" class="h40px mgb10">
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="none" class="mgb10">
+                <span class="ft28 ft500">Tu certificado</span>
+            </div> -->
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="none" class="mgb10" style="align-items: center;">
+                <img [src]="icon.certificado" alt="eventsalt" class="h40px mgr10">
+                <span class="ft28 ft500">Tu certificado</span>
+            </div>
+    
+    
+            <!-- Contenedor del certificado aún no disponible -->
+            <div  fxLayout="column" fxLayoutAlign="center center" fxFlex="none" 
+                 style="background-color: #f0f0f0; border-radius: 10px; width: 70%; height: 40vh !important; margin: 0 auto; margin-top: 2rem !important;">
+                <span class="ft18 ft500">Certificado aún no disponible</span>
+            </div>
+        </div>
+    </section>
+    
+
+    <section class="banner-pc-3 backDark"  style="padding-top: 32px; padding-bottom: 32px; padding-left: 62px !important; padding-right: 62px !important;">
+        <div fxLayout="row" class="" fxLayoutAlign="space-between center">
+            <div fxLayout="column">
+                <div>
+                    <span class="ft14 ft500 gray-2">Organizado por</span>
+                </div>
+                <div>
+                    <img src="assets/images/design/p21-logo-blanco.png" alt="" style="width:100%; max-width: 200px;" >
+                    <img src="assets/images/design/PredycWhite.png" alt="" style="width:100%; max-width: 200px; padding-left: 2rem;">
+                </div>
+            </div>
+            <!-- <div fxLayout="column">
+                <span class="ft14 ft500 gray-2 pdb10">&nbsp;</span>
+                <img src="assets/images/design/PredycWhite.png" alt="" style="width:100%; max-width: 200px;">
+            </div> -->
+            <div fxLayout="column">
+                <span class="ft14 ft500 gray-2 pdb10">Con apoyo de</span>
+                <img src="assets/images/logos-empresas/tractian.svg" alt="" class="makeWhite" style="width:100%; max-width: 200px;" >
+            </div>
+        </div>
+    </section>
+    
+    
+
+    <!-- <footer [onlyFooter]="true" ></footer> -->
+</div>

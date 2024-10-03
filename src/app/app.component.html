@@ -1,0 +1,12 @@
+<div>
+  <ng-container *ngIf="isDesktop; else mobileMenu">
+    <app-menu *ngIf="loaded"></app-menu>
+  </ng-container>
+  <ng-template #mobileMenu>
+    <app-menu-mobile *ngIf="loaded && showMobileMenu"></app-menu-mobile>
+  </ng-template>
+</div>
+
+<div>
+  <router-outlet></router-outlet>
+</div>

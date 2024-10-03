@@ -1,0 +1,171 @@
+.plan-generator-mobile {
+    width: 100%;
+    overflow: hidden;
+}
+
+.course-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; /* Desplazamiento suave en iOS */
+    white-space: nowrap; /* Para evitar saltos de línea */
+    scroll-behavior: smooth; /* Desplazamiento suave */
+    /* padding-left: 1rem; */
+
+}
+
+.plan-details {
+    width: 80vw; 
+    margin-right: 1rem; 
+    scroll-snap-align: start;
+    margin-bottom: 0;
+}
+
+
+
+.container {
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    margin-right: 1rem;
+}
+
+
+
+.plan-tiempos {
+    border-radius: 6px;
+    background-color: rgb(247, 227, 188);
+    border: 1px solid #fcc145;
+    padding: 8px;
+}
+
+.horizontal-orangeline {
+    height: 1px;
+    background-color: #fcc145;
+    margin: 1rem 0;
+}
+
+.chart-container {
+    margin-top: 1rem;
+    height: 200px; /* Ajusta según tus necesidades */
+}
+
+.course-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cursos-plan {
+    padding: 0.5rem 0;
+    /* border-bottom: 1px solid #fcc145; */
+}
+
+.avatarSquare4 {
+    justify-content: center;
+    flex: auto;
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    margin: .5rem;
+    align-items: center;
+}
+
+/* Nuevos estilos para controlar el desbordamiento del texto */
+.plan-title,
+.plan-summary,
+.course-title {
+    word-wrap: break-word; /* Permite saltos de línea */
+    white-space: normal; /* Permite saltos de línea y ajuste de texto */
+    width: 100%;
+}
+
+.plan-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    height: 12vh;
+}
+
+.plan-title {
+    font-weight: 750!important;
+    color: black;
+    padding-right: 6px;
+    line-height: 1.4;
+    height: 6vh!important;
+    width: 70vw ;
+    margin-bottom: 0.5rem;
+
+}
+
+.plan-summary {
+    color: #777;
+    height: 16vh;
+    padding-right: 6px;
+    width: 70vw ;
+    /* margin-bottom: 0.5rem; */
+
+
+}
+
+.opcs-plan {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-title {
+    color: #333;
+    font-size: 1rem;
+    padding-right: 6px;
+    width: 45vw ;
+    /* background-color: #b0862d; */
+
+}
+
+.rowFlexStart2{
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos hijos */
+    /* padding: 0.5rem; */
+    padding: 0!important;
+}
+
+.course-instructor {
+    font-weight: 600;
+    color: #4a4a4a;
+    font-size: .2rem;
+    padding-right: 6px;
+    width: 45vw;
+    word-wrap: break-word!important; 
+
+}
+
+.plan-details:last-child {
+
+    margin-right: 3.5rem;
+}
+/* .plan-details:first-child {
+
+    margin-left: 2rem;
+    marg
+} */
+
+.course-details {
+    /* margin-top: 8px; */
+    margin: 12px!important;
+    
+    
+}
+
+  
+.border-t-orange {
+    border-top: #fcc145 1px solid !important;
+  }

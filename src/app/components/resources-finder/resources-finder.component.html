@@ -1,0 +1,86 @@
+<div class="fw container" fxLayout="column" fxLayoutAlign=" center" >
+    <div class="w-80 pdt20 pdb20" fxLayout="row" fxLayoutGap="2rem">
+        <div class="fw" fxLayout="column">
+            <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdb05 border-bl">
+                <span class="blue-5 ft500">Plantillas</span>
+            </div>
+            <div class="fw" fxLayout="row" fxLayoutGap="2rem">
+                <div class="fw" fxLayout="column">
+                    <div *ngFor="let res of resources" fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdt10 cursorPointer pdb10" routerLink="/recursos/{{res.description}}">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>{{res.name}}</span>
+                    </div>
+                </div>
+                <div class="fw" fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="mgt05 pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>Mantenimiento preventivo</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>Mantenimiento preventivo</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>Mantenimiento preventivo</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>Mantenimiento preventivo</span>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdt10 cursorPointer pdb10" routerLink="/recursos">
+                <span class="blue-5">Ver todas las plantillas</span>
+                <img [src]="icon.chevronRight" class="makeBlue" alt="">
+            </div>
+        </div>
+        <div class="fw" fxLayout="column">
+            <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdb05 border-bl">
+                <span class="blue-5 ft500">Cuestionarios</span>
+            </div>
+            <div class="fw" fxLayout="row" fxLayoutGap="2rem">
+                <div class="fw" fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="mgt05 pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>Mantenimiento preventivo</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>Mantenimiento preventivo</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>Mantenimiento preventivo</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>Mantenimiento preventivo</span>
+                    </div>
+                </div>
+                <div class="fw" fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="mgt05 pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>Mantenimiento preventivo</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>Mantenimiento preventivo</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>Mantenimiento preventivo</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                        <img [src]="icon.toolBlue" alt="">
+                        <span>Mantenimiento preventivo</span>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" class="pdt10 cursorPointer pdb10" routerLink="/recursos/prueba">
+                <span class="blue-5">Ver todos los cuestionarios</span>
+                <img [src]="icon.chevronRight" class="makeBlue" alt="">
+            </div>
+        </div>
+    </div>
+</div>

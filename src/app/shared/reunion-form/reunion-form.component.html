@@ -1,0 +1,142 @@
+<form *ngIf="!sended" [formGroup]="reunionForm" (ngSubmit)="onSubmit()">
+    <div class="inputContainer">
+        <!-- <label class="labelForm" for="nombreCompleto">Nombre completo</label> -->
+        <input class="inputForm" formControlName="nombreCompleto" type="text" placeholder="Nombre completo">
+        <div *ngIf="reunionForm.get('nombreCompleto').invalid && reunionForm.get('nombreCompleto').touched"
+            class="formAlert">
+            Nombre es requerido
+        </div>
+    </div>
+    <div class="inputContainer mgt05">
+        <!-- <label class="labelForm" for="emailProfesional">E-mail profesional</label> -->
+        <input class="inputForm" formControlName="emailProfesional" type="text" placeholder="E-mail profesional">
+        <div *ngIf="reunionForm.get('emailProfesional').hasError('required') && reunionForm.get('emailProfesional').touched"
+            class="formAlert">
+            Email es requerido
+        </div>
+        <div *ngIf="reunionForm.get('emailProfesional').hasError('email') && reunionForm.get('emailProfesional').touched"
+            class="formAlert">
+            Email no es válido
+        </div>
+        <div *ngIf="reunionForm.get('emailProfesional').hasError('emailEmpresa') && reunionForm.get('emailProfesional').touched"
+            class="formAlert">
+            Solo se permiten correos electrónicos de empresa
+        </div>
+    </div>
+
+    <div class="inputContainer mgt05" fxLayout="column">
+        <!-- <label class="labelForm" for="telefonoMovil">Teléfono móvil</label> -->
+        <ngx-intl-tel-input [cssClass]="'custom'"
+            [preferredCountries]="['mx','us','co','pe','cl','ec','ar','pa','ve','py','gt','uy','es']"
+            [enablePlaceholder]="true" [enableAutoCountrySelect]="true" [separateDialCode]="true"
+            [phoneValidation]="true" formControlName="telefonoMovil" name="phone" class="inputFormPhone">
+        </ngx-intl-tel-input>
+        <div *ngIf="reunionForm.get('telefonoMovil').invalid && reunionForm.get('telefonoMovil').touched"
+            class="formAlert">
+            Teléfono móvil es requerido
+        </div>
+    </div>
+    <ng-container *ngIf="askCantidad">
+        <div class="mgt05 fw" fxLayout="row wrap" fxLayout.lt-md="column">
+            <div fxLayout="column" [fxFlex]="(reunionForm.get('interesUser').value === 'empresa' ? '50' : '100')" fxFlex.lt-md="100">
+                <select style="border-radius: 4px !important;" class="inputForm selectForm" 
+                    [ngClass]="{'gray-place-holder': !reunionForm.get('interesUser').value}"
+                    formControlName="interesUser" (change)="onInterestChange()">
+                    <option value="" disabled selected>Seleccion su interes</option>
+                    <option value="individual">Individual</option>
+                    <option value="empresa">Paquete empresarial</option>
+                </select>
+                <div *ngIf="reunionForm.get('interesUser').invalid && reunionForm.get('interesUser').touched" class="formAlert">
+                    El interés es requerido
+                </div>
+            </div>
+            <div fxLayout="column" fxFlex="50" fxFlex.lt-md="100" *ngIf="reunionForm.get('interesUser').value === 'empresa'">
+                <select style="border-radius: 4px !important;" class="inputForm selectForm input-empresa" 
+                    [ngClass]="{'gray-place-holder': !reunionForm.get('cantidad').value}" 
+                    formControlName="cantidad">
+                    <option value="" disabled selected>Para cuantas personas</option>
+                    <option value="1">Para 1 persona</option>
+                    <option value="2">Para 2 personas</option>
+                    <option value="5">Para 5 personas</option>
+                    <option value="+10">Para más de 10 personas</option>
+                    <option value="+25">Para más de 25 personas</option>
+                </select>
+                <div *ngIf="reunionForm.get('cantidad').invalid && reunionForm.get('cantidad').touched" class="formAlert">
+                    La cantidad de personas es requerida
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    
+    <ng-container>
+        <div class="mgt05 fw" fxLayout="row wrap" fxLayout.lt-md="column">
+            <div fxLayout="column" fxFlex="50" fxFlex.lt-md="100">
+                <select style="border-radius: 4px !important;" class="inputForm selectForm" [ngClass]="{'gray-place-holder': !reunionForm.get('cargo').value}" formControlName="cargo">
+                    <option value="" disabled selected>Seleccione su cargo</option>
+                    <option value="Director">Director</option>
+                    <option value="Gerente de Mantenimiento / Operaciones">Gerente de Mantenimiento / Operaciones</option>
+                    <option value="Ingeniero de Mantenimiento / Confiabilidad">Ingeniero de Mantenimiento / Confiabilidad
+                    </option>
+                    <option value="Jefe de Mantenimiento">Jefe de Mantenimiento</option>
+                    <option value="Supervisor de Mantenimiento">Supervisor de Mantenimiento</option>
+                    <option value="Coordinador / Planificador / Programador">Coordinador / Planificador / Programador</option>
+                    <option value="Téc. de Mantto / Téc. de Predictivo">Téc. de Mantto / Téc. de Predictivo</option>
+                    <option value="Operador">Operador</option>
+                    <option value="Consultor">Consultor</option>
+                    <option value="Recursos Humanos">Recursos Humanos</option>
+                    <option value="Compras">Compras</option>
+                    <option value="Asistente o Aprendiz">Asistente o Aprendiz</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <div *ngIf="reunionForm.get('cargo').invalid && reunionForm.get('cargo').touched" class="formAlert">
+                    Cargo es requerido
+                </div>
+            </div>
+            <div fxLayout="column" fxFlex="50" fxFlex.lt-md="100">
+                <input class="inputForm input-empresa" formControlName="empresa" type="text" placeholder="Empresa">
+                <div *ngIf="reunionForm.get('empresa').invalid && reunionForm.get('empresa').touched" class="formAlert">
+                    La empresa es requerida
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <button 
+    *ngIf="!loading" 
+    class="mgt20 fw ft500 ft16 FORM-BTN-REGISTRO" 
+    type="submit" 
+    style="border-radius: 6px !important;"
+    [disabled]="loading"
+    [ngStyle]="{
+      'background-color': buttonColor,
+      'color':btnTextColor,
+      'transition': '.3s'
+    }"
+    (mouseover)="onMouseOver()"
+    (mouseleave)="onMouseLeave()">
+        {{btnText}}
+    </button>
+
+    <button 
+        *ngIf="loading" 
+        class="mgt20 fw ft500 ft16"
+        [ngStyle]="{
+        'background-color': buttonColor,
+        'color':btnTextColor,
+        'transition': '.3s'
+        }"
+    >
+    <div class="spinner"></div>
+    </button>
+    <div class="recaptcha-info">
+        <span class="ft10">
+          This site is protected by reCAPTCHA and the Google
+          <a class="blueLink ft10" target="_blank" href="https://policies.google.com/privacy">Privacy Policy</a> and
+          <a class="blueLink ft10" target="_blank" href="https://policies.google.com/terms">Terms of Service</a> apply.    
+        </span>
+    </div>
+</form>
+<div style="min-height: 250px; border-radius: 4px;" class="backWhite pd20" *ngIf="sended" fxLayoutAlign="center center" fxLayout="column">
+    <span class="gray-9 ft500 ft18">{{exitoText1}}</span>
+    <span class="gray-9 ft12 centertext mgt10">{{exitoText2}}</span>
+</div>

@@ -1,0 +1,179 @@
+<!-- <header class="banner">
+    <summary class="summary pdr80">
+        <h1 class="gray-1 ftxxl ft600">Artículos Técnicos</h1>
+        <div class="mgt10 lightText gray-3 ft14">
+            Lorem ipsum dolor sit amet consectetur.Lorem ipsuonsectetur.
+        </div>
+        
+    </summary>
+    <section class="contact mgt20 mgb20 centertext">
+        
+        <button class="fw mgt15 gray-10 ft500 yellowButton generalButton" type="submit">Publica tu articulo</button>
+        <button class="fw mgt08  gray-10 ft500  generalButton" >Pautas para publicar en la revista</button>
+    </section>
+</header> -->
+
+<div class="fw container pdt60" fxLayout="column" fxLayoutAlign=" center">
+    <div class="w-90" style="height: 100%;">
+        <div class="fw" fxLayout="row" fxLayoutGap="2rem">
+            <!-- Tags and freebies -->
+            <div class="w-25" fxLayout="column">
+                <!-- <div fxLayout="row" fxLayoutAlign=" center" fxLayoutGap=".5rem">
+                    <img [src]="icon.blueArrowLeft" class="" alt="">
+                    <div class="blue-5">Regresar</div>
+                </div> -->
+                <app-search-input-box [placeHolder]="'Buscar artículos por título'" fxLayoutAlign=" center" class="shadow-animation radius20 mgt10 fw" style="height: 30px;"></app-search-input-box>
+                <!-- Tags -->
+                <div fxLayout="column" class="border-b" style="max-height: 56vh; overflow-y:auto" >
+                    <div *ngIf="tags.length === articleTags.length" class="allTags ft12 pdt03 pdb03 pdl05 pdr05 radius6 mgt05" (click)="showAllTags()" >
+                        Todas las etiquetas
+                    </div>
+                     <app-filter-list [items]="tags"></app-filter-list>
+                    <div *ngIf="tags.length === 0" class="ft12 pdt03 pdb03 pdl05 pdr05 mgt05">No se han encontrado etiquetas</div>
+                </div>
+                <!-- Autores -->
+                <div fxLayout="column" class="" style="max-height: 56vh; overflow-y:auto" >
+                    <div class="allTags ft12 pdt03 pdb03 pdl05 pdr05 radius6 mgt05" (click)="showAllAuthors()" >
+                      Todos los autores
+                    </div>
+                    <app-filter-list [items]="articleAuthors" filterType="author"></app-filter-list>
+                    <div *ngIf="articleAuthors.length === 0" class="ft12 pdt03 pdb03 pdl05 pdr05 mgt05">No se han encontrado autores</div>
+                </div>
+                <!-- Freebies -->
+                <ng-container *ngIf="false">
+                    <div  *ngFor="let freebie of freebies" class="freebie mgt20 gray-8" fxLayoutAlign="center start">
+                        <div fxLayout="column" fxLayoutGap="1rem" class="fw pdl10 pdr10 pdt15">
+                            <div fxLayout="row" fxLayoutAlign="space-between start" class="fw">
+                                <!-- Image -->
+                                <img [src]="freebie.photoUrl ? freebie.photoUrl : 'assets/images/default/default-user-image.jpg'" 
+                                class="radius6 w-45" alt="" />
+                                <div fxLayout="column" fxLayoutGap=".25rem" class="w-50">
+                                    <span class="ft12 ft600 black">{{freebie.name | titlecase}}</span>
+                                    <span class="ft12 ft500 gray-6">{{freebie.type | titlecase}}</span>
+                                </div>
+                            </div>
+                            <span class="black ft12"> {{freebie.description}} </span>
+                            <a class="blueLink undrl" [routerLink]="'/recursos/' + freebie.customUrl">Ver más</a>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <!-- Articles -->
+            <div *ngIf="articles.length > 0" fxLayout="column" class="w-75">
+                <div class="fw" fxLayout="row" fxLayoutGap="4rem">
+                    <!-- Primary Article -->
+                    <div fxLayout="column" class="w-50 cursorPointer" routerLink="/blog/{{articles[0].slug}}">
+                        <!-- <img [src]="fotoDestacada" class="fw" alt=""> -->
+                        <img [src]="articles[0].photoUrl" class="imgPrimaryArticle" alt="">
+                        <div class="destacadoBottom" style="border-top: #fab52b 2px solid;">
+                            <div class="fw" fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="8px">
+                                <div *ngFor="let tagName of articles[0].tagsNames.slice(0, 2)" class="ftup ft11 pdl05 pdr05 radius6  backYellow2  ft500" style="color: #fab52b;">{{tagName}}</div>
+                                <span *ngIf="articles[0].tagsNames.length > 2">...</span>
+                                <div fxLayout="row" fxLayoutAlign=" center">
+                                    <div fxLayout="row" fxLayoutGap="2rem">
+                                        <!-- <div fxLayout="row" fxLayoutGap=".5rem">
+                                            <img [src]="icon.catalog" class="" alt="">
+                                            <div class="lightText ft12">Actículo técnico</div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign=" center" fxLayoutGap=".5rem">
+                                            <img [src]="icon.like" class="makeBlue" alt="">
+                                            <div class="lightText ft12">25</div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign=" center" fxLayoutGap=".5rem">
+                                            <img [src]="icon.chat" class="makeBlue" alt="">
+                                            <div class="lightText ft12">25</div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="ft500 mgt20 ft20 gray-10">{{articles[0].title}}</span>
+                            </div>
+                            <div>
+                                <span class="ellipsis-text ft500 mgt10 ft10 gray-8">{{articles[0]['summary']}}</span>
+                            </div>
+                            <div class="mgt10" fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="1rem">
+                                <img [src]="articles[0].authorPhoto" class="avatar2" alt="">
+                                <div class="lightText ft14" >{{articles[0].authorName}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 3 secondary articles -->
+                    <div fxLayout="column" class="w-50">
+                        <div *ngFor="let secondaryArticle of articles.slice(1, 4)" class="border-bl pdt10 pdb10 cursorPointer fw" [routerLink]="'/blog/' + secondaryArticle.slug">
+                            <div class="fw" fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="8px">
+                                <div *ngFor="let tagName of secondaryArticle.tagsNames.slice(0, 2)" class="ftup ft9 pdl05 pdr05 radius6 backBlue1 blue-5 ft500">{{tagName}}</div>
+                                <span *ngIf="secondaryArticle.tagsNames.length > 2">...</span>
+                                <div fxLayout="row" fxLayoutAlign=" center">
+                                    <div fxLayout="row" fxLayoutGap="1rem">
+                                        <!-- <div fxLayout="row" fxLayoutGap=".5rem">
+                                            <img [src]="icon.catalog" class="" alt="">
+                                            <div class="lightText ft12">Actículo técnico</div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign=" center" fxLayoutGap=".25rem">
+                                            <img [src]="icon.like" class="makeBlue" alt="">
+                                            <div class="lightText ft12">25</div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign=" center" fxLayoutGap=".25rem">
+                                            <img [src]="icon.chat" class="makeBlue" alt="">
+                                            <div class="lightText ft12">25</div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mgt10 fw" fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="space-between">
+                                <div fxLayout="column" style="width: 16vw ;">
+                                    <span class="ft500 cursorPointer ft14 gray-10">{{secondaryArticle.title}}</span>
+                                    <span class="ft12 lightText ellipsis-text pdt05">
+                                        {{secondaryArticle['summary']}}
+                                    </span>
+                                    <div class="mgt10" fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="1rem">
+                                        <img [src]="secondaryArticle.authorPhoto" class="avatar15" alt="">
+                                        <div class="lightText ft12" >{{secondaryArticle.authorName}}</div>
+                                    </div>
+                                </div>
+                                <img [src]="secondaryArticle.photoUrl" class="imgSecundaryArticle radius6" alt="">
+                                <!-- <img [src]="mini" class="w120px radius6" alt=""> -->
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Rest of articles -->
+                <div class="fw" fxLayout="column" fxLayoutAlign="">
+                    <div class="fw pdt20" fxLayout="row wrap" fxLayoutGap="1.4rem" fxLayoutAlign=" center">
+                        <div class="fw mgb20" fxFlex="0 1 calc(33% - 1.4rem)" fxLayout="column" *ngFor="let article of dataSource.data">
+                            <img [src]="article.photoUrl" class="radius6 imgOthersArticle" alt="">
+                            <div style=" width: 295px">
+                                <div class="mgt05" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign=" center">
+                                        <!-- <span *ngFor="let tagName of article.tagsNames" class="ftup gray-6 ft12">{{tagName}}</span> -->
+                                        <div *ngFor="let tagName of article.tagsNames.slice(0, 2)" class="ftup ft9 pdl05 pdr05 radius6 backBlue1 blue-5 ft500">{{tagName}}</div>
+                                        <span *ngIf="article.tagsNames.length > 2">...</span>
+                                    </div>
+                                </div>
+                                <p class="fw ft500 mgt05 ft14 gray-10">{{article.title | titlecase}}</p>
+                                <div class="mgt05 fw" style="max-width: 295px !important;">
+                                    <span class="ft12 lightText ellipsis-text">
+                                        {{article.summary}}
+                                    </span>
+                                </div>
+                                <a *ngIf="article.slug" class="blueLink undrl mgt05" [routerLink]="'/blog/' + article.slug">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <mat-paginator 
+                            aria-label="Select page of users"
+                            [length]="articles.length - 4" 
+                            [pageSize]="pageSize" 
+                            (page)="onPageChange($event.pageIndex + 1)">
+                        </mat-paginator>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="articles.length === 0" class="ft12 pdt03 pdb03 pdl05 pdr05 mgt05">No se han encontrado artículos</div>
+        </div>
+    </div>
+</div>
+<footer></footer>

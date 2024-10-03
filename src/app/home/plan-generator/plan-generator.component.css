@@ -1,0 +1,141 @@
+.organization-chart {
+    display: flex;
+    justify-content:space-between;
+    position: relative;
+    width: 70vw;
+    margin: 0 auto; 
+
+}
+
+.contenedorplanes {
+    width: 60vw; 
+}
+
+.profiles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 30%;
+    z-index: 2;
+
+}
+
+.blackborder{
+    border: 2px solid var(--gray-10)!important;
+}
+
+.whiteborder{
+    border: white 2px solid !important;
+
+}
+.plan-mini{
+    border-radius: 100%;
+    width: 100vw;
+}
+
+.profileMini {
+    cursor: pointer;
+    border: 1px solid var(--gray-3);
+    border-radius: 4px;
+    padding: 1rem;
+    width: 90%;
+    margin-bottom: 0.5rem;
+}
+
+.profileMini img {
+    width: 50px; 
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+
+
+.containerPerfil {
+    background-color: rgba(252,241,222,0.84);
+    border: #fcc145 1px solid !important;
+    z-index: 2;
+
+
+
+}
+
+.plan-tiempos{
+    border-radius: 6px;
+    background-color: rgb(247, 227, 188);
+    border: 1px solid #fcc145;
+    padding: 8px;
+
+}
+
+.ListHover3:hover {
+    background-color: #fdf7ea !important;
+  }
+  .selected-profile {
+    border: 1px solid #fcc145;
+    background-color: #fdf1d7 !important;
+    border-radius: 4px;
+  }
+
+
+  /* .horizontal-orangeline {
+    top: 10%;
+    left: 27%;
+    transform: translate(-60%, -40%);
+    border-bottom: 1px solid #fcc145;
+    width: 8vw;
+    z-index: 1;
+  } */
+  
+/* .course-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+} */
+
+.course-details {
+    /* margin-top: 8px; */
+    margin: 8px;
+    
+    
+}
+.cursos-plan{
+    padding: 9px;
+}
+
+.same-width {
+    width: 200px;
+    display: inline-block;
+    text-align: center;
+  }
+
+.border-b-orange{  
+    border-bottom: #fcc145 1px solid !important;
+
+}
+
+
+.chart-container {
+    padding-top: 2vh;
+    /* margin-bottom: -10vh; */
+    height: 32vh;
+    margin-right: 16px!important;
+}
+
+.btn-request-demo {
+    background-color: var(--yellow-3);
+    color: var(--gray-10);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.opcs-plan{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    
+}

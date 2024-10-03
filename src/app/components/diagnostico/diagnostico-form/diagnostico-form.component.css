@@ -1,0 +1,9 @@
+.chart-container {
+    height: 60vh;
+    width: 100%;
+}
+
+.chart-containerM {
+    height: 25vh;
+    width: auto;
+}

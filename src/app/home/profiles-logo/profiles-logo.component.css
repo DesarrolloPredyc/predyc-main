@@ -1,0 +1,61 @@
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .7rem;
+    width: fit-content;
+    margin: auto;
+}
+
+.grid-row {
+    display: flex;
+    justify-content: center;
+    gap: .3rem;
+}
+
+.grid-item3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    height: auto;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 1px solid orange!important;
+    border-radius: 8px;
+}
+
+.tituloperfil {
+    margin-top: 5px;
+    font-size: 0.6rem;
+    font-weight: 500;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.linked-profile a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.linked-profile:hover .profile-img {
+    transform: scale(.95);
+    transition: transform 0.3s ease; 
+}
+
+.linked-profile:hover .tituloperfil {
+    font-weight: bold; 
+    color: #909090; 
+    transition: color 0.3s ease, font-weight 0.3s ease; 
+}
+
+.no-link a {
+    cursor: default;
+}

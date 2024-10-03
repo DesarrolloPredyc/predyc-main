@@ -1,0 +1,21 @@
+.demo-form-container {
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  input{
+    height: 2rem;
+    border: 1px solid var(--gray-3);
+    border-radius: 4px;
+  }
+
+  label{
+    color: var(--gray-8);
+    font-family: 'Inter-medium';
+    font-weight: 500;
+    font-size: 22px;
+  }
+ 
+
+  

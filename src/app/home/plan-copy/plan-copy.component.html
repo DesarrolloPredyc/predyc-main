@@ -1,0 +1,63 @@
+<div class="organization-chart " style="position: relative;">
+  <div class="profiles fw pdt40">
+    <div
+      class="row gap1 backWhite profileMini ListHover3 shadow-animation3"
+      *ngFor="let plan of trainingPlans"
+      (click)="selectPlan(plan)"
+      [ngClass]="{ 'selected-profile': selectedPlan === plan }"
+      style="height: 8vh; display: flex; justify-content: space-between;">
+      <!-- Fotografía -->
+      <img [src]="plan.image" class="plan-mini" style="align-items: self-start;"  alt="">
+      <!-- Contenido restante -->
+        <!-- Nombre y perfil -->
+        <div class="column" style="margin-left: 0%; width: 14vw;">
+          <span class="ft750 ft12 gray-10" style="text-align: left!important;">{{ plan.nombre }}</span>
+          <span  class="ft500 ft12" style="color: rgb(8, 137, 212); text-align: left!important;" >{{ plan.perfil }}</span>
+        </div>
+        <!-- Progreso -->
+        <span class="ft750 ft12 gray-10" style="text-align: left!important;" > Progreso: &nbsp; {{ plan.progreso }}</span>
+        <!-- Ritmo -->
+        <div class="column">
+          <span class="ft12 pdb03 ft500  " style="  width: 8vw;"  [ngClass]="{
+            '  chip-pending chip-animation-medium': plan.ritmo === 'medio',
+            '  chip-completed': plan.ritmo === 'optimo',
+            '  chip-overdue chip-animation-low': plan.ritmo === 'bajo'
+          }">Ritmo {{ plan.ritmo }}</span>
+        </div>
+    </div>
+  </div>
+
+  <!-- Línea negra centrada horizontal y verticalmente -->
+  <div class="horizontal-line"></div>
+
+  <!-- Contenido de planes -->
+  <div class="fw column containerPerfil radius6 gap2 rowTop pdt20 pdr20">
+    <div class="fw" style="margin-left: 2rem; margin-bottom: 1rem; margin-right: .2rem;">
+      <div class="row pdb10 " style=" justify-content: space-between;">
+        <span class="ft750 ft16 gray-10" style="text-align: left!important;" >Plan de estudios</span>
+        <span class="ft750 ft16 gray-10" style="text-align: right!important;" >Progreso: {{ selectedPlan.progreso }}</span>
+      </div>
+      <div *ngIf="selectedPlan">
+        <ul class="course-list no-bullets">
+          <li class="month-section" *ngFor="let month of selectedPlan.months">
+            <p class="ft14 gray-10 ft500 month-title" style="text-align: left!important;" >{{ month.month }}</p>
+            <ul class="no-bullets">
+              <li *ngFor="let course of month.courses" class="course-item">
+                <img [src]="course.courseImage" class="avatarSquare3 whiteborder radius6" alt="">
+                <div class="course-details column">
+                  <span class="course-nombre ft600  gray-10 ft12" style="text-align: left!important; margin-bottom: 2px;" >{{ course.nombre }}</span>
+                  <span class="course-instructor ft11 gray-9" style="text-align: left!important;" >Instructor: {{ course.instructor }}</span>
+                </div>
+                <span class="ft12 pdb03 ft500  " style="  width: 8vw; " [ngClass]="{
+                  ' chip-completed': course.status === 'completado',
+                  '  chip-animation-medium  chip-pending': course.status === 'pendiente',
+                  'chip-overdue chip-animation-low': course.status === 'atrasado'
+                }">{{ course.status | titlecase }}</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

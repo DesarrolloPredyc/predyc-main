@@ -1,0 +1,79 @@
+.menu{
+    height: 60px;
+    background-color: white;
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    position: fixed;
+    top: 0px;
+    z-index: 20;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+
+.link{
+    color: var(--gray-10);
+    font-size: 16px;
+}
+
+.courseFinderShow{
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 360px;
+    background-color: white;
+    z-index: 5;
+    transition: .3s;
+}
+
+.courseFinderHide{
+    display: none;
+   /* transition: .3s;
+   height: 0px; */
+}
+
+/* Estilos para la cuenta regresiva */
+.countdown-container {
+    text-align: center;
+    color: black;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .countdown-item {
+    margin: 0 5px;
+    padding-right: 10px;
+    position: relative;
+  }
+  
+  .countdown-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background-color: #3a3f51;
+  }
+  
+  .countdown-value {
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .countdown-label {
+    font-size: 8px;
+    margin-top: 0 !important;
+  }
+
+  .event-card {
+    background-color: var(--blue-1); /* Fondo claro */
+    border-radius: 8px;        /* Esquinas redondeadas */
+    padding: 6px;             /* Espaciado interno */
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    max-width: 400px;          /* Limita el tamaño del card */
+  }

@@ -1,0 +1,15 @@
+<div class="popup-overlay" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <button class="close-button gray-10"  (click)="closePopup()">X</button>
+      <span class="ft16 mgb10 ft600 gray-10">
+        Solicita más información
+    </span>
+      <!-- <div id="hubspotForm"></div> -->
+      <app-reunion-form btnText="Enviar"  type="info" campana="" [anuncio]="null" interes=""
+      subject="Nuevo llenado formulario solicitar demo" [recipients]="['liliana.giraldo@predyc.com','andres.gonzalez@predyc.com','desarrollo@predyc.com']"
+      responsable="" origen="{{currentUrl}}"
+      lugar="footer" btnText="Solicitar información" (formSubmit)="handleFormSubmit($event)">
+      </app-reunion-form>
+    </div>
+  </div>
+  

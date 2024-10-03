@@ -1,0 +1,9 @@
+<div class="fh" fxLayout="column" fxLayoutAlign="center">
+    <div *ngFor="let item of items" class="item ft12 pdt03 pdb03 pdl05 pdr05 radius6" style="margin-top: 6px;"
+    [ngClass]="{'selected-item': item.id === selectedItem}" (click)="onItemSelected(item)">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap=".25rem">
+            <span *ngIf="item.name" class="ft13 black">{{item.name}}</span>
+            <span *ngIf="item.articlesQty" class="ft13">({{item.articlesQty}})</span>
+        </div>
+    </div>
+</div>

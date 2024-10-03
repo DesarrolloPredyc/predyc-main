@@ -1,0 +1,85 @@
+.containerLaptop {
+    position: relative;
+    width: 50vw;
+    height: 50vh;
+    border-radius: 16px;
+    min-height: fit-content;
+    background-color: white;
+    border: 1px solid black;
+    overflow: hidden; /* Asegura que el contenido no sobresalga del contenedor */
+}
+
+.laptopContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px; /* Añade un espacio interior opcional */
+    box-sizing: border-box; /* Asegura que el padding se incluya en el tamaño total */
+    display: flex; /* Utiliza flexbox para alinear los elementos */
+    align-items: center; /* Centra verticalmente el contenido */
+}
+
+.laptopContent .col-8 {
+    flex: 0 0 70%; /* Ocupa el 70% del ancho total disponible */
+}
+
+.laptopContent .col-4 {
+    flex: 0 0 30%; /* Ocupa el 30% del ancho total disponible */
+    /* /* padding-left: 10px;  */
+}
+
+.clasesCurso {
+    max-height: calc(50vh - 40px); /* Ajusta la altura máxima para los módulos y cursos */
+    overflow-y: auto; /* Añade scrollbar si es necesario */
+    padding: 10px; /* Espaciado interno opcional */
+}
+
+.moduloClase {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.moduloHeader {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+    /* padding-bottom: 5px; */
+    /* border-bottom: 1px solid #ddd; */
+}
+
+.cuadrito {
+    width: 20px;
+    height: 20px;
+    background-color: #d8d8d8;
+    color: rgb(43, 43, 43);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.tituloClase {
+    flex: 1;
+    
+}
+
+.claseDetalle {
+    margin-top: 10px;
+}
+
+.clase {
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.claseTitulo {
+    font-weight: bold;
+}

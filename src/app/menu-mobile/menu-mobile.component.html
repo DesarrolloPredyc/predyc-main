@@ -1,0 +1,61 @@
+<div class="menu-container">
+  <div class="navbar" [class.sticky]="!menuActive">
+    <div class="logo">
+      <img routerLink="/" [src]="icon.predycLogoWhite" class="h32px cursorPointer" alt="Logo">
+    </div>
+    <div class="menu-icon" (click)="toggleMenu()">
+      <img style="height: 42px; border-radius: 6px;" [src]="menuActive ? icon.MenuBlack : icon.MenuWhite" alt="Menu">
+    </div>
+  </div>
+  <div class="menu-mobile" [class.active]="menuActive">
+    <div class="menu-header">
+      <div class="logo">
+        <img routerLink="/" [src]="icon.predycLogo" class="h32px cursorPointer" alt="Logo">
+      </div>
+      <div class="close-icon" (click)="toggleMenu()">
+        <img style="height: 42px; border-radius: 6px;" [src]="icon.MenuBlack" alt="Close">
+      </div>
+    </div>
+    <div class="menu-links">
+      <div class="link-item">
+        <a href="" routerLink="/cursos-gratis" class="link ft16 ft500" (click)="toggleMenu()">Cursos gratis</a>
+      </div>
+      <!-- <div class="link-item">
+        <a href="" routerLink="/diagnosticos" class="link ft16 ft500" (click)="toggleMenu()">Diagnósticos</a>
+      </div> -->
+      <div class="link-item">
+        <a href="" routerLink="/blog" class="link ft16 ft500" (click)="toggleMenu()">Blog</a>
+      </div>
+      <div   *ngIf="showEvent" class="link-item">
+        <!-- <a href="" (click)="openDemoRequestDialog()"  class="link ft16 ft500" >Contacta a un asesor </a> -->
+        <a  href="https://wa.link/xrqtkp" target="_blank"  class="link ft16 ft500 MENU-BTN-1 " >Hablar con un asesor </a>
+      </div>
+      <div class="link-item">
+        <a href="https://app.predyc.com/auth/login" target="_blank" class="link ft16 ft500 MENU-BTN-AULA" style="color: #F1871A;">Ir al Aula Virtual</a>
+      </div>
+      <div class="link-item" style="padding-top:0px;" *ngIf="showEvent" >
+        <div (click)="toggleMenu()" routerLink="/mantenimiento-en-accion" class="event-card cursorPointer no-select" fxLayoutAlign=" center">
+          <img style="height: 24px !important;" src="/assets/images/mantenimiento/logoVerical.png" alt="">
+          <div *ngIf="showTime" class="mgl10 countdown-container">
+              <div class="countdown-item">
+                  <div class="countdown-value">{{ days }}</div>
+                  <div class="countdown-label">DÍAS</div>
+              </div>
+              <div class="countdown-item">
+                  <div class="countdown-value">{{ hours }}</div>
+                  <div class="countdown-label">HORAS</div>
+              </div>
+              <div class="countdown-item">
+                  <div class="countdown-value">{{ minutes }}</div>
+                  <div class="countdown-label">MINUTOS</div>
+              </div>
+              <!-- <div class="countdown-item" style="padding-right: 0px;">
+                  <div class="countdown-value">{{ seconds }}</div>
+                  <div class="countdown-label">SEGUNDOS</div>
+              </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

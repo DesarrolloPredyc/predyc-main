@@ -1,0 +1,32 @@
+.article-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.imgOthersArticle {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.ellipsis-text {
+  display: inline-block; /* O usar block si necesitas que ocupe el 100% del ancho disponible */
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.undrl {
+  text-decoration: underline;
+}
+
+.paginator-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.search-box {
+  max-width: 90%;
+}

@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="superior" fxLayoutAlign="center center" fxLayout="column">
+        <div class="w-70 centertext">
+            <span class="ft24 gray-1 ft600">{{resource.name}}</span>
+
+        </div>
+        <div class="w-70 mgt20" fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="2rem">
+            <div fxLayoutAlign="center center">
+                <img [src]="resource.photoUrl" class="fw radius6" alt="">
+            </div>
+            <div fxLayout="column" class="fw">
+                <form [formGroup]="freebieForm" (ngSubmit)="onSubmit()">
+                    <div class="fw" fxLayout="column">
+                        <label for="name" class="gray-1 ft16">Nombre completo</label>
+                        <input formControlName="name" id="name" class="mgt05 inputText" type="text"
+                            placeholder="Escribe tu nombre completo" [ngClass]="freebieForm.get('name').errors && displayErrors?'borderRed':'borderNone'">
+                        <div class="custom-invalid-feedback" *ngIf="freebieForm.get('name').errors && displayErrors">
+                            <div *ngIf="freebieForm.get('name').errors?.required">
+                                Debes ingresar tu nombre completo
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fw mgt10" fxLayout="column">
+                        <label for="email" class="gray-1 ft16">Email</label>
+                        <input formControlName="email" id="email" class="mgt05 inputText" type="email"
+                            placeholder="Escribe tu correo electrónico" [ngClass]="freebieForm.get('email').errors && displayErrors?'borderRed':'borderNone'">
+                        <div class="custom-invalid-feedback" *ngIf="freebieForm.get('email').errors && displayErrors">
+                            <div *ngIf="freebieForm.get('email').errors?.required">
+                                Debes ingresar tu correo electrónico
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fw mgt10" fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="2rem">
+                        <div fxLayout="column" class="fw">
+                            <label for="job" class="gray-1 ft16">Cargo</label>
+                            <input formControlName="job" id="job" class="mgt05 inputText" type="text"
+                                placeholder="Cargo actual" [ngClass]="freebieForm.get('job').errors && displayErrors?'borderRed':'borderNone'">
+                            <div class="custom-invalid-feedback" *ngIf="freebieForm.get('job').errors && displayErrors">
+                                <div *ngIf="freebieForm.get('job').errors?.required">
+                                    Debes ingresar tu cargo
+                                </div>
+                            </div>
+                        </div>
+                        <div fxLayout="column" class="fw">
+                            <label for="company" class="gray-1 ft16">Empresa</label>
+                            <input formControlName="company" id="company" class="mgt05 inputText" type="text" [ngClass]="freebieForm.get('company').errors && displayErrors?'borderRed':'borderNone'"
+                                placeholder="Cargo actual">
+                            <div class="custom-invalid-feedback" *ngIf="freebieForm.get('company').errors && displayErrors">
+                                <div *ngIf="freebieForm.get('company').errors?.required">
+                                    Debes introducir tu empresa
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fw mgt10">
+                        <button class="yellowButton fw ft500" type="submit">Descargar material gratuito</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- <div class="inferior backDarkDegraded" fxLayoutAlign="center center">
+        <div class="w-70" fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign=" center">
+            <div class="w-60" fxLayout="column">
+                <span class="ft20 gray-1 ft500">Suscríbete a nuestra revista y recibe contenidos gratuitos para impulsar
+                    tu mantenimiento</span>
+                <div class="fw mgt10" fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="1rem">
+                    <input type="text" class="inputText w-60" placeholder="Introduce tu email">
+                    <button class="blueButton">Suscribete a la revista</button>
+                </div>
+            </div>
+            <div class="w-40">
+                <img [src]="revista" class="revista" alt="">
+            </div>
+        </div>
+    </div> -->
+
+</div>

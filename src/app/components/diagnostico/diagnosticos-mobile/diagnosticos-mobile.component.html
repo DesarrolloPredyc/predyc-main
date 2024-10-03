@@ -1,0 +1,37 @@
+<div class="fw container pdt40" fxLayout="column" fxLayoutAlign=" center" style="min-height: calc(100vh - 50px);">
+    <div class="fw" class="pdr10 pdl10" style="height: 100%; width: 90% !important;">
+        <div class="fw" fxLayout="column">
+            <div fxLayout="column" fxLayoutAlign="start start" class="pdb10">
+                <div style="display: inline-block;">
+                  <h1 class="ft18 ft600">Diagnósticos</h1>
+                  <!-- <div class="line" style="width: 90%; height: 4px; background-color: #f4b03e; margin-top: 8px;"></div> -->
+                </div>
+            </div>
+            <p class="ft14 pdt10">
+                Realiza un diagnóstico breve de tus conocimientos en las categorías de las certificaciones técnicas.
+            </p>
+            <p class="ft14 pdt10">
+                Si quieres realizar un diagnóstico profundo particularizado para los colaboradores de tu equipo de mantenimiento 
+            </p>
+            <a (click)="scrollToForm()" class="ft14 blueLink">habla con un asesor.</a>
+        </div>
+        <div class="fw pdt20 pdb40" fxLayout="column">
+          <div class="courses-grid">
+              <ng-container *ngFor="let course of test" >
+                  <div routerLink="/diagnostico/{{course.customUrl ? course.customUrl: course.id}}" class="course-card cursorPointer no-select">
+                      <img [src]="course.imagen" [alt]="" class="course-image">
+                      <div class="course-info">
+                          <span class="pdb05 ft14 ft500">{{ course.title }}</span>
+                          <span class="pdb05">{{ course.questions.length }} preguntas</span>
+                          <!-- <span class="centered-content">
+                            <img [src]="icon.clock" class="h16px pdr03" />
+                            {{ course['duracionFormatted'] }}
+                          </span> -->
+                      </div>
+                  </div>
+              </ng-container>
+          </div>
+      </div>      
+    </div>
+</div>
+<app-footer-mobile></app-footer-mobile>

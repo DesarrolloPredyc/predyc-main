@@ -1,0 +1,105 @@
+<div class="fw" fxLayout="row" fxLayoutAlign="center">
+  <!-- Artículo -->
+  <!-- Tabla de contenido (solo visible en pantallas no móviles) -->
+  <div *ngIf="!isMobile && loaded" class="w-25">
+    <div *ngIf="showIndice" class="toc">
+      <span class="ft18 ft600 gray-9" style="padding: 15px;">Tabla de Contenido</span>
+      <ul class="toc-list">
+        <li *ngFor="let item of tocItems" #tocItem class="cursorPointer">
+          <span 
+            [ngClass]="{
+              'toc-h2': item.level === 'h2',
+              'toc-h3': item.level === 'h3',
+              'active': false
+            }"
+            (click)="scrollToElement(item.id, item.level, item.title)">
+            {{ item.title }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div [ngClass]="{'w-50':!isMobile,'fw':isMobile}">
+    <ng-container *ngIf="article">
+      <div>
+        <img [src]="article.photoUrl ? article.photoUrl : 'assets/images/default/default-user-image.jpg'" style="border-radius: 8px 8px 0 0;" class="fw" [ngClass]="{'mgt80':!isMobile,'mgtPhotoMovil':isMobile}" alt="" />
+        <div class="pd18 card-info-article">
+          <h1 class="ft30 ft600 gray-9">{{article.title}}</h1>
+          <p style="margin: 0px !important;" [ngClass]="{'pdt03':isMobile}"  >Artículo {{categories | lowercase}}, {{ article?.createdAt?.seconds * 1000 | date:'d \'de\' MMMM \'de\' y' }}</p>
+          <!-- <span class="ft16 ft500 mgt05">Autor</span> -->
+          <!-- <div class="author-card" [ngClass]="{'mgt20':!isMobile, 'mgt10':isMobile}"> -->
+          <div class="author-card mgt05" [ngClass]="{'mgt20':!isMobile}">
+            <img [routerLink]="['/blog']" [queryParams]="{ author: article.authorId, page: 1 }" [src]="article.author.photoUrl" [alt]="article.author.name" class="avatar5 cursorPointer" style="margin-right: 0.8rem;">
+            <div class="author-info">
+              <span [routerLink]="['/blog']" [queryParams]="{ author: article.authorId, page: 1 }" class="ft16 ft600 pdb03 cursorPointer">Autor: {{ article.author.name }}</span>
+              <p style="margin-bottom: 0px !important;">{{ article.author.description }}</p>
+              <p *ngIf="article.author.email" style="margin-bottom: 5px !important;">
+                <a class="blueLink" [href]="'mailto:' + article.author.email">{{article.author.email}}</a>
+                <ng-container *ngIf="!isMobile">
+                  <span>&nbsp;-&nbsp;</span>
+                  <a class="blueLink" *ngIf="article.author.linkedin" [href]="article.author.linkedin" target="_blank" style="display: inline-flex; align-items: center;">
+                    Ver perfil de Linkedin
+                    <img [src]="icon.linkedin" alt="LinkedIn" class="icon" style="vertical-align: middle; margin-left: 4px;">
+                  </a>
+                </ng-container>
+              </p>
+              <div *ngIf="isMobile" class="author-icons">
+                <a class="blueLink" *ngIf="article.author.linkedin" [href]="article.author.linkedin" target="_blank" style="display: inline-flex; align-items: center;">
+                  Ver perfil de Linkedin
+                  <img [src]="icon.linkedin" alt="LinkedIn" class="icon" style="vertical-align: middle; margin-left: 4px;">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isMobile" class="blue-5 ft14 pdt10 w-90 centered-container-movil">
+          <span class="ft500 gray-9 ft14">Cursos recomendados</span>
+          <div class="courses-grid-movil pdt05">
+            <div (click)="irACurso(course)" *ngFor="let course of article.courses" class="course-card-movil">
+              <div class="image-container-movil">
+                <img [src]="course.imagen" alt="{{ course.customUrl }}" class="course-image-movil" />
+                <div *ngIf="course.isFree" class="free-badge-movil">Gratis</div>
+              </div>
+              <span class="course-title-movil">{{ course.titulo }}</span>
+            </div>            
+          </div>
+        </div>
+      </div>
+      <div class="containerText">
+        <div class="ql-snow ql-disabled ngx-quill-view">
+          <div class="ql-editor" [ngClass]="{'w-90 centered-container-movil':isMobile}"[innerHTML]="articleHTML"></div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div *ngIf="!isMobile && article?.courses?.length>0" fxLayout="column" fxLayoutAlign=" center" class="w-25 mgt80">
+  </div>
+</div>
+<div class="scroll-to-top" *ngIf="showScrollToTop" (click)="scrollToTop()">
+  ↑
+</div>
+<div *ngIf="!isMobile" class="progress-container">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+<div *ngIf="isMobile && showScrollToTop" class="progress-container" style="top: 61px !important;">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+<div *ngIf="!isMobile && article?.courses?.length > 0" class="fixed-courses-container">
+  <div class="container-courses">
+    <span class="ft14 ft500 gray-9 ft14 pdb05">Cursos recomendados</span>
+    <ng-container *ngFor="let course of article?.courses">
+      <div (click)="irACurso(course)" class="course-card cursorPointer no-select">
+        <img [src]="course.imagen" [alt]="course.customUrl" class="course-image">
+        <div class="course-info">
+          <span class="pdb05 ft14 ft500">{{ course.titulo }}</span>
+          <span class="pdb05">{{ course.instructorNombre }}</span>
+          <span class="centered-content">
+            <img [src]="icon.clock" class="h16px pdr03" />
+            {{ course['duracionFormatted'] }}
+          </span>
+          <div *ngIf="course.isFree" class="badge free-badge">Gratis</div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

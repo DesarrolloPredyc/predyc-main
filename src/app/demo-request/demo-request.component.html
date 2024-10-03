@@ -1,0 +1,34 @@
+<div class="demo-form-container">
+    <h2 class="fw centertext ftxxl gray-9 ft600">Solicita tu demostración
+    </h2>
+    <p class="gray-8 ft14 centertext mgt20">Completa los campos para hablar con un especialista y entender los beneficios que Predyc ofrece para tus operaciones de mantenimiento.</p>
+    <form [formGroup]="demoForm" (ngSubmit)="submitForm()">
+        <div class="column fw mgt20">
+            <label for="">Nombre completo</label>
+            <input type="text" class="fw">
+        </div>
+        <div class="column fw mgt20">
+            <label for="">E-mail profesional</label>
+            <input type="text" class="fw">
+        </div>
+        <div  class="column fw mgt20">
+            <label for="">Teléfono móvil</label>
+            <input type="text" class="fw">
+        </div>
+        <div class="mgt20" style="display: flex; direction: row; gap: 2rem;">
+            <div  class="column fw">
+                <label for="">Cargo</label>
+                <input type="text" class="fw">
+            </div>
+            <div  class="column fw">
+                <label for="">En que sector trabajas</label>
+                <input type="text" class="fw">
+            </div>
+        </div>
+        <div class="mgt20 column fw">
+            <label for="">Seleccione la solución de mayor interés</label>
+            <input type="text" class="fw">
+        </div>
+      <button class="fw mgt20 yellowButton ft14 gray-9 ft500 radius4" type="submit">Solicitar demostración</button>
+    </form>
+  </div>

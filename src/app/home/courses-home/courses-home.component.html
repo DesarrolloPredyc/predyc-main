@@ -1,0 +1,18 @@
+<div class="fw  mgb10 colCenter">
+    <div class="w-40">
+        <h2 class="fw centertext ftlg   mgb20 ft600 gray-9">
+            <span class="ftxl ft600 blue-5">+80</span> Cursos Técnicos para Mantenimiento y Confiabilidad
+        </h2>
+    </div>
+    <!-- <p class="ft14 gray-9 mgt10">
+        Tomamos el listado de personas de mantenimiento y cargos y asignamos los cursos que necesitan.
+    </p> -->
+    <div class="grid-container fw mgt20">
+        <div [routerLink]="'/cursos/' + course.id" class="course-card cursorPointer    " *ngFor="let course of courses">
+            <img [src]="course.image" class="radius6 shadow-animation3  HOME-COURSE-CLICKS  " alt="{{ course.name }}">
+            <div class="course-info HOME-COURSE-CLICKS ">
+                <h3 class="ft12 ft750 gray-10 mgt05 centertext  HOME-COURSE-CLICKS  ">{{ course.name }}</h3>
+            </div>
+        </div>
+    </div>
+</div>

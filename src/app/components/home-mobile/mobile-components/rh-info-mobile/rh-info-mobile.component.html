@@ -1,0 +1,74 @@
+<div class="fw  colCenter" style="padding-left: 16px; padding-right: 16px;">
+    <div class="fw  mgt20  column">
+      <h2 class="ft18 gray-10 ft600 w-90" style="text-align: left; font-family: Inter-bold">
+        Herramienta de RH para control de las capacitaciones de tu equipo        </h2>
+      <p class="gray-8 ft14 mgt05 w-90" style="text-align: left; font-family: Inter-medium;">
+          Cuando tienes un equipo grande, necesitas asegurarte que las personas estén invirtiendo esfuerzo. Adicionalmente, con la herramienta podrás realizar rotaciones de personas, cambios en los planes de formación, fechas y obtener KPIs.        </p>
+    </div>
+
+    <!-- <img alt="imagen plan de estudio" style="width: 100%; padding: .5rem; margin-top: 16px; margin-bottom: 16px;" src="/assets/images/icons/planbreve.svg" >
+ -->
+
+
+ <div class="organization-chart" style="position: relative;">
+  <div class="profiles fw pdt20">
+    <div
+      class="row gap1 backWhite profileMini ListHover3 shadow-animation3"
+      *ngFor="let plan of trainingPlans"
+      (click)="selectPlan(plan)"
+      [ngClass]="{ 'selected-profile': selectedPlan === plan }"
+      style="height: 8vh; display: flex; justify-content: left; flex-direction: row; width: 100%; align-items: left;">
+      <!-- Fotografía -->
+      <img [src]="plan.image" class="plan-mini" style="align-items: left;" alt="">
+      <!-- Contenido restante -->
+      <div class="column" style="margin-left: 0%; width: 50%; text-align: left;">
+        <span class="ft750 ft12 gray-10" style=" text-align: left;">{{ plan.nombre }}</span>
+        <span class="ft500 ft12" style="color: rgb(8, 137, 212);  text-align: left;">{{ plan.perfil }}</span>
+      </div>
+      <!-- <span class="ft750 ft12 gray-10">Progreso: &nbsp; {{ plan.progreso }}</span> -->
+      <div class="column" style="align-items: center; justify-content: center;">
+        <span class="ft12 pdb03 ft500" style="width: 100%;" [ngClass]="{
+          'chip-pending chip-animation-medium': plan.ritmo === 'medio',
+          'chip-completed': plan.ritmo === 'optimo',
+          'chip-overdue chip-animation-low': plan.ritmo === 'bajo'
+        }">Ritmo {{ plan.ritmo }}</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Contenido de planes -->
+  <div class="fw column containerPerfil radius6 gap2 rowTop mgt05 mgb20 ">
+    <div class="fw" style="padding: 16px; padding-bottom: 0!important;">
+      <div class="row pdb10" style="justify-content: space-between;">
+        <span class="ft750 ft16 gray-10">Plan de estudios</span>
+        <span class="ft750 ft16 gray-10">Progreso: {{ selectedPlan.progreso }}</span>
+      </div>
+      <div *ngIf="selectedPlan">
+        <ul class="course-list no-bullets">
+          <li class="month-section" *ngFor="let month of selectedPlan.months">
+            <p class="ft14 gray-10 ft500 month-title">{{ month.month }}</p>
+            <ul class="no-bullets course-list pdt10 mgt20">
+              <li *ngFor="let course of month.courses" class="course-item rowFlexStart2 cursos-plan border-b-orange">
+                <img [src]="course.courseImage" class="avatarSquare3 whiteborder radius6" alt="">
+                <div class="course-details column" style="align-items: left;">
+                  <span class="course-nombre ft600 gray-10 ft12" style="margin-bottom: 2px;">{{ course.nombre }}</span>
+                  <span class="course-instructor ft11 gray-9">Instructor: {{ course.instructor }}</span>
+                </div>
+                <span class="ft12 pdb03 ft500" style="width: auto;" [ngClass]="{
+                  'chip-completed': course.status === 'completado',
+                  'chip-animation-medium chip-pending': course.status === 'pendiente',
+                  'chip-overdue chip-animation-low': course.status === 'atrasado'
+                }">{{ course.status | titlecase }}</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  
+    </div>

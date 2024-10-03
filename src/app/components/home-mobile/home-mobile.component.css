@@ -1,0 +1,560 @@
+.banner{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    background-color: var(--backDark);
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 4rem; */
+  }
+  
+  
+  
+  
+  .customers-list2{
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    gap: 2rem; 
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: #f2f2f2;
+    filter: grayscale();
+  }
+  
+  .title-container{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .revista-banner{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .edicion-reciente{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    gap: 4rem;
+    margin-top: 4rem;
+  }
+  
+  .row{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    gap: 2rem; 
+  }
+  
+  .row4{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    gap: 4rem;
+  }
+  
+  .row05{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem; 
+  }
+  
+  .revista-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+  }
+  
+  .revista-resumen{
+    width: 50%;
+  }
+  
+  /* .cursos{
+    background-color: var(--backDarkDegraded);
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+   */
+  .revistaContainer{
+      position: relative;
+  }
+  
+  .custom-shape-divider-top-1707249581 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      z-index: 4;
+  }
+  
+  .positionRelative{
+      position: relative;
+  }
+  
+  
+  
+  .revista{
+      /* box-shadow: var(--shadow12); */
+      /* min-width: 180px;
+      max-width: 180px; */
+      min-height: 230px;
+      max-height: 230px;
+      z-index: 2;
+  }
+  
+  .circuloRevista{
+      background: linear-gradient(45deg,#CBEFFF,#5ACDFF);
+  
+      min-width: 250px;
+      max-width: 250px;
+      min-height: 250px;
+      max-height: 250px;
+      border-radius: 50%;
+      position: absolute;
+      left: calc(50% - 125px);
+      top: calc(50% - 125px);
+      z-index: 1;
+  
+  }
+  
+  .textoRevista{
+   
+      min-height: 120px;
+      background-color: white;
+      box-shadow: var(--shadow12);
+      position: absolute;
+      left: calc(50% + 45px);
+      z-index: 3;
+      padding: 1rem;
+      font-size: 12px;
+  }
+  
+  
+  
+  .waves{
+      width: 170%;
+      height: 200px;
+      z-index: 4;
+  }
+  
+  .wavesWhite{
+      width: 160%;
+      height: 100px;
+      z-index: 4;
+      filter: brightness(0) invert(1);
+  }
+  
+  .waves1{
+      width: 185%;
+      height: 200px;
+      z-index: 4;
+      opacity: .7;
+  }
+  
+  .waves2{
+      width: 200%;
+      height: 200px;
+      z-index: 4;
+      opacity: .5;
+  }
+  
+  .plan-generator{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  
+  .plan-training{
+    padding-bottom: 0px !important;
+    margin-top: 32px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+  
+  
+  
+  .bold{
+      color: var(--gray-1);
+      font-size: 52px;
+      font-family: 'Inter-bold';
+  
+  }
+  
+  .lineButtonWhite{
+      border: 1px solid var(--gray-1);
+      color: var(--gray-1);
+      padding: .5rem 1rem .5rem 1rem;
+      width: fit-content;
+      border-radius: 24px;
+  }
+  
+  .yellowLineButton{
+      border: 2px solid var(--yellow);
+      color: var(--yellow);
+      padding: .5rem 1rem .5rem 1rem;
+      width: fit-content;
+      border-radius: 24px;
+  }
+  
+  .lineButton{
+      border: 1px solid var(--blue-5);
+      color: var(--blue-5);
+      padding: 6px 20px !important; 
+      width: fit-content;
+      border-radius: 24px;
+  }
+  
+  .lineWhiteButtonSquare{
+    border: 1px solid var(--gray-1);
+    color: var(--gray-1);
+    padding: 6px 20px !important; 
+    width: fit-content;
+    border-radius: 6px;
+  }
+  
+  .lightText{
+      font-family: "Inter-light";
+  }
+  
+  .cursiva{
+      font-style: italic;
+  }
+  
+  .containerLogos{
+      position: relative;
+      left: 50%;
+      width: 100%;
+      height: 40px;
+      top: 2rem;
+  }
+  
+  #permas {
+      height: 32px;
+      bottom: calc(50% - 16px);
+      position: absolute;
+      overflow-y: hidden;
+      white-space:nowrap;
+      
+      /* added */
+      left: 50%;
+      animation-name: scroll;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+    #permas img {
+      height: 100%;
+    }
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  
+    .circleBack{
+      min-width: 45%;
+      max-width: 45%;
+      aspect-ratio: 1/1;
+      background: linear-gradient(45deg,#CBEFFF,#5ACDFF);
+      border-radius: 50%;
+      position: relative;
+    }
+  
+    .upCircle{
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 90%;
+      border-radius: 20px;
+    }
+  
+    .textCircle{
+      background-color: white;
+      box-shadow: var(--shadow12);
+      border-radius: 20px;
+      padding: 1rem;
+      font-size: 12px;
+      position: absolute;
+      width: 65%;
+      top: 20%;
+      left: 35%;
+    }
+  
+    .destacadoBottom{
+      background-color: var(--gray-1);
+      padding: 1rem;
+      border-radius: 0px 0px 20px 20px;
+    }
+  
+    .lineaBlanca{
+      min-width: 32px;
+      min-height: 4px;
+      max-height: 4px;
+      background-color: var(--gray-1);
+    }
+  
+    .casosExito{
+      background: linear-gradient(45deg,#13A6EE,#028CD0);
+    }
+  
+    .textExito{
+      background-color: white;
+      box-shadow: var(--shadow12);
+      border-radius: 20px;
+      padding: 1rem;
+      padding-top: 0;
+      font-size: 12px;
+      position: absolute;
+      width: 65%;
+      top: 20%;
+      left: 35%;
+      opacity: .9;
+    }
+  
+    .pricing-section {
+      padding: 50px;
+      text-align: center;
+    }
+    
+    .slider-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .slider-container input[type="checkbox"] {
+      margin: 0 10px;
+    }
+    
+    .card-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: no-wrap;
+      gap: 3;
+      width: 80vw;
+    }
+  
+  
+   
+    
+    .card {
+      display: inline-block;
+      align-items:start;
+      flex-direction: column;
+      justify-content: space-between; /* ensures that space is distributed evenly between children */
+      border-radius: 10px;
+      padding: 0px!important;
+      min-width: 40vw;
+      margin: 16px;
+      background-color: #f2f2f2;
+      height: auto; /* Ensure the card takes up the necessary height */
+      max-height: fit-content;
+    }
+  
+    .card-content {
+      flex-grow: 1;
+      padding: 16px;
+    }
+    .card h3 {
+      margin-top: 0;
+    }
+    
+    .best-seller {
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between; /* ensures that space is distributed evenly between children */
+       border-radius: 10px;
+       padding: 0px!important;
+       width: 25%;
+       margin: 16px;
+       background-color: #222b37;
+       height: auto;
+  
+  
+  
+    }
+  
+  
+  
+  .bottom-button {
+    /* position: absolute; */
+    bottom: 20px; 
+    left: 50%;
+    transform: translateX(-50%);
+    /* padding: 10px 20px; */
+  }
+    
+  
+    /* Toggle Styles */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      margin-top: 20px;
+    }
+    
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ffa73b;
+      transition: .4s;
+      border-radius: 34px;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: rgb(255, 232, 203);
+      transition: .4s;
+      border-radius: 50%;
+    }
+    
+    input:checked + .slider {
+      background-color: #ffeb3b;
+    }
+    
+    input:checked + .slider:before {
+      transform: translateX(26px);
+      background-color: #ffa73b;
+  
+    }
+    div.card div p {
+      line-height: 0.5 !important;
+  }
+  
+  /* Common styles for both buttons */
+  .button-card {
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer; /* Make it look clickable */
+  }
+  
+  .button-card .button-text {
+    color: white!important;
+    position: relative;
+    display: inline-block;
+    transition: transform 0.4s, color 0.4s; /* Smooth transition for sliding effect and color */
+  }
+  
+  .button-card .chevron {
+    position: absolute;
+    top: 50%;
+    right: 50px; /* Adjust as needed */
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.4s; /* Smooth transition for opacity */
+  }
+  
+  .button-card:hover .button-text {
+    transform: translateX(-10px); /* Slide the text to the left */
+    color: #222b37!important;
+  }
+  
+  .button-card:hover .chevron {
+    opacity: 1; /* Show the chevron */
+  }
+  
+  /* Styles for the dark button */
+  .button-card-dark {
+    background-color: #222b37;
+    color: #d72f2f;
+    transition: background-color 0.4s, color 0.4s; /* Smooth transition for background and color */
+  }
+  
+  .button-card-dark:hover {
+    background-color: orange!important;
+    color: black;
+  }
+  
+  .button-card-dark:hover .button-text {
+    color: #222b37; /* Ensure text color changes on hover */
+  }
+  
+  /* Styles for the orange button */
+  .button-card-orange {
+    background-color: orange;
+    color: white!important;
+    transition: background-color 0.4s, color 0.4s; /* Smooth transition for color */
+  }
+  
+  .button-card-orange:hover {
+    color: white!important;
+  }
+  
+  .button-card-orange:hover .button-text {
+    color: white!important;
+  }
+  
+  .video-link {
+    position: relative;
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.salto-blink {
+  animation: blink 1.5s infinite ease-in-out;
+  width: 60vw; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  z-index: 2;
+}
+
+.salto-blink:hover {
+/* animation-play-state: paused; */
+opacity: 1!important;
+}

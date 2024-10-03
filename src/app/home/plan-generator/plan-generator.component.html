@@ -1,0 +1,69 @@
+<div class="horizontal-orangeline mgt10 "></div>
+  <div class="fw  pdt40 pdl40   pdr40  centertext colCenter">
+
+    <h2 class="  ftxl gray-10 ft600 w-70 ">Un plan de capacitación personalizado para cada perfil técnico
+    </h2>
+    <p class="  gray-8 ft14 mgt20 w-70">Tomamos el listado de personas de mantenimiento y cargos y asignamos los cursos que necesitan.
+    </p>
+  </div>
+<div class="organization-chart pdb40 ">
+    <!-- Lista de perfiles de planes de capacitación -->
+    <div class="profiles " style="margin-top: 8rem;">
+      <div class="row gap1 backWhite profileMini ListHover3 shadow-animation3"
+      *ngFor="let plan of trainingPlans"
+      (click)="selectPlan(plan)"
+      [ngClass]="{ 'selected-profile': selectedPlan === plan }"
+      style="height: 8vh; display: flex; justify-content: space-between;">
+      <!-- Fotografía -->
+        <img [src]="plan.image" class="plan-mini" alt="">
+        <div class="column " style="margin-left: 0%; width: 14vw;">
+          <span class="ft750 gray-10 ft12 mgb03" style="text-align: left;">{{ plan.usuario }}</span>
+          <span  class="ft500 ft12" style="color: rgb(8, 137, 212); text-align: left;" >{{ plan.rol }}</span>
+
+        </div>
+      </div>
+    </div>
+
+
+  
+    <!-- Contenido de planes de capacitación -->
+    <div class="column fixed-width">
+      <p class="  gray-10 ft12 mgt20 mgb03 "> <span class="ft500 ft12 gray-10 ">Ejemplo de un Plan de Capacitación </span> </p>
+      <div class="fw containerPerfil radius6 gap2 rowTop pd20">
+
+        <div class="w-30  column" *ngIf="selectedPlan">
+          <img [src]="selectedPlan.image" class="avatarSquare9 radius6 " alt="">
+          <span class="ft750  ft16 gray-10"  style="text-align: left; height: 6vh;  margin-top: 16px;">{{ selectedPlan.title }}</span>
+          <span class="ft12 gray-9"  style="text-align: left; height: 10vh; margin-top: 16px;" >{{ selectedPlan.summary }}</span>
+          <div class="opcs-plan">
+            <span class="plan-tiempos mgt10 ft14 ft500 gray-10 same-width"  >{{ selectedPlan.duration }} &nbsp;&nbsp;&nbsp;&nbsp;  {{ selectedPlan.courseCount }} cursos</span>
+            <!-- <button class="ft14 blueButton mgt10 radius4 same-width"  >Solicitar una demostración</button> -->
+          </div>
+          <div class="horizontal-orangeline"></div>
+  
+          
+          <!-- Contenedor del gráfico de radar -->
+          <div class="chart-container">
+            <canvas id="chart"></canvas>
+          </div>
+        </div>
+        <div class="w-70" style="margin-left: 2rem;">
+          <!-- Lista de cursos del plan seleccionado -->
+          <ul class="course-list">
+            <li class="rowFlexStart cursos-plan border-b-orange" *ngFor="let course of selectedPlanCourses">
+              <img [src]="course.courseImage" class="avatarSquare3 whiteborder radius6" alt="">
+              <div class="column course-details">
+                <span class="course-title ft600 mgb03 gray-10 ft12"  style="text-align: left;">{{ course.title }}</span>
+                <span class="course-instructor ft11 gray-9"  style="text-align: left;" >Instructor: {{ course.instructor }}</span>
+              </div>
+            </li>
+          </ul>
+          <!-- <span class="ft750  ft16 gray-10" style=" padding-top: 32px;" >Ver plan de capacitación completo →</span> -->
+        </div>
+      </div>
+
+
+    </div>
+    
+  </div>
+  

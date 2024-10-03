@@ -1,0 +1,99 @@
+<div style="overflow-x: hidden;">
+    <header class="banner">
+        <div class="title-container">
+            <h1 class="   gray-1" style="font-size: 1.8rem!important; font-family: Inter-medium;  "><span class="ft600 yellow-3 "  style="font-size: 1.8rem!important; ">Capacitación Técnica </span> <br>
+            para departamentos de Mantenimiento
+            </h1>
+            <p class="mgt20 lightText ft14 gray-2">Entrenamiento personalizado para Gerentes, Supervisores, Técnicos y Lideres de equipos de Mantenimiento Industrial.</p>
+            <!-- <a href="https://predictiva21.com/wp-content/uploads/2024/03/Predictiva21EdicionNo48.pdf" target="_blank"> -->
+                <!-- <button class="yellowButton mgt20 radius6 ft16 gray-10 ft500">Solicita una demostración</button></a> -->
+                <button class="yellowButton generalButton ft500 gray-10 mgt20  HOME-BANNER-BTN-1    " (click)="showPopup()">Solicita una demostración</button>
+    
+            <p class="mgt20 gray-2  ital ft500 ft11">La <span class="ft14 yellow-5">Confiabilidad</span> inicia con la Capacitación</p>
+            <p class="mgt05 gray-4 ft11 ital">Predictiva21 - La revista de Mantenimiento #1 en LATAM</p>
+    
+        </div>
+        <figure class="w-60 ">
+            <app-profiles-logo ></app-profiles-logo>
+        </figure>
+    </header>
+    
+    <section class="customers-list">
+        <img *ngFor="let logo of logosEmpresas; let i = index" style="width: 10%; padding-left: 1rem; padding-right: 1rem;"
+            [src]="logo" [alt]="'clientes de predictiva21 '+i">
+    </section>
+    <!-- <section class="plan-training fw pdt10">
+        <app-plan-training></app-plan-training>
+    
+    </section> -->
+    <section class="plan-generator fw centertext">
+        <app-plan-generator></app-plan-generator>
+    </section>
+    <section class="cursos pdt40 fw"  style="background-color: #f9f9f9;">
+        <app-courses-home></app-courses-home>
+    </section>
+    <section class="LMS fw">
+        <app-lms-home></app-lms-home>
+    </section>
+    <section class="RH fw pdt20"  style="background-color: #f2f2f2;">
+        <app-rh-info ></app-rh-info>
+    </section>
+    <section class="RH fw" >
+        <app-plan-diagnostico></app-plan-diagnostico>
+    </section>
+    
+    <section class="asistencia-img centertext pdt40 "  style="background-color: #f2f2f2;">
+        <div class="fw  pdl40 pdr40  centertext colCenter">
+            <h2 class="ftxl gray-10 mgt20 ft600 w-70 ">Asistencia dedicada de nuestro equipo para ayudarte a dar seguimiento y controlar tu equipo
+            </h2>
+            <p class="gray-8 ft14 mgt20   w-70">Hacemos el Onboarding de tu equipo viendo las necesidades de cada persona, 
+                luego en conjunto contigo hacemos control y seguimiento para que cada persona complete su plan de estudio.
+            </p>
+        </div>
+        <img alt="imgagen asistencia" style="width: 90%; padding: 1rem; " class="mgb30 mgt30"
+            [src]="asistencia" >
+    </section>
+    
+    <section id="seccionPrecios" style="background-color: white;">
+       <app-cards-pricing></app-cards-pricing>
+    </section>
+    
+    <section class="empresas-predyc pd40 " style="background-color: #f2f2f2;">
+        <div class="centertext ft18 ft750 gray-6 ">
+            Empresas que confían en Predyc
+        </div>
+        <div class="customers-list2 ">
+            <img *ngFor="let logo of logosEmpresas; let i = index" style="width: 10%; padding-left: 1rem; padding-right: 1rem;"
+            [src]="logo" [alt]="'clientes de predictiva21 '+i">
+        </div>
+    
+        <div class="row mg20 pd20 grid-80 " >
+            
+            <a href="https://youtu.be/GBHYTCMyMGM?si=5cAav9z161G58Ugg" target="_blank" style="display: block; position: relative;">
+                <img style="width: 37vw; border-radius: 8px;" src="assets/images/demo/carlos-lozano.webp" alt="Carlos Lozano">
+                <div class="play-overlay">
+                  <img class="play-icon" src="assets/images/icons/play-btn.svg" alt="Play Icon">
+                </div>
+              </a>
+              
+            
+            <div class=" ">
+                <div class=" ft16 ft750 gray-10 ">
+                    ICA Fluor O&M invierté en +5,000 horas de capacitación para su equipo de Mantenimiento, que incluye profesionales técnicos, supervisores y gerentes con PREDYC
+                </div>
+                <p class="ft12 mgt08">
+                    Una ventaja importante es la facilidad de tomar los cursos en línea. Desplazar al personal para recibir entrenamiento siempre ha sido un desafío debido a los costos y la logística involucrada, como vuelos y hoteles. Realizar el entrenamiento en línea ayuda a reducir estos gastos y facilita el proceso.
+                    <br><br>
+    
+                    En colaboración con Predyc, establecimos los temas que cada persona debe conocer y estudiar. Diseñamos un plan en el que los técnicos, supervisores y gerentes dedican un tiempo específico cada mes al estudio. Dividimos esto en un año, asegurando que cada persona tenga claras sus asignaciones de formación.
+    
+                </p>
+    
+            </div>
+        </div>
+    
+    </section>
+    
+    <app-demo-request-popup *ngIf="isPopupVisible" (close)="hidePopup()"></app-demo-request-popup>
+    <footer></footer>
+</div>

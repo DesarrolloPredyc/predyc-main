@@ -1,0 +1,210 @@
+.banner {
+    padding-top: 4rem;
+    width: 100%;
+    background-color: var(--backDark);
+    position: relative;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.orangeButton {
+    background-color: var(--yellow-1);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px !important;
+    padding: 10px 20px !important;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    line-height: 1.2!important;
+}
+
+.orangeButton:hover {
+    background-color: var(--yellow-3);
+    transition: .3s;
+}
+
+
+.summary {
+    width: 70%;
+    z-index: 2;
+}
+
+.contact {
+    width: 30%;
+    z-index: 2;
+    border-radius: 4px;
+    padding: 1rem;
+}
+
+.imgDestacada {
+    position: absolute;
+    width: 50%;
+    right: 0px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.iconBorder {
+    border-radius: 50%;
+    background-color: var(--gray-2);
+    height: 2rem;
+    width: 2rem;
+}
+
+.course-content {
+    width: 100%;
+    margin: 0px;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.course-description {
+    padding: 0px;
+}
+
+
+
+
+.course-topics {
+    padding: 0px;
+    margin-top: 1rem;
+}
+
+.instructores-section {
+    padding: 0px;
+    margin-top: 2rem;
+}
+
+
+
+.course-info-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 24px;
+}
+
+.course-info-item {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.iconBorder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-bar {
+    width: 30%;
+}
+
+.instructor-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.certificado-info {
+    padding: 2rem;
+    width: 100%;
+    background-color: var(--backDark);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.certificado-content {
+    width: 50%;
+
+}
+
+.chipCertificado {
+    border: 1px solid var(--yellow-5);
+    background-color: rgba(255, 166, 0, 0.24);
+    padding: .3rem .8rem;
+    border-radius: 24px;
+    text-align: center; 
+    color: var(--yellow-5);
+    margin: auto; 
+}
+
+.certificado-text {
+    color: white;
+    text-align: left;
+    margin-top: 1rem; 
+}
+
+.imgCertificado {
+    width: 50%;
+}
+
+.info-instructor{
+    background-color: #f2f2f2;
+    padding: 8px;
+    width: 100%;
+    border-radius: 6px;
+   
+}
+
+.info-wa{
+    padding: 0;
+    padding-left: 2rem ;
+    padding-right: 2rem ;
+    width: 100%;
+    background-color:#f2f2f2;
+    border: 2px solid #FCC045;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+}
+
+
+.wa-info {
+    width: 70%;
+
+}
+
+.course-item {
+    display: flex;
+    align-items: left;
+    padding: 9px;
+    margin-bottom: 16px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+  }
+  
+
+  
+  .course-details {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente el contenido */
+  }
+  
+  .opcs-plan{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.plan-tiempos {
+    border-radius: 6px;
+    background-color: rgb(247, 227, 188);
+    border: 1px solid #fcc145;
+    padding: 8px;
+}

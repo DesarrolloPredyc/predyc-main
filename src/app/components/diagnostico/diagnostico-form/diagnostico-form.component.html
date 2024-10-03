@@ -1,0 +1,101 @@
+<div style="overflow-x: hidden;" [fxShow]="true" [fxShow.lt-md]="false">
+    <div *ngIf="!presenting" fxLayout="row" fxLayoutAlign="center center" class="fh" style="padding-top: 60px;min-height: calc(100vh - 5px);">
+        <div style="width: 80%;" fxLayout="column" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center" style="width: 100%;height: 80vh;">
+                <div fxFlex="50" fxLayoutAlign="start center">
+                    <div fxLayout="column" fxLayoutAlign="">
+                        <div fxLayout="column" fxLayoutAlign="start start" class="pdb10">
+                            <div style="display: inline-block;">
+                              <h1 class="ft22 ft600">Diagnóstico {{activity?.title}}</h1>
+                              <!-- <div class="line" style="width: 90%; height: 4px; background-color: #f4b03e; margin-top: 8px;"></div> -->
+                            </div>
+                        </div>
+                        <span class="ft14 pdt10">
+                            Realiza un diagnóstico ({{questionsLength}} Preguntas) breve de tus conocimientos en las {{categoriesLength}} categorías:
+                        </span>
+                        <ul class="ft14 pdt10 pdl20">
+                            <li class="ft14" *ngFor="let item of categoriesArray">{{item}}</li>
+                        </ul>
+                        <span class="ft14 pdt10">
+                            Si quieres realizar un diagnóstico profundo para tu equipo de mantenimiento 
+                            <a (click)="isPopupVisible = true" class="blueLink">habla con un asesor.</a>
+                        </span>
+                        <button (click)="presenting = true" class="blueButton mgt20" style="width: 200px !important; padding: 10px 20px; display: flex; align-items: center; justify-content: center;">
+                            Comenzar <img [src]="icon.rocket" alt="" class="pdl05 makeWhite" style="margin-left: 10px;">
+                        </button>
+                    </div>
+                </div>
+                <div fxFlex="50" fxLayoutAlign="end center">
+                    <!-- Contenido del lado derecho (vacío o algo que desees agregar) -->
+                    <div fxLayout="column" class="fw">
+                        <div class="chart-container">
+                            <canvas id="chartD" ></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="presenting" fxLayout="row" fxLayoutAlign="center center" class="fh" style="padding-top: 60px;">
+        <div style="width: 80%; min-height: calc(100vh - 60px) !important;" fxLayout="column" fxLayoutAlign="center center">
+            <app-activity-form
+                class="fw"
+                [showInitTestInstructions]="false"
+                [profile]="null"
+                [diplomado]="null"
+                [activity]="activity">
+            </app-activity-form>
+        </div>
+    </div>
+    <!-- <footer></footer> -->
+</div>
+
+<div style="overflow-x: hidden;" [fxShow]="false" [fxShow.lt-md]="true">
+    <div *ngIf="!presenting" fxLayout="row" fxLayoutAlign="center center" class="pdt60 fh mgb20">
+        <div style="width: 90%;" fxLayout="column" fxLayoutAlign="center center">
+            <div fxLayout="column" fxLayoutAlign="center" style="width: 100%;">
+                <div fxLayoutAlign=" center">
+                    <div fxLayout="column" fxLayoutAlign="">
+                        <div fxLayout="column" fxLayoutAlign="start start" class="pdb10">
+                            <div style="display: inline-block;">
+                              <h1 class="ft16 ft600">Diagnóstico {{activity?.title}}</h1>
+                              <!-- <div class="line" style="width: 90%; height: 4px; background-color: #f4b03e; margin-top: 8px;"></div> -->
+                            </div>
+                        </div>
+                        <span class="ft14 pdt10">
+                            Realiza un diagnóstico ({{questionsLength}} Preguntas) breve de tus conocimientos en las {{categoriesLength}} categorías:
+                        </span>
+                        <span class="ft14 pdt10">{{categoriesString}}</span>
+                        <div fxLayout="row" fxLayoutAlign="center center" class="chart-containerM mgt10">
+                            <canvas id="chartM"></canvas>
+                        </div>
+                        <span class="ft14 pdt10">
+                            Si quieres realizar un diagnóstico profundo para tu equipo de mantenimiento 
+                            <a (click)="isPopupVisible=true" class="blueLink">habla con un asesor.</a>
+                        </span>
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <button (click)="presenting = true" class="blueButton mgt20" style="width: 200px !important; padding: 10px 20px; display: flex; align-items: center; justify-content: center;">
+                                Comenzar <img [src]="icon.rocket" alt="" class="pdl05 makeWhite" style="margin-left: 10px;">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="presenting" fxLayout="row" fxLayoutAlign="center center" class="pdt60 fh">
+        <div style="width: 90%; min-height: 90vh !important;" fxLayout="column" fxLayoutAlign="center center" >
+            <app-activity-form
+                class="fw"
+                [showInitTestInstructions]="false"
+                [profile]="null"
+                [diplomado]="null"
+                [activity]="activity">
+            </app-activity-form>
+        </div>
+    </div>
+    <!-- <app-footer-mobile></app-footer-mobile> -->
+</div>
+<app-demo-request-popup mailchimpDatail="diagnostico" *ngIf="isPopupVisible" (close)="hidePopup()"></app-demo-request-popup>
+
+

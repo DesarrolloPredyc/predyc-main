@@ -1,0 +1,152 @@
+.organization-chart {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100vw;
+    margin-top: 0;
+    padding: 4rem;
+    background-color:#f2f2f2;
+}
+
+.profiles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* width: 100%; */
+    /* height: 8vh; */
+
+}
+
+.blackborder{
+    border: 2px solid var(--gray-10)!important;
+}
+
+.whiteborder{
+    border: white 2px solid !important;
+
+}
+.plan-mini{
+    border-radius: 100%;
+    width: 100vw;
+}
+
+.profileMini {
+    cursor: pointer;
+    border: 1px solid var(--gray-3);
+    border-radius: 4px;
+    padding: 1rem;
+    width: 90%;
+    margin-bottom: 0.5rem;
+}
+
+.profileMini img {
+    width: 40px; 
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+
+
+.containerPerfil {
+    background-color: rgb(255, 255, 255);
+    border: #2b2b2b 1px solid !important;
+
+
+}
+
+.plan-tiempos{
+    border-radius: 6px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #fcc145;
+    padding: 8px;
+
+}
+
+.selected-profile {
+    border: 1px solid #fcc145; 
+    background-color: #fdf1d7!important;
+    border-radius: 4px; 
+}
+
+.ListHover3:hover{
+
+    background-color: #fdf1d7!important;
+  
+  }
+  
+  
+  
+
+/* .course-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+} */
+
+.course-details {
+    /* margin-top: 8px; */
+    margin: 8px;
+    
+    
+}
+.cursos-plan{
+    padding: 9px;
+}
+
+.same-width {
+    width: 200px;
+    display: inline-block;
+    text-align: center;
+  }
+
+.border-b-orange{  
+    border-bottom: #fcc145 1px solid !important;
+
+}
+
+
+.chart-container {
+    padding-top: 2vh;
+    padding-bottom: 5vh;
+    width: 18vw;
+}
+
+.btn-request-demo {
+    background-color: var(--gray-1);
+    color: var(--gray-10);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.course-list{
+    
+}
+
+.horizontal-line {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    border-bottom: 1px solid black;
+    width: 8vw;
+    z-index: 1; /* Asegura que la línea esté en el fondo */
+  }
+  
+  .organization-chart .profiles,
+  .organization-chart .containerPerfil {
+    position: relative;
+    z-index: 2; 
+  }
+  .chart-container {
+    padding-top: 2vh;
+    padding-bottom: 5vh;
+    width: 100%;
+    height: 40vh;
+  }
+  .barraChart{
+    height: 80vh!important;
+  }

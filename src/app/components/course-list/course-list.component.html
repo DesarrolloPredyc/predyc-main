@@ -1,0 +1,255 @@
+<div fxLayout="column" class="container">
+    <div class="containerBuscador">
+      <!-- CUANDO NO HAY TEXTO -->
+      <div fxLayout="row" class="fw" *ngIf="loaded" [fxShow]="searchValue == ''">
+        <div fxLayout="column" class="border-rl" fxFlex="25">
+          <div class="fw border-b pd05">
+            <span class="ft14 ft500 gray-10 pdl05">Buscar</span>
+          </div>
+          <div class="listContainer pd05">
+            <div (mouseenter)="tab = 0; showProgram = false; showInstructor = false" [ngClass]="
+                  tab == 0
+                    ? 'pd03 backGray2 selected radius4 cursorPointer'
+                    : 'pd03'
+                " fxLayout="row" fxLayoutAlign="space-between start">
+              <div class="h40px fw pdl03" fxLayout="row" fxLayoutAlign="space-between center">
+                <span [ngClass]="
+                      tab == 0 ? 'ft12 ft500 gray-10' : 'ft12 gray-5 ft500'
+                    ">Cursos</span>
+                <img [src]="icon.chevronRight" alt="">
+  
+              </div>
+            </div>
+            <!-- <div
+                (mouseenter)="tab = 2; showCategory = false; showProgram = false"
+                [ngClass]="
+                  tab == 2
+                    ? 'pd03 backGray2 selected radius4 cursorPointer'
+                    : 'pd03'
+                "
+                fxLayout="row"
+                fxLayoutAlign="space-between start"
+              >
+                <div
+                  class="h40px fw pdl03"
+                  fxLayout="row"
+                  fxLayoutAlign="space-between center"
+                >
+                  <span
+                    [ngClass]="
+                      tab == 2 ? 'ft12 ft500 gray-10 ' : 'ft12 ft500 gray-5'
+                    "
+                    >Instructores</span
+                  >
+                  <img [src]="icon.chevronRight" alt="">
+                </div>
+              </div> -->
+          </div>
+        </div>
+        <div fxLayout="column" class="border-rl" [fxShow]="tab != -1" fxLayout="start" fxFlex="25">
+          <div [fxShow]="tab == 0" class="fw">
+            <div class="fw border-b pd05">
+              <span class="ft14 ft500 gray-10">Categorías</span>
+            </div>
+            <div class="listContainer pd05">
+              <div *ngFor="let category of categories; let i = index" class="fw">
+                <div (mouseenter)="showCategory = true; selectedCategory = i" [ngClass]="
+                      selectedCategory == i
+                        ? 'pd03 backGray2 radius4 cursorPointer'
+                        : 'pd03'
+                    " fxLayout="row" fxLayoutAlign="space-between start">
+                  <div class="h40px fw pdl03" fxLayout="row" fxLayoutAlign="space-between center">
+                    <span [ngClass]="
+                          selectedCategory == i
+                            ? 'ft12 ft500 gray-10'
+                            : 'ft12 ft500 gray-6'
+                        ">{{ category.name }}</span>
+                    <img [src]="icon.chevronRight" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div [fxShow]="tab == 2" class="fh fw">
+              <div class="fw border-b pdb05 pdl03">
+                <span class="ft14 ft500 gray-10 pdl05">Instructores</span>
+              </div>
+              <div class="listContainer pd05">
+                <div
+                  *ngFor="let instructor of instructores; let i = index"
+                  class="fw"
+                >
+                  <div
+                    (mouseenter)="showInstructor = true; selectedInstructor = i"
+                    [ngClass]="
+                      selectedInstructor == i
+                        ? 'pd03 backGray2 radius4 cursorPointer'
+                        : 'pd03'
+                    "
+                  >
+                    <div
+                      class="h40px fw pdl03"
+                      fxLayout="row"
+                      fxLayoutAlign="space-between center"
+                    >
+                      <span
+                        [ngClass]="
+                          selectedProgram == i
+                            ? 'ft12 ft500 gray-10'
+                            : 'ft12 ft500 gray-6'
+                        "
+                        >{{ instructor.nombre }}</span
+                      >
+                      <mat-icon [fxShow]="selectedInstructor == i" class="gray-6"
+                        >keyboard_arrow_right</mat-icon
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+        <div fxLayout="column" class="" [fxShow]="showCategory || showProgram || showInstructor" fxFlex="50">
+          <div *ngIf="showInstructor" class="fh">
+            <div class="fw border-b pdb05 pdl03">
+              <span class="ft14 ft500 gray-10 pdl05">{{
+                instructores[selectedInstructor].nombre
+                }}</span>
+            </div>
+            <div class="listContainer pdl05">
+              <div class="fw pd05 programaDetalle radius4" fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign=" center">
+                <div>
+                  <img [src]="instructores[selectedInstructor].foto" class="h100px radius6 shadow10" alt="" />
+                </div>
+                <div fxLayout="column">
+                  <div fxLayout="row" fxLayoutGap="1rem" class="">
+                    <div class="h40px w40px radius6 backGray3" fxLayoutAlign="center center">
+                      <img [src]="icon.playOutline" class="h16px makeBlack" />
+                    </div>
+                    <div fxLayout="column">
+                      <span class="ft12 gray-8">Cantidad de cursos</span>
+                      <span class="ft12 gray-10 ft500">{{
+                        instructores[selectedInstructor].cantCursos
+                        }}
+                        Cursos</span>
+                    </div>
+                  </div>
+                  <div fxLayout="row" fxLayoutGap="1rem" class="mgt05">
+                    <div class="h40px w40px radius6 backGray3" fxLayoutAlign="center center">
+                      <img [src]="icon.calendarAdd" class="h16px" />
+                    </div>
+                    <div fxLayout="column">
+                      <span class="ft12 gray-8">En predyc desde</span>
+                      <span class="ft12 gray-10 ft500">{{
+                        instructores[selectedInstructor].fechaCreacion.seconds *
+                        1000 | date : "dd/MM/yyyy"
+                        }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fw mgt05 pdr20">
+                <p class="ft11 gray-8">
+                  {{ instructores[selectedInstructor].descripcion }}
+                </p>
+              </div>
+              <div class="fw mgt05 pdr20 pdb60">
+                <div (click)="seleccionarCurso(course.id)"
+                  *ngFor="let course of instructores[selectedInstructor].cursos; let i = index" [ngClass]="
+                      selectedCourse == i
+                        ? 'backGray2 cursorPointer radius4 pd03'
+                        : 'pd03'
+                    " fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" (mouseover)="selectedCourse = i">
+                  <img [src]="course.imagen" class="w40px h40px radius4" alt="" />
+                  <span [ngClass]="
+                        selectedCourse == i
+                          ? 'ft12 ft500 gray-10 '
+                          : 'ft12 ft500 gray-6'
+                      ">{{ course.titulo }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div *ngIf="showCategory" class="fh">
+            <div class="fw border-b pd05">
+              <span class="ft14 ft500 gray-10 pdl05">Cursos</span>
+            </div>
+            <div class="listContainer pd05 pdb30">
+              <div  routerLink="/cursos/{{course.id}}" *ngFor="
+                    let course of filterByCategory(selectedCategory);
+                    let i = index
+                  " [ngClass]="
+                    selectedCourse == i
+                      ? 'backGray2 cursorPointer radius4 pd03'
+                      : 'pd03'
+                  " fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign=" center" (mouseover)="selectedCourse = i">
+                <img *ngIf="course?.imagen" [src]="course.imagen" class="w40px h40px radius4" alt="" />
+                <img *ngIf="!course?.imagen" [src]="icon.image" class="w40px h40px radius4" alt="" />
+                <span [ngClass]="
+                      selectedCourse == i
+                        ? 'ft12 ft500 gray-10 '
+                        : 'ft12 ft500 gray-6'
+                    ">{{ course.titulo }}</span>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="showProgram" class="fh" (click)="seleccionarPrograma(programs[selectedProgram].id)">
+            <div class="fw border-b pdb05 pdl03 mgb05">
+              <span class="ft14 ft500 gray-10 pdl05">{{
+                programs[selectedProgram].titulo
+                }}</span>
+            </div>
+            <div class="listContainer pdl05">
+              <div class="fw pd05 programaDetalle radius4" fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign=" center">
+                <div>
+                  <img [src]="programs[selectedProgram].foto" class="h150px radius6" alt="" />
+                </div>
+                <div fxLayout="column">
+                  <div fxLayout="row" fxLayoutGap="1rem" class="">
+                    <div class="h40px w40px radius6 backGray3" fxLayoutAlign="center center">
+                      <img [src]="icon.playOutline" class="h16px" />
+                    </div>
+                    <div fxLayout="column">
+                      <span class="ft12 gray-8">Cantidad de cursos</span>
+                      <span class="ft12 gray-10 ft500">{{
+                        programs[selectedProgram].cursos.length
+                        }}
+                        Cursos</span>
+                    </div>
+                  </div>
+                  <div fxLayout="row" fxLayoutGap="1rem" class="mgt05">
+                    <div class="h40px w40px radius6 backGray3" fxLayoutAlign="center center">
+                      <img [src]="icon.clockBlue" class="h16px" />
+                    </div>
+                    <div fxLayout="column">
+                      <span class="ft12 gray-8">Duración total</span>
+                      <span class="ft12 gray-10 ft500">{{
+                        programs[selectedProgram].duracion / 60
+                        | number : "1.0-0"
+                        }}h
+                        {{
+                        programs[selectedProgram].duracion % 60
+                        | number : "1.0-0"
+                        }}m</span>
+                    </div>
+                  </div>
+                  <div fxLayout="row" fxLayoutGap="1rem" class="mgt05">
+                    <div class="h40px w40px radius6 backGray3" fxLayoutAlign="center center">
+                      <img [src]="icon.certificado" class="h16px" />
+                    </div>
+                    <div fxLayout="column">
+                      <span class="ft12 gray-8">Incluye</span>
+                      <span class="ft12 gray-10 ft500">Certificado del programa</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- DESCRIPCION DEL CURSO -->

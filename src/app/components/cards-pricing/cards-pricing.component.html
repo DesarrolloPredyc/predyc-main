@@ -1,0 +1,44 @@
+<div class="titulocards fw pdt40  centertext colCenter">
+  <h2 class=" ftxl mgt20 gray-10 ft600 w-70">Precios y beneficios de los planes PREDYC</h2>
+</div>
+
+<div class="pricing-section   mgb40 colCenter ">
+  <div class="slider-container mgt10 mgb30 ">
+      <label class="ft16 ft500 gray-10 pdl10 pdt05" for="pricing-toggle">Mensual</label>
+      <label class="switch mg10">
+          <input type="checkbox" id="pricing-toggle" (change)="togglePricing($event)">
+          <span class="slider"></span>
+      </label>
+      <label class="ft16 ft500 gray-10 pdr10 pdt05" for="pricing-toggle">Anual</label>
+  </div>
+
+  <div class="card-container">
+      <div class="card shadow-animation3" *ngFor="let plan of plans">
+          <span class="centertext ft750 gray-9 ft18 mgt10 fw pdb10" [style.text-align]="'center!important'" [style.borderBottom]="'2px solid white'">{{ plan.title }}</span>
+          <div class="card-content pd10">
+              <p class="ft26 gray-10 pdt10 pdb05 ft750" [style.lineHeight]="'1.4!important'">{{ isAnnual ? plan.annualPrice : plan.monthlyPrice }}</p>
+              <p class="ft11 mgt10 centertext gray-10 ft600 mgb20" [style.lineHeight]="'1.2!important'">precio por cada persona con contrato anual</p>
+              <div class="pdb40 beneficios mgt10" [style.text-align]="'left'">
+                  <p class=" mgl10 ft12 mgt05 pdl05 mgr08 gray-10" [style.lineHeight]="'1.4!important'" *ngFor="let benefit of plan.benefits">{{ benefit }}</p>
+              </div>
+          </div>
+          <div class="button-card" [ngClass]="{'button-card-dark': !plan.isBestSeller, 'button-card-orange': plan.isBestSeller}" (click)="contactSales(plan)">
+              <span class="button-text  CARDS-BTN-VENTAS ">Hablar con un asesor</span>
+              <span class="chevron">→</span>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="tablas-info mgt10  mgb30 colCenter ">
+  <span class=" ft14 gray-10 ft400 " style="background-color: #f2f2f2; padding: 12px;  width: 75vw; text-align: start; border-bottom: var(--gray-6) 1px solid; border-top-right-radius: 3px; border-top-left-radius: 2px;">Capacitación     </span>
+      <span class=" ft14  ft300 " style="background-color: white; width: 75vw;  padding: 12px; text-align: start; border-bottom: var(--gray-6) 1px solid;" >Personalización de los planes de capacitación para cada puesto de trabajo durante Onboarding</span>
+      <span class=" ft14  ft300 " style="background-color: white; width: 75vw;  padding: 12px; text-align: start; border-bottom: var(--gray-6) 1px solid;" >Acceso a todos los cursos y planes de capacitación</span>
+      <span class=" ft14  ft300 " style="background-color: white; width: 75vw;  padding: 12px; text-align: start; border-bottom: var(--gray-6) 1px solid;" >Preguntas vía chat y acceso al material descargable disponible</span>
+
+  <span class=" ft14 gray-10 ft400 mgt10 " style="background-color: #f2f2f2; padding: 12px;  width: 75vw; text-align: start; border-bottom: var(--gray-6) 1px solid; border-top-right-radius: 3px; border-top-left-radius: 2px;">Control del equipo    </span>
+      <span class=" ft14  ft300 " style="background-color: white; width: 75vw;  padding: 12px; text-align: start; border-bottom: var(--gray-6) 1px solid;" >Herramienta de tracking para seguimiento</span>
+      <span class=" ft14  ft300 " style="background-color: white; width: 75vw;  padding: 12px; text-align: start; border-bottom: var(--gray-6) 1px solid;" >Asistencia dedicada del equipo PREDYC para dar apoyar en el seguimiento y control de tu equipo </span>
+      <span class=" ft14  ft300 " style="background-color: white; width: 75vw;  padding: 12px; text-align: start; border-bottom: var(--gray-6) 1px solid;" >Rotaciones para cuando decides cambiar las personas que se están capacitando        </span>
+
+</div>

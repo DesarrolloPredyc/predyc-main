@@ -1,0 +1,78 @@
+<header class="banner">
+    <summary class="summary pdr80">
+        <h1 class="gray-1 ftxxl ft600">{{ program?.name }}</h1>
+        <div class="mgt10 lightText gray-3 ft14">
+            {{ program?.description }}
+        </div>
+        <div class="opcs-plan">
+            <span class="plan-tiempos mgt10 ft14 ft500 gray-10 same-width"  > 
+                {{ (program?.duration || 0) / 60 | number : "1.0-0" }}h
+                {{ (program?.duration || 0) % 60 | number : "1.0-0" }}m
+                &nbsp;&nbsp;&nbsp;&nbsp;  {{ program?.coursesRef?.length  }} cursos</span>
+            <!-- <button class="ft14 blueButton mgt10 radius4 same-width"  >Solicitar una demostración</button> -->
+          </div>
+        
+    </summary>
+    <section class="contact mgt20 mgb20 centertext">
+        <a href="#" target="_blank" style="display: block; position: relative;"> 
+            <img *ngIf="program" class="w-100" [src]="program?.photoUrl || 'assets/images/perfilesTecnicos/ing-mant.png'" alt="Imagen del curso">
+        </a>
+        <a>
+            <button (click)="scrolltoForm()" class="fw mgt15 gray-10 ft500 yellowButton generalButton" type="submit">Solicitar demostración</button>
+        </a>
+        <button class="fw mgt08  gray-10 ft500  generalButton" (click)="downloadProgramInfo()" >Descargar ficha técnica</button>
+    </section>
+</header>
+
+<section class="course-content fw">
+    
+    <section class="course-topics" *ngIf="program?.courses">
+        <h2 class="ft18 ft600 mgb20 gray-10">Contenido del plan</h2>
+        <ol style="list-style-type:none; padding-bottom: 0; margin-left:0em; font-size: 16px;">
+          <li *ngFor="let course of program.courses" class="course-item">
+            <img *ngIf="course?.imagen" [src]="course?.imagen" [alt]="course?.titulo" class="avatarSquare3 whiteborder radius6">
+            <div class="mgl10 course-details">
+              <h3 class="ft12 gray-10 ft700" style="font-family: 'Inter-bold';">{{course?.titulo }}</h3>
+              <p class="ft12 gray-10" style="font-family: 'Inter-light';">{{course?.instructorData.nombre}}</p>
+            </div>
+          </li>
+        </ol>
+    </section>
+
+    <section class="instructores-section" *ngIf="program?.instructors">
+        <h2 class="ft18 ft600 mgb20 gray-10">Información de los instructores</h2>
+        <ol style="list-style-type:none; padding-bottom: 0; margin-left:0em; font-size: 16px;">
+            <li *ngFor="let instructor of program.instructors" class="course-item">
+                <img *ngIf="instructor.foto" class="avatarSquare3 radius6" [src]="instructor.foto" alt="Foto del instructor">
+                <div class="mgl10 course-details">
+                    <h3 class="ft12 gray-10 ft700" style="font-family: 'Inter-bold';">{{ instructor?.nombre }}</h3>
+                    <p class="ft12 gray-10" style="font-family: 'Inter-light';">{{ instructor?.resumen }}</p>
+                </div>
+            </li>
+        </ol>
+    </section>
+
+    <section class="certificado-info mgt20">
+        <div class="certificado-content">
+            <div class="chipCertificado w-70 center ft500 ft16">Certificado emitido por Predyc</div>
+            <p class="certificado-text ft14 pdl20 pdr20">Fortalece tu perfil curricular con tus certificados obtenidos al completar tus cursos.</p>
+        </div>
+        <img class="w-40" [src]="icon.certificadoPredyc" alt="">
+    </section>
+
+    <!-- <section class="info-wa mgt20">
+        <div class="wa-info w-70 centertext">
+            <img [src]="icon.whatsapp_green" class="h70px" alt="whatsappicon">
+            <h3 class="centertext gray-9" style="font-family: 'Inter-bold'; font-size: 2rem;">Solicita info por Whatsapp</h3>
+            <p class="centertext ft18" style="color: rgb(0, 0, 0); text-align: left; margin-top: 1rem;">Habla directamente con un asesor</p>
+            <a target="_blank" href="https://wa.me/+529932872551?text=¿Me apoyan con más información sobre {{program?.name}}?">
+                <button class="yellowButton fw generalButton ft500 gray-10 mgt20 " style="  bottom: 20px!important; ">Hablar con ventas</button>
+            </a>
+        </div>
+        <img class="" style=" width: 35%; align-items: flex-start;" src="/assets/images/design/Whatsapp-hablar.webp" alt="">
+    </section> -->
+</section>
+
+<app-floating-notification *ngIf="showNotification" [message]="notificationMessage"></app-floating-notification>
+
+<footer></footer>

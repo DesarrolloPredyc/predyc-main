@@ -1,0 +1,128 @@
+<header class="banner">
+    <summary class="summary ">
+        <a href="https://app.predyc.com/est/mi-curso/{{course.id}}?" target="_blank" style="display: block; position: relative;">
+            <img *ngIf="course.imagen" [src]="course.imagen" [alt]="course.titulo" class="w-100" alt="img-curso" [ngClass]="{'CURSO-PLAY-FREE': course.isFree, 'CURSO-PLAY': !course.isFree}">
+            <div class="play-overlay">
+                <img class="play-icon" src="assets/images/icons/play-btn.svg" alt="Play Icon" [ngClass]="{'CURSO-PLAY-FREE': course.isFree, 'CURSO-PLAY': !course.isFree}">
+            </div>
+        </a>
+        
+        <h1 class="mgt08 gray-1" style="font-size: 1.5rem!important; font-family: Inter-bold;  ">Curso {{course.titulo}}</h1>
+        <!-- <h1 class="gray-1 ftxl ft600">{{course.titulo}}</h1> -->
+        <div class="mgt10 lightText gray-3 ft12">
+            {{course.descripcion}}
+        </div>
+        <div class="mgt10 instructor-info">
+            <img *ngIf="course.imagen_instructor" [src]="course.imagen_instructor" [alt]="course.instructorNombre" class="avatar3" alt="img-instructor">
+            <div class="lightText gray-3 ft14">
+                <p class="gray-3 ft14 ft500">{{course.instructorNombre}}</p>
+                <!-- <p class="lightText gray-3">{{course.resumen_instructor}}</p> -->
+            </div>
+        </div>
+        <a>
+            <button (click)="scrolltoForm()" class="fw mgt15  gray-10 ft500 yellowButton generalButton " type="submit">Solicitar demostración</button>
+
+            <!-- <button class="fw mgt15 yellowButton ft14 gray-9 ft500 radius4" type="submit">Solicitar demostración</button> -->
+            <!-- <button class="yellowButton  radius6 ft16 gray-10 ft500"  style="margin-top: 22px;" ">Solicita una demostración</button> -->
+
+        </a>
+        <button class="fw mgt08  gray-10 ft500  generalButton" (click)="downloadFichaTecnica()">Descargar ficha técnica</button>
+
+        <!-- <button class="fw mgt08 ft14 gray-9 ft500 radius4" (click)="downloadFichaTecnica()">Descargar ficha técnica</button> -->
+
+    </summary>
+    
+    <!-- <figure class="fh imgDestacada" [style]="'background-image: linear-gradient(60deg, rgb(21, 27, 38) 30%, rgba(21, 27, 38, 0.1) 100%),'">
+        .
+    </figure> -->
+</header>
+<section class="course-content">
+    <section class="course-information">
+        <h2 class="ft18 ft600 gray-10 mgb10" style="text-align: left; font-family: Inter-bold" >Información del curso</h2>
+            <div class="course-info-item">
+                <div class="iconBorder">
+                    <img [src]="icon.certificate" class="w-70 makeGray8" alt="">
+                </div>
+                <span class="ft12 gray-8">Certificado de completación*</span>
+            </div>
+            <div class="course-info-item">
+                <div class="iconBorder">
+                    <img [src]="icon.intermedio" class="w-70 makeGray8" alt="">
+                </div>
+                <span class="ft12 gray-8">Nivel: {{course.nivel}}</span>
+            </div>
+            <div class="course-info-item">
+                <div class="iconBorder">
+                    <img [src]="icon.location" class="w-70 makeGray8" alt="">
+                </div>
+                <span class="ft12 gray-8">Idioma: {{course.idioma}}</span>
+            </div>
+            <div class="course-info-item">
+                <div class="iconBorder">
+                    <img [src]="icon.laptop" class="w-70 makeGray8" alt="">
+                </div>
+                <span class="ft12 gray-8">Acceso en dispositivos móviles y PC</span>
+            </div>
+            <div class="course-info-item">
+                <div class="iconBorder">
+                    <img [src]="icon.clock" class="w-70 makeGray8" alt="">
+                </div>
+                <span class="ft12 gray-8">Duración del curso: {{getFormattedDuration(course?.duracion)}}</span>
+                <!-- <span class="ft12 gray-8">Duración del curso: {{ course.duracion / 60 | number : "1.0-0"}}h {{course.duracion % 60 | number : "1.0-0" }}m</span> -->
+            </div>
+            <section class="course-topics">
+                <h2 class="ft18 ft600 gray-10" style="text-align: left; font-family: Inter-bold">Contenido del curso</h2>
+                <ol class="tablas-cursos" style="list-style-type:none; padding-bottom: 0; margin-left:0em; font-size: 16px;">
+                    <li *ngFor="let module of course.modules">
+                        <h3 class="ft16 gray-10 ft500 tabla-modulo">{{module.titulo}}</h3>
+                        <ol style="list-style-type: none; padding-bottom: 0;">
+                            <li class="tabla-curso" *ngFor="let clase of module.clases">
+                                {{ clase.titulo}}
+                                
+                                <!-- Botón para reproducir clase, solo visible en móvil -->
+                                <div *ngIf="clase.numero <= 3" class="reproducir-clase-container">
+                                    <a href="https://app.predyc.com/est/mi-curso/{{course.id}}?" target="_blank" class="blueLink reproducir-clase-boton">Reproducir clase</a>
+                                </div>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </section>
+            
+
+        <h2 class="ft18 ft600 gray-10 mgt20" style="text-align: left; font-family: Inter-bold">Información del instructor</h2>
+
+        <section class="info-instructor mgt10">
+                <img *ngIf="course.imagen_instructor" [src]="course.imagen_instructor" [alt]="course.instructorNombre" class="avatarSquare6 radius6" style="align-items: center;" alt="img-instructor">
+                <div class="lightText gray-8 ft14" style="text-align: center;">
+                    <p class="gray-10 mgt08 ft14 ft500 ">{{course.instructorNombre}}</p>
+                    <p class="lightText gray-10">{{instructor.descripcion}}</p>
+                    <!-- <p class="blue-5 gray-10">{{instructor.resumen}}</p>  -->
+                    <!-- saludos de Alejandra, cuando retomen esto recuerden que en el predyc-empresa no esta pidiendo el resumen del instructor, haganlo en mi honor, los tkm hijos de la rebolonga -->
+                </div>
+        </section>
+
+
+        <section class="certificado-info mgt40">
+            <div class="chipCertificado w-70 center ft500 ft14">Certificado emitido por Predyc</div>
+            <p class="certificado-text ft14 ">Fortalece tu perfil curricular con tus certificados obtenidos al completar tus cursos.</p>
+            <img class="w-100" [src]="icon.certificadoPredyc" alt="">
+        </section>
+
+        <span class="ftxs pdt05">*Es necesaria una suscripción activa o adquirir el certificado de forma individual.</span>
+        <!-- <section class="info-wa mgt20">
+            <div class=" wa-info centertext">
+                <img [src]="icon.whatsapp_green" class="h40px" alt="">
+                <h3 class="centertext  gray-9  ft16" style="font-family: 'Inter-bold'; ">Solicita info por Whatsapp </h3>
+                <p class=" centertext ft12 mgt08" style="color: rgb(0, 0, 0); text-align: left; " >Habla directamente con un asesor</p>
+                <a target="_blank" href="https://wa.me/+529932872551?text=¿Me apoyan con más información sobre el curso {{course?.titulo}}?">
+                    <button class="yellowButton fw generalButton ft500 gray-10 mgt20 " style="  bottom: 20px!important; ">Hablar con ventas</button>
+                </a>
+            </div>
+        </section> -->
+
+    </section>
+</section>
+
+
+<app-footer-mobile></app-footer-mobile>

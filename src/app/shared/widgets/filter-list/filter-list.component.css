@@ -1,0 +1,9 @@
+.item:hover {
+    cursor: pointer;
+    background-color: var(--gray-2);
+}
+
+.selected-item {
+    color: #fdf3dd;
+    background-color: #fcbf45 !important;
+}

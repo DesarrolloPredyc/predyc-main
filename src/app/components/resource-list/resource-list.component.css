@@ -1,0 +1,5 @@
+.column-sb{
+    display: flex; /* Esto activa flexbox para este contenedor */
+    flex-direction: column; /* Esto alinea los hijos de .banner en una fila, lo cual es el comportamiento por defecto y puede omitirse */
+    justify-content: space-between;
+}

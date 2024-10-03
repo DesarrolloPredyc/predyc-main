@@ -1,0 +1,171 @@
+
+
+<div  *ngIf="!onlyFooter" style="background: linear-gradient(to right, #f6e177, #ffb700);" >
+    <div id= "formFooter" class="row  mgl10 gap1 center grid-80 ">
+        
+        <div class="fw colCenter pdb30 pdt30">
+            <div class=" ft22 ft750 gray-10 centertext pdb10 ">
+                La confiabilidad inicia con la capacitación
+            </div>
+
+            <div>
+                <app-reunion-form type="info" campana="" [anuncio]="null" interes="" subject="Nuevo llenado formulario footer" btnTextColor="white" 
+                buttonColor="#13A6EF" buttonHoverColor="#32C1FF" [recipients]="['liliana.giraldo@predyc.com','andres.gonzalez@predyc.com','desarrollo@predyc.com']"
+                responsable="" origen="{{currentUrl}}" lugar="footer" btnText="Solicitar información" (formSubmit)="handleFormSubmit($event)"></app-reunion-form>
+            </div>
+
+        </div>
+        <!-- <div class="w-50">
+            <img style="width: 35vw; border-radius: 8px; padding: 10px; " src="/assets/images/design/radar-sinfondo-1080.webp" alt="">
+        </div> -->
+    </div>
+
+
+</div>
+
+<div style="background: #242838;">
+
+    <div class="container pdl30"
+        style="padding-top: 30px;  display: flex; justify-content: space-between; align-items: flex-start; max-width: 100%; margin: 0 auto;">
+        <div>
+            <img [src]="icon.predycBlanco" alt="" style="width: 200px !important;">
+        </div>
+
+        
+    </div>
+
+    <div class="w-80 pdl40 pdr40 pdb30 " style="display: flex; gap: 4rem;">
+
+       
+        <div class="fw mgr08 ">
+            <div class="row personas-footer" style="gap: 2rem; justify-content: space-between; align-items: stretch; margin-top: 30px;">
+                <div class="column" style="  flex-direction: column;   ">
+                    <p class=" ft14 mgt05 ft500 " style="color: rgb(246, 225, 119);" >Planes de capacitación</p>
+                    <a href="https://predictiva21.com/plan-gerentes-mantenimiento/">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Gerente</p>
+                    </a>
+                    <a href="https://predictiva21.com/plan-coordinador/">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Coordinador</p>
+                    </a>
+                    <a href="https://predictiva21.com/plan-capacitacion-ing-mantenimiento/">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Ing. Mantenimiento</p>
+                    </a>
+                    <a href="https://predictiva21.com/plan-tec-mecanico/">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Téc. Mecánico</p>
+                    </a>
+                    <a href="https://predictiva21.com/plan-tecnico-instrumentista/">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Téc. Instrumentista</p>
+                    </a>
+                    <a href="https://predictiva21.com/plan-capacitacion-tec-predictivo/">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Téc. Predictivo</p>
+                    </a>
+                    <a href="https://predictiva21.com/plan-tecnico-especialista/">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Téc. Especialista</p>
+                    </a>
+                    <a href="https://predictiva21.com/plan-capacitacion-operador/">
+                    <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Operador</p>
+
+                    </a>
+                    
+
+                </div>
+                <div class="column" style="  flex-direction: column;   ">
+                    
+                    <a href="">
+                        <p class=" ft14 mgt05 ft500 " style="color: rgb(246, 225, 119);" >Diplomados</p>
+                    </a>
+                    <a href="https://predictiva21.com/diplomado-mantenimiento/">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Mantenimiento</p>
+                    </a>
+                    <a href="https://predictiva21.com/diplomado-confiabilidad-2022-online/">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Confiabilidad</p>
+                    </a>
+                    <a href="">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Predictivo</p>
+                    </a>
+                    <a href="">
+                        <p class=" ft14 mgt05 ft500 " style="color: rgb(246, 225, 119);" >Cursos más solicitados</p>
+                    </a>
+                    <a href="https://app.predyc.com/est/mi-curso/TLJp4DXtQVQ4v9rJ3cG4">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >RCM</p>
+                    </a>
+                    <a href="https://app.predyc.com/est/mi-curso/2urIVPu7SS6zuGlhlDEA">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Vibraciones CAT I</p>
+                    </a>
+                    <a href="https://app.predyc.com/est/mi-curso/FYzasDqwfuygcUFCTN3P">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Termografía</p>
+                    </a>
+                    <a href="https://app.predyc.com/est/mi-curso/Vgv8b7hOdGpfhTa7d5Qp">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >TPM</p>
+                    </a>                
+                </div>
+                <div class="column" style="  flex-direction: column;   ">
+                    <p class=" ft14 mgt05 ft500 " style="color: rgb(246, 225, 119);" >Soporte</p>
+                    <a [routerLink]="['/terminos-condiciones']">                    
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Términos y condiciones</p>
+                    </a>
+                    <a [routerLink]="['/politica-privacidad']">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Politica de privacidad</p>
+
+                    </a>
+                    <a href="https://wa.link/xrqtkp" target="_blank">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Habla con un especialista</p>
+                    </a>
+                    <a href="https://wa.link/jyu8fl">
+                        <p class=" ft14 mgt05 ft500 " style="color: rgb(246, 225, 119);" >Becas</p>
+                    </a>
+                    <a href="https://wa.link/jyu8fl">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Becas a estudiantes</p>
+                    </a>
+                    <a href="https://wa.link/jyu8fl">
+                        <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Becas a particulares</p>
+                    </a>
+                    <a href="https://wa.link/jyu8fl">
+                        <p class= "ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);" >Becas a institutos</p>
+                    </a>
+                </div>
+            </div>
+        </div>              
+        <!-- formulario -->
+        <!-- <div id="formFooter" class=" w-40 shadow-animation pd10 " style="background-color: rgb(255, 255, 255);  flex-direction: column;">
+            <span class="ft16 mgb10 ft600 gray-10">
+                Solicita más información
+            </span>
+            <app-reunion-form btnText="Enviar"  type="info" campana="" [anuncio]="null" interes=""
+            subject="Nuevo llenado formulario footer" [recipients]="['lisset.chavez@predyc.com','desarrollo@predyc.com']"
+            responsable="lisset.chavez@predyc.com" origen="{{currentUrl}}"
+            lugar="footer">
+            </app-reunion-form>
+
+        </div> -->
+        <!-- Formulario -->
+        <!-- <div class="w-40 shadow-animation pd10" style="background-color: rgb(255, 255, 255); flex-direction: column;">
+            <span class="ft16 mgb10 ft600 gray-10">
+            Solicita más información
+            </span>
+            <iframe src="assets/hubspot-form.html" style="width: 100%; height: 600px; border: none;"></iframe>
+        </div> -->
+  
+     
+
+    </div>
+    <!-- <div class="ft10 gray-6  pdb30" style="display: flex; justify-content:center ">Predyc Todos los derechos
+        Reservados | Términos y condiciones | Consulta nuestro aviso y política de privacidad</div> -->
+    <div class="ft10 gray-6  pdb30" style="display: flex; justify-content:center ">Predyc Inc. Todos los derechos
+        Reservados </div>
+        <!-- Botón de configuración de cookies de HubSpot
+            <button type="button" id="hs_show_banner_button"
+            style="background-color: #222B37; border: 1px solid #222B37;
+                border-radius: 3px; padding: 10px 16px; text-decoration: none; color: #fff;
+                font-family: inherit; font-size: inherit; font-weight: normal; line-height: inherit;
+                text-align: left; text-shadow: none;"
+            onClick="(function(){
+            var _hsp = window._hsp = window._hsp || [];
+            _hsp.push(['showBanner']);
+            })()"
+            >
+            Configuración de cookies
+            </button> -->
+
+</div> 
+

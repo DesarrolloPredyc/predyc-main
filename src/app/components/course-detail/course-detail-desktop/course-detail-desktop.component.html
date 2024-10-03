@@ -1,0 +1,201 @@
+<header class="banner" *ngIf="isLoaded; else loadingHeader">
+    <summary class="summary pdr80">
+        <h1 class="gray-1 ftxxl ft600">Curso {{course?.titulo}}</h1>
+        <div class="mgt10 lightText gray-3 ft14">
+            {{course?.descripcion}}
+        </div>
+        <div class="mgt10 instructor-info">
+            <img *ngIf="instructor?.foto" [src]="instructor?.foto" [alt]="instructor?.nombre" class="avatar3" alt="img-instructor">
+            <div class="lightText gray-3 ft14">
+                <p class="gray-3 ft14 ft500">{{instructor?.nombre}}</p>
+                <p class="lightText gray-3">{{instructor?.resumen}}</p>
+            </div>
+        </div>
+    </summary>
+    <section class="contact mgt20 mgb20 centertext">
+        <a href="https://app.predyc.com/est/mi-curso/{{course.id}}?" target="_blank" style="display: block; position: relative;">
+            <div class="image-container" [ngClass]="{'loading': !imageLoaded}">
+                <img *ngIf="course.imagen" [src]="course.imagen" [alt]="course.titulo" class="w-100"  [ngClass]="{'CURSO-PLAY-FREE': course.isFree, 'CURSO-PLAY': !course.isFree}"(load)="imageLoaded = true">
+                <div class="play-overlay">
+                    <img [ngClass]="{'CURSO-PLAY-FREE': course.isFree, 'CURSO-PLAY': !course.isFree}" class="play-icon" src="assets/images/icons/play-btn.svg" alt="Play Icon">
+                </div>
+            </div>
+        </a>
+        
+        <a>
+            <button (click)="scrolltoForm()" class="fw mgt15  gray-10 ft500 yellowButton generalButton " type="submit">Solicitar demostración</button>
+        </a>
+        <button class="fw mgt08  gray-10 ft500  generalButton" (click)="downloadFichaTecnica()">Descargar ficha técnica</button>
+    </section>
+</header>
+<ng-template #loadingHeader>
+    <header class="banner gray-scale skeleton">
+        <summary class="summary pdr80">
+            <div class="placeholder-title"></div>
+            <div class="placeholder-description"></div>
+            <div class="placeholder-description"></div>
+            <div class="placeholder-description"></div>
+            <div class="placeholder-description"></div>
+            <div class="mgt10 instructor-info">
+                <div class="avatar3"></div>
+                <div class="lightText gray-3 ft14">
+                    <div class="placeholder-name"></div>
+                    <div class="placeholder-summary"></div>
+                    <div class="placeholder-summary"></div>
+                </div>
+            </div>
+        </summary>
+        <section class="contact mgt20 mgb20 centertext">
+            <div class="image-container placeholder-image"></div>
+            <button class="fw mgt15  gray-10 ft500 yellowButton generalButton " disabled>Solicitar demostración</button>
+            <button class="fw mgt08  gray-10 ft500  yellowButton generalButton" disabled>Descargar ficha técnica</button>
+        </section>
+    </header>
+</ng-template>
+
+<section class="course-content colCenter" *ngIf="isLoaded; else loadingSection">
+    <section class="course-information" style="width: 75vw">
+        <h2 class="ft18 ft600 gray-10">Información del curso</h2>
+        <div class="course-info-container">
+            <div class="course-info-item">
+                <div class="iconBorder">
+                    <img [src]="icon.certificate" class="w-70 makeGray8" alt="">
+                </div>
+                <span class="ft12 gray-8">Certificado de completación*</span>
+            </div>
+            <div class="course-info-item">
+                <div class="iconBorder">
+                    <img [src]="icon.intermedio" class="w-70 makeGray8" alt="">
+                </div>
+                <span class="ft12 gray-8">Nivel: {{course?.nivel}}</span>
+            </div>
+            <div class="course-info-item">
+                <div class="iconBorder">
+                    <img [src]="icon.location" class="w-70 makeGray8" alt="">
+                </div>
+                <span class="ft12 gray-8">Idioma: {{course?.idioma}}</span>
+            </div>
+            <div class="course-info-item">
+                <div class="iconBorder">
+                    <img [src]="icon.laptop" class="w-70 makeGray8" alt="">
+                </div>
+                <span class="ft12 gray-8">Acceso en dispositivos móviles y PC</span>
+            </div>
+            <div class="course-info-item">
+                <div class="iconBorder">
+                    <img [src]="icon.clock" class="w-70 makeGray8" alt="">
+                </div>
+                <span class="ft12 gray-8">Duración del curso: {{getFormattedDuration(course?.duracion)}}</span>
+            </div>
+        </div>
+        <section class="course-topics">
+            <h2 class="ft18 ft600 gray-10">Contenido del curso</h2>
+            <ol class="tablas-cursos" style="list-style-type:none; padding-bottom: 0; margin-left:0em; font-size: 16px;">
+                <li *ngFor="let module of course?.modules">
+                    <h3 class="ft14 gray-10 ft400 tabla-modulo">{{module.titulo}}</h3>
+                    <ol style="list-style-type: none; padding-bottom: 0;">
+                        <li class="tabla-curso ft14 ft300" *ngFor="let clase of module.clases; index as i"> 
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="pdl10">{{ clase.titulo }}</span>
+                                <a href="https://app.predyc.com/est/mi-curso/{{course.id}}?" target="_blank" *ngIf="clase.numero <= 3" class="blueLink">Reproducir clase</a>
+                            </div>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        </section>
+        
+        <h2 class="ft18 ft600 gray-10 mgt20 mgb10">Información del instructor</h2>
+
+        <section class="info-instructor mgt10 mgb10">
+            <div class=" instructor-info">
+                <img *ngIf="instructor?.foto" [src]="instructor?.foto" [alt]="instructor?.nombre" class="avatarSquare6 radius6" alt="img-instructor">
+                <div class="lightText gray-8 ft14">
+                    <p class="lightText gray-10">{{instructor?.descripcion}}</p>
+                    <p class="gray-10 mgt08 ft14 ft500">{{instructor?.nombre}}</p>
+                    <!-- <p class="blue-5 gray-10">{{instructor?.resumen}}</p>  -->
+                    <!-- saludos de Alejandra, cuando retomen esto recuerden que en el predyc-empresa no esta pidiendo el resumen del instructor, haganlo en mi honor, los tkm hijos de la rebolonga -->
+                </div>
+            </div>
+        </section>
+        <span>*Es necesaria una suscripción activa o adquirir el certificado de forma individual.</span>
+    </section>
+</section>
+
+<ng-template #loadingSection>
+    <section class="course-content colCenter skeleton2 gray-scale">
+        <section class="course-information" style="width: 75vw">
+            <h2 class="ft18 ft600 gray-10">Información del curso</h2>
+            <div class="course-info-container">
+                <div class="course-info-item">
+                    <div class="iconBorder">
+                        <img [src]="icon.certificate" class="w-70 makeGray8" alt="">
+                    </div>
+                    <div class="placeholder-text"></div>
+                </div>
+                <div class="course-info-item">
+                    <div class="iconBorder">
+                        <img [src]="icon.intermedio" class="w-70 makeGray8" alt="">
+                    </div>
+                    <div class="placeholder-text"></div>
+                </div>
+                <div class="course-info-item">
+                    <div class="iconBorder">
+                        <img [src]="icon.location" class="w-70 makeGray8" alt="">
+                    </div>
+                    <div class="placeholder-text"></div>
+                </div>
+                <div class="course-info-item">
+                    <div class="iconBorder">
+                        <img [src]="icon.laptop" class="w-70 makeGray8" alt="">
+                    </div>
+                    <div class="placeholder-text"></div>
+                </div>
+                <div class="course-info-item">
+                    <div class="iconBorder">
+                        <img [src]="icon.clock" class="w-70 makeGray8" alt="">
+                    </div>
+                    <div class="placeholder-text"></div>
+                </div>
+            </div>
+            <section class="course-topics">
+                <h2 class="ft18 ft600 gray-10">Contenido del curso</h2>
+                <ol class="tablas-cursos" style="list-style-type:none; padding-bottom: 0; margin-left:0em; font-size: 16px;">
+                    <li class="">
+                        <div class="placeholder-text tabla-modulo"></div>
+                        <ol style="list-style-type: none; padding-bottom: 0;">
+                            <li class="tabla-curso ft14 ft300">
+                                <div class="placeholder-textcourse"></div>
+                            </li>
+                            <li class="tabla-curso ft14 ft300">
+                                <div class="placeholder-textcourse"></div>
+                            </li>
+                            <li class="tabla-curso ft14 ft300">
+                                <div class="placeholder-textcourse"></div>
+                            </li>
+                            <li class="tabla-curso ft14 ft300">
+                                <div class="placeholder-textcourse"></div>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </section>
+            <h2 class="ft18 ft600 gray-10 mgt20 mgb10">Información del instructor</h2>
+            <section class="info-instructor2 mgt10 mgb10">
+                <div class="instructor-info row">
+                    <div class="avatarSquare6"></div>
+                    <div style="background-color: blue!important;">
+                        <div class="placeholder-summary2"></div>
+                        <div class="placeholder-summary2"></div>
+                        <div class="placeholder-name2"></div>
+                    </div>
+                    
+                </div>
+            </section>
+        </section>
+    </section>
+</ng-template>
+
+
+
+<footer></footer>

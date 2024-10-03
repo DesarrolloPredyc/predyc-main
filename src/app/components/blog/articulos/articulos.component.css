@@ -1,0 +1,311 @@
+.search-container{
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.search-dropdown{
+    background-color: var(--gray-2) !important;
+}
+
+.search-select{
+    background-color: var(--gray-2) !important;
+    border: none !important;
+    border-radius: 0px !important;
+}
+
+.search-select{
+    background-color: var(--gray-4) !important;
+    border: none !important;
+    border-radius: 0px !important;
+}
+
+.input:focus{
+    outline: none !important;
+}
+
+.search-input{
+    background-color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+}
+
+.input{
+    border: none;
+    width: 200px;
+}
+
+.freebie{
+    min-height: 300px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: var(--gray-2);
+}
+
+.containerText{
+    color: var(--gray-8);
+    font-size: 14px;
+}
+
+p{
+    margin-bottom: 1rem;
+}
+
+.toc {
+  position: fixed; /* Fijar la tabla de contenido en su posición */
+  top: 64px; /* Ajusta este valor según la altura de tu encabezado sticky */
+  left: 0px; /* Ajusta la posición horizontal si es necesario */
+  width: 23%; /* Ancho fijo para la tabla de contenido */
+  height: calc(100vh - 50px); /* Altura total de la vista menos el espacio reservado */
+  overflow-y: auto; /* Scroll vertical si el contenido excede la altura */
+  background-color: white; /* Fondo blanco para que sea más visible */
+  box-shadow: 5px 0px 5px -5px rgba(0, 0, 0, 0.1); /* Sombra solo a la derecha */
+  }
+  
+  .toc-list {
+    list-style-type: none;
+    padding: 0;
+    padding-bottom: 20px !important;
+  }
+  
+  .toc-list li span:hover {
+    background-color: var(--gray-3);
+  }
+
+  .toc-h2 {
+    width: 100%;
+    height: 100%;
+    /* padding: 5px 15px !important; */
+    font-weight: bold;
+    padding-left:12px;
+    padding-right: 12px;
+    padding-bottom: 11px !important;
+    padding-top: 11px !important;
+  }
+
+  .toc-list li span.active {
+    background-color: var(--gray-3);
+  }
+  
+  .toc-h3 {
+    /* padding: 10px 15px; */
+    width: 100%;
+    height: 100%;
+    font-weight: normal;
+    padding-left:12px;
+    padding-right: 12px;
+    padding-bottom: 11px !important;
+    padding-top: 11px !important;
+
+  }
+  .scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #ff9500c4;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .scroll-to-top:hover {
+    background-color: #ff9500;
+  }
+  
+  .scroll-to-top.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .progress-container {
+    position: fixed;
+    top: 60px; /* Ajusta según el tamaño de tu header */
+    left: 0;
+    width: 100%;
+    height: 4px; /* Ajusta la altura de la barra de progreso */
+    background-color: #e0e0e0; /* Color de fondo de la barra */
+  }
+  
+  .progress-bar {
+    height: 100%;
+    width: 0%; /* Inicia en 0% */
+    background-color: var(--orange-2); /* Color azul de la barra de progreso */
+  }
+
+  .author-card {
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    padding: 4px 0px;
+    width: fit-content;
+    /* border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
+  }
+
+  .card-info-article{
+    background-color: transparent; 
+    margin-top: -12px; 
+    border-radius: 0 0 8px 8px;
+  }
+
+  @media (max-width: 768px) {
+    .author-card {
+      padding: 4px 0px;
+    }
+    h1 {
+      font-size: 1.4rem !important; /* Ajusta el tamaño del texto para móviles */
+    }
+    .card-info-article{
+      background-color: var(--gray-2); 
+    }
+    .fixed-courses-container {
+      display: none;
+    }
+  }
+  
+  .autorImg {
+    border-radius: 50%;
+    margin-right: 6px;
+    width: 80px; /* Ajusta el tamaño del avatar */
+    height: 80px;
+  }
+  
+  .author-info {
+    flex: 1; /* Permite que el contenido de la derecha ocupe el espacio disponible */
+  }
+  
+  .author-info h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .author-info p {
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+  }
+  
+  .author-icons {
+    margin-top: 5px;
+    display: flex;
+    gap: 16px; /* Espacio entre los iconos */
+  }
+  
+  .icon {
+    width: 22px; /* Ajusta el tamaño de los iconos */
+    height: 22px;
+  }
+
+  .fixed-courses-container {
+    position: fixed;
+    top: 98px; /* Ajusta este valor para que la sección quede justo debajo de la barra de navegación u otros elementos */
+    right: 20px; /* Ajusta este valor para alinear a la derecha */
+    width: 22vw; /* Mantén el ancho al 22% de la ventana gráfica */
+    max-height: calc(100vh - 100px); /* Asegura que la altura máxima sea el 100% de la pantalla menos cualquier elemento fijo arriba */
+    overflow-y: auto; /* Permite el desplazamiento si el contenido es más alto que la ventana */
+  }
+  
+  .course-card {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    background-color: #f9f9f9;
+    width: 100%; /* Asegura que la tarjeta ocupe todo el ancho del contenedor */
+    position: relative;
+  }
+  
+  .course-image {
+    width: auto;
+    height: 100%;
+    max-height: 100px;
+    aspect-ratio: 1 / 1;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .course-info {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    flex-grow: 1;
+  }
+  
+  .free-badge {
+    background-color: #28a745;
+    color: white;
+    padding: 0px 14px;
+    border-radius: 4px 0px 4px 0px;
+    font-size: 0.75rem;
+    position: absolute;
+    bottom: 0; /* Ajusta la posición para que esté alineado con la esquina superior */
+    right: 0; /* Asegura que esté alineado con la esquina derecha de la tarjeta */
+  }
+  
+  .centered-content {
+    display: flex;
+    align-items: center;
+  }
+  
+
+  .courses-grid-movil {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
+    gap: 16px; /* Espacio entre los elementos */
+  }
+  
+  .course-item-movil {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente el contenido dentro de cada item */
+    text-align: left; /* Alinea el texto a la izquierda */
+  }
+  
+  .course-title-movil {
+    font-size: 12px;
+    color: var(--gray-9);
+    margin-top: 5px; /* Añade un pequeño margen superior para separar el texto de la imagen */
+  }
+
+  .image-container-movil {
+    position: relative; /* Necesario para que el badge se posicione correctamente */
+  }
+  
+  .course-image-movil {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    height: auto; /* Ajusta la altura automáticamente */
+    display: block; /* Asegura que la imagen sea un bloque dentro del contenedor */
+    border-radius: 4px;
+  }
+  
+  .free-badge-movil {
+    background-color: #28a745;
+    color: white;
+    padding: 0px 14px;
+    border-radius: 0px 4px 0px 4px; /* Ajusta el borde redondeado */
+    font-size: 0.75rem;
+    position: absolute;
+    top: 0; /* Alineado en la esquina superior derecha */
+    right: 0; /* Asegura que esté alineado con la esquina derecha de la imagen */
+    z-index: 10; /* Asegura que el badge esté por encima de la imagen */
+  }
+  
+  .centered-container-movil {
+    margin: 0 auto !important; /* Centra el contenedor horizontalmente */
+  }
+  
+  .mgtPhotoMovil {
+    margin-top: 61px !important;
+    border-radius: 0px !important;
+  }

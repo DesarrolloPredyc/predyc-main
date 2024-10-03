@@ -1,0 +1,67 @@
+.organization-chart {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 90vw;
+    margin-top: 0;
+    padding: 4rem;
+    background-color: white;
+  }
+  
+  .profiles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+  }
+  
+  .profileMini {
+    cursor: pointer;
+    border: 1px solid var(--gray-3);
+    border-radius: 4px;
+    padding: 1rem;
+    width: 90%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .profileMini img {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+  
+  .containerPerfil {
+    background-color: rgba(252, 241, 222, 0.84);
+    border: #fcc145 1px solid !important;
+  }
+  
+  .avatar-container {
+    margin-bottom: 1rem;
+  }
+  
+  .progress-info {
+    margin-top: 0.5rem;
+  }
+  
+  .selected-profile {
+    border: 1px solid #fcc145;
+    border-radius: 4px;
+  }
+  
+  .cursos-plan {
+    padding: 9px;
+  }
+  
+  .border-b-orange {
+    border-bottom: #fcc145 1px solid !important;
+  }
+  
+  .course-list {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .course-details {
+    margin: 8px;
+  }
+  

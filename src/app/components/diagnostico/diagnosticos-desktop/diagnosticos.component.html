@@ -1,0 +1,25 @@
+<div class="fw container pdt50" fxLayout="column" fxLayoutAlign=" center" style="min-height: calc(100vh - 55px);">
+    <div class="w-75" style="height: 100%;">
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <h1 class="ft22 ft600">Diagnósticos</h1>
+            <p class="ft16 pdt10">
+              Realiza un diagnóstico breve de tus conocimientos en las categorías de las certificaciones técnicas.
+            </p>
+            <p class="ft16 pdt10">
+              Si quieres realizar un diagnóstico profundo particularizado para los colaboradores de tu equipo de mantenimiento 
+            </p>
+            <a (click)="scrollToForm()" class="ft16 blueLink">habla con un asesor.</a>
+        </div>
+
+        <!-- Grid dinámico con diagnósticos -->
+        <div class="diagnosticos-grid" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center" fxLayoutWrap>
+            <div *ngFor="let diagnostico of test" class="diagnostico-card">
+                <img [src]="diagnostico.imagen" alt="Imagen del diagnóstico" class="avatarSquare9 radius6">
+                <h3 class="ft16 ft500">{{ diagnostico.title }}</h3>
+                <p class="ft14 pdt10">{{ diagnostico.questions.length }} preguntas</p>
+                <button  routerLink="/diagnostico/{{diagnostico.customUrl ? diagnostico.customUrl: diagnostico.id}}" class="btn blueButton mgt10">Comenzar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<footer></footer>

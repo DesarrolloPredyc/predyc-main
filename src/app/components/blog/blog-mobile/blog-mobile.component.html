@@ -1,0 +1,40 @@
+<span class="mgt50 pdt20 pdb20 pdl10 ft500 ft30">Artículos técnicos</span>
+<div class="fw" fxLayout="row" fxLayoutAlign="center center"> 
+    <app-search-input-box [placeHolder]="'Buscar artículos por título'" fxLayoutAlign="center" class="shadow-animation radius20 mgt10 w-90 search-box" style="height: 30px;"></app-search-input-box>
+</div>
+<div class="fw" fxLayout="column" fxLayoutGap="1.5rem" fxLayoutAlign="start center">
+    <!-- Articles -->
+    <div *ngIf="articles.length > 0" fxLayout="column" class="w-100">
+        <!-- Rest of articles -->
+        <div class="fw" fxLayout="column" fxLayoutAlign="center">
+            <div class="fw pdt20" fxLayout="column" fxLayoutGap="1.5rem" fxLayoutAlign="center">
+                <div  [routerLink]="'/blog/' + article.slug" class="fw article-container backGray1 radius6" *ngFor="let article of dataSource.data">
+                    <img [src]="article.photoUrl" class="radius6 imgOthersArticle" alt="">
+                    <div class="pdl08 pdr08 pdb08">
+                        <div class="mgt05" fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="center">
+                                <div *ngFor="let tagName of article.tagsNames.slice(0, 2)" class="ftup ft9 pdl05 pdr05 radius6 backBlue1 blue-5 ft500">{{tagName}}</div>
+                                <span *ngIf="article.tagsNames.length > 2">...</span>
+                            </div>
+                        </div>
+                        <span class="fw ft500 mgt05 ft14 gray-10">{{article.title | titlecase}}</span>
+                        <div class="mgt05 fw">
+                            <span class="ft12 lightText ellipsis-text">
+                                {{article.summary}}
+                            </span>
+                        </div>
+                        <a *ngIf="article.slug" class="blueLink undrl mgt05">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="paginator-container">
+                <mat-paginator 
+                    [length]="allArticles.length" 
+                    [pageSize]="pageSize" 
+                    (page)="onPageChange($event.pageIndex + 1)">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer-mobile></app-footer-mobile>

@@ -1,0 +1,420 @@
+<div style="overflow-x: hidden;" [fxShow]="false" [fxShow.lt-md]="true">
+    <header class="banner ">
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
+            <img [src]="icon.logo" alt="" style="width: 2.75rem;">
+            <span class="ft500 gray-1"
+                style="font-family: 'Gordita-medium'; font-size: 30px; padding-top:.5rem;">Predyc</span>
+        </div>
+        <div class="title-container mgt20">
+            <h1 class="mgt10 gray-1 centertext" style="font-size: 1.5rem!important; font-family: Inter-medium;  "><span
+                    class="ft600 yellow-3 " style="font-size: 1.8rem!important; ">Capacitación Técnica </span> <br>
+                para departamentos de Mantenimiento
+            </h1>
+            <p class="mgt10 lightText ft16 gray-2 centertext " style="font-family: Inter;">Entrenamiento personalizado
+                para
+                Gerentes, Supervisores, Técnicos y Lideres de equipos de Mantenimiento Industrial.</p>
+        </div>
+        <div class="fw mgt20" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="grid-item3 linked-profile">
+
+                <img [src]="gerenteMant" alt="img" class="profile-img">
+                <p class="tituloperfil">Gerente</p>
+
+            </div>
+            <div class="grid-item3 no-link">
+
+                <img [src]="supervisor" alt="img" class="profile-img">
+                <p class="tituloperfil">Jefe de mant</p>
+
+            </div>
+            <div class="grid-item3 linked-profile">
+
+                <img [src]="ingMantenimiento" alt="img" class="profile-img">
+                <p class="tituloperfil">Ing Mantenimiento</p>
+
+            </div>
+        </div>
+        <div class="fw mgt10" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="grid-item3 linked-profile">
+
+                <img [src]="coordinador" alt="img" class="profile-img">
+                <p class="tituloperfil">Coordinador</p>
+
+            </div>
+            <div class="grid-item3 no-link">
+
+                <img [src]="ingConfiabilidad" alt="img" class="profile-img">
+                <p class="tituloperfil">Ing. Confiabilidad</p>
+
+            </div>
+            <div class="grid-item3 linked-profile">
+
+                <img [src]="tecPredictivo" alt="img" class="profile-img">
+                <p class="tituloperfil">Tec Predictivo</p>
+            </div>
+        </div>
+        <div class="form-banner">
+            <app-reunion-form [campana]="this.utmCampaign" type="ads" [anuncio]="this.utmContent" [interes]="'LMS Predyc'"
+                [subject]="'Nuevo registro en formulario'" [recipients]="['liliana.giraldo@predyc.com','andres.gonzalez@predyc.com','desarrollo@predyc.com']"
+                [responsable]="'guillermo.moran@predyc.com'" [origen]="this.currentUrl"
+                [lugar]="'Landing LMS'" (formSubmit)="handleFormSubmit($event)"></app-reunion-form>
+        </div>
+    </header>
+    <section class="fw">
+        <div class="fw backDark pdt20  pdb20 centertext colCenter" style="padding-left: 16px; padding-right: 16px;">
+            <div class="chipYellow gray-9 ft500">E-learning / LMS</div>
+            <h2 class="ft18 gray-2 mgt10 ft600 " style="text-align: left; font-family: Inter-bold">
+                E-learning resulta más efectivo cuando tu equipo tiene muchas personas</h2>
+            <p class="yellow-3 ft14 mgt05" style="text-align: left; font-family: Inter-medium;">
+                El costo de la capacitación tradicional resulta entre 6x y 10x mayor. Con PREDYC simplificas los
+                procesos administrativos, logísticos, no hay costos ocultos ni inesperados, traslados, viáticos ni
+                sobrecostos por hora de capacitación.</p>
+            <p class="mgt10 mgb20">
+                <span class="ft18 yellow-3  ft600">Cursos grabados</span>
+                <span class="ft18 gray-4 mgl05 ft600">=</span>
+                <span class="ft18 gray-2 mgl05 ft600">Flexibilidad 24/7</span>
+            </p>
+            <!-- <a href="https://app.predyc.com/est/mi-curso/2uUVGnaAGNiBtCaQys6E" target="_blank">
+                 <img src="/assets/images/design/Clases-grabadas-predyc.webp" style="width: 90vw;  " alt="img clases grabadas">
+            </a> -->
+
+
+            <a target="_blank" style="position: relative; display: inline-block;">
+                <img src="/assets/images/icons/else.png" class="" style="width: 90vw; position: relative; z-index: 1;"
+                    alt="">
+                <img src="/assets/images/icons/saltos.png" class=" salto-blink"
+                    style="width: 90vw; position: absolute; top: 0; left: 0; z-index: 2;" alt="">
+                <img src="/assets/images/icons/playcurso.png" class="  play-icon2"
+                    style="width: 90vw; position: absolute; top: 0; left: 0; z-index: 3;" alt="Play Icon img">
+
+            </a>
+        </div>
+
+    </section>
+    <section class="RH fw " style="background-color: #f2f2f2;">
+        <app-rh-info-mobile></app-rh-info-mobile>
+    </section>
+    <section class="RH fw  pdb10">
+        <!-- <app-plan-diagnostico></app-plan-diagnostico>
+         -->
+        <div class="fw  colCenter" style="padding-left: 16px; padding-right: 16px;">
+            <div class="fw  mgt20 column">
+                <h2 class="ft18 gray-10 ft600 w-90" style="text-align: left; font-family: Inter-bold">
+                    Diagnóstico inicial para sentar una línea base de conocimientos </h2>
+                <p class="gray-8 ft14 mgt05 w-90" style="text-align: left; font-family: Inter-medium;">
+                    Ejecutamos un examen inicial para detectar se tienen conocimientos fundamentales de las distintas
+                    áreas de mantenimiento. Es importante conocer si dentro del equipo todos dominan los conceptos base.
+                </p>
+                <img alt="imgagen resultado examen" style="width: 100%;  margin-top: 16px;"
+                    src="/assets/images/icons/diag-2cut.svg">
+            </div>
+        </div>
+
+    </section>
+    <section class="RH fw " style="background-color: #f2f2f2;">
+        <div class="fw  colCenter" style="padding-left: 16px; padding-right: 16px;">
+            <div class="fw  mgt20 column mgb10">
+                <h2 class="ft18 gray-10 ft600 w-90" style="text-align: left; font-family: Inter-bold">
+                    Asistencia dedicada de nuestro equipo para ayudarte a dar seguimiento y controlar tu equipo </h2>
+                <p class="gray-8 ft14 mgt05 w-90" style="text-align: left; font-family: Inter-medium;">
+                    Hacemos el Onboarding de tu equipo viendo las necesidades de cada persona,
+                    luego en conjunto contigo hacemos control y seguimiento para que cada persona complete su plan de
+                    estudio.</p>
+                <img style="width: 100%; padding: .5rem; " alt="imgagen asistencia"
+                    src="/assets/images/icons/asist-cut.svg">
+            </div>
+        </div>
+
+    </section>
+    <section class=" fw">
+        <app-courses-home-mobile></app-courses-home-mobile>
+    </section>
+
+    <section class="RH fw  " style="background-color: white;">
+        <div class="titulocards fw pdt40  centertext colCenter">
+            <h2 class=" ftxl mgt20 gray-10 ft600 w-70">Precios y beneficios de los planes PREDYC</h2>
+        </div>
+
+        <div class="pricing-section   mgb40 colCenter ">
+            <div class="slider-container mgt10 mgb30 ">
+                <label class="ft16 ft500 gray-10 pdl10 pdt05" for="pricing-toggle">Mensual</label>
+                <label class="switch mg10">
+                    <input type="checkbox" id="pricing-toggle" (change)="togglePricing($event)">
+                    <span class="slider"></span>
+                </label>
+                <label class="ft16 ft500 gray-10 pdr10 pdt05" for="pricing-toggle">Anual</label>
+            </div>
+
+            <div class="card-container">
+                <div class="card shadow-animation3" *ngFor="let plan of plans">
+                    <span class="centertext ft750 gray-9 ft18 mgt10 fw pdb10" [style.text-align]="'center!important'"
+                        [style.borderBottom]="'2px solid white'">{{ plan.title }}</span>
+                    <div class="card-content pd10">
+                        <p class="ft26 gray-10 pdt10 pdb05 ft750" [style.lineHeight]="'1.4!important'">{{ isAnnual ?
+                            plan.annualPrice : plan.monthlyPrice }}</p>
+                        <p class="ft11 mgt10 centertext gray-10 ft600 mgb20" [style.lineHeight]="'1.2!important'">precio
+                            por cada persona con contrato anual</p>
+                        <div class="pdb40 beneficios mgt10" [style.text-align]="'left'">
+                            <p class=" mgl10 ft12 mgt05 pdl05 mgr08 gray-10" [style.lineHeight]="'1.4!important'"
+                                *ngFor="let benefit of plan.benefits">{{ benefit }}</p>
+                        </div>
+                    </div>
+                    <div class="button-card"
+                        [ngClass]="{'button-card-dark': !plan.isBestSeller, 'button-card-orange': plan.isBestSeller}"
+                        (click)="contactSales(plan)">
+                        <span class="button-text  CARDS-BTN-VENTAS ">Hablar con un asesor</span>
+                        <span class="chevron">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tablas-info mgt10  mgb30 colCenter ">
+            <span class=" ft14 gray-10 ft400 "
+                style="background-color: #f2f2f2; padding: 12px;  width: 75vw; text-align: start; border-bottom: var(--gray-6) 1px solid; border-top-right-radius: 3px; border-top-left-radius: 2px;">Capacitación
+            </span>
+            <span class=" ft14  ft300 "
+                style="background-color: white; width: 75vw;  padding: 12px; text-align: start; border-bottom: var(--gray-6) 1px solid;">Personalización
+                de los planes de capacitación para cada puesto de trabajo durante Onboarding</span>
+            <span class=" ft14  ft300 "
+                style="background-color: white; width: 75vw;  padding: 12px; text-align: start; border-bottom: var(--gray-6) 1px solid;">Acceso
+                a todos los cursos y planes de capacitación</span>
+            <span class=" ft14  ft300 "
+                style="background-color: white; width: 75vw;  padding: 12px; text-align: start; border-bottom: var(--gray-6) 1px solid;">Preguntas
+                vía chat y acceso al material descargable disponible</span>
+
+            <span class=" ft14 gray-10 ft400 mgt10 "
+                style="background-color: #f2f2f2; padding: 12px;  width: 75vw; text-align: start; border-bottom: var(--gray-6) 1px solid; border-top-right-radius: 3px; border-top-left-radius: 2px;">Control
+                del equipo </span>
+            <span class=" ft14  ft300 "
+                style="background-color: white; width: 75vw;  padding: 12px; text-align: start; border-bottom: var(--gray-6) 1px solid;">Herramienta
+                de tracking para seguimiento</span>
+            <span class=" ft14  ft300 "
+                style="background-color: white; width: 75vw;  padding: 12px; text-align: start; border-bottom: var(--gray-6) 1px solid;">Asistencia
+                dedicada del equipo PREDYC para dar apoyar en el seguimiento y control de tu equipo </span>
+            <span class=" ft14  ft300 "
+                style="background-color: white; width: 75vw;  padding: 12px; text-align: start; border-bottom: var(--gray-6) 1px solid;">Rotaciones
+                para cuando decides cambiar las personas que se están capacitando </span>
+
+        </div>
+    </section>
+    <section class="banner ">
+        <div class="form-banner">
+            <app-reunion-form [campana]="this.utmCampaign"   type="ads" [anuncio]="this.utmContent" [interes]="'LMS Predyc'"
+            [subject]="'Nuevo registro en formulario'" [recipients]="['liliana.giraldo@predyc.com','andres.gonzalez@predyc.com','desarrollo@predyc.com']"
+            [responsable]="'guillermo.moran@predyc.com'" [origen]="this.utmSource"
+            [lugar]="'Landing LMS'" (formSubmit)="handleFormSubmit($event)"></app-reunion-form>
+        </div>
+    </section>
+    <section>
+        <div style="background: #242838;">
+
+
+
+            <div class="fw pdl20 pdr40 pdb30 " style="display: flex; gap: 4rem;">
+
+
+                <div class=" mgr08 ">
+                    <div class="row personas-footer"
+                        style="gap: 2rem; justify-content: space-between; align-items: stretch; margin-top: 30px;">
+                        <div class="column" style=" width: 40vw;  flex-direction: column;   ">
+                            <p class=" ft14 mgt05 ft500 " style="color: rgb(246, 225, 119);">Planes de capacitación</p>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Gerente</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Coordinador</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Ing. Mantenimiento</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Téc. Mecánico</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Téc. Instrumentista</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Téc. Predictivo</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Téc. Especialista</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Operador</p>
+
+                            </a>
+                            <!-- <div class="grayLine" style=" margin-bottom: 12px;"> </div> -->
+
+
+                        </div>
+                        <div class="column" style=" width: 40vw;  flex-direction: column;   ">
+
+                            <a>
+                                <p class=" ft14 mgt05 ft500 " style="color: rgb(246, 225, 119);">Diplomados</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Mantenimiento</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Confiabilidad</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Predictivo</p>
+                            </a>
+                            <a>
+                                <p class=" ft14 mgt05 ft500 " style="color: rgb(246, 225, 119);">Cursos más solicitados
+                                </p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">RCM</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Vibraciones CAT I</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">Termografía</p>
+                            </a>
+                            <a>
+                                <p class=" ft12 mgt05 ft500 " style="color: rgb(191, 191, 191);">TPM</p>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="row personas-footer"
+                        style="gap: 2rem; justify-content: space-between; align-items: stretch; margin-top: 30px;">
+
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="ft10 gray-6  pdb30" style="display: flex; justify-content:center ">Predyc Todos los derechos
+                Reservados | Términos y condiciones | Consulta nuestro aviso y política de privacidad</div> -->
+            <div class="ft10 gray-6  pdb30" style="display: flex; justify-content:center ">Predyc Inc. Todos los
+                derechos
+                Reservados </div>
+        </div>
+    </section>
+</div>
+<div style="overflow-x: hidden;" [fxShow]="true" [fxShow.lt-md]="false">
+    <header class="banner-pc">
+        <div fxLayout="column" fxLayoutAlign=" center">
+            <div class="title-container">
+                <h1 class="   gray-1" style="font-size: 1.8rem!important; font-family: Inter-medium;  "><span
+                        class="ft600 yellow-3 " style="font-size: 1.8rem!important; ">Capacitación Técnica </span> <br>
+                    para departamentos de Mantenimiento
+                </h1>
+                <p class="mgt20 lightText ft14 gray-2">Entrenamiento personalizado para Gerentes, Supervisores, Técnicos
+                    y Lideres de equipos de Mantenimiento Industrial.</p>
+            </div>
+            <figure class="mgt20">
+                <app-profiles-logo></app-profiles-logo>
+            </figure>
+        </div>
+        <div class="form-banner">
+            <app-reunion-form [campana]="this.utmCampaign" [anuncio]="this.utmContent"   type="ads" [interes]="'LMS Predyc'"
+            [subject]="'Nuevo registro en formulario'" [recipients]="['liliana.giraldo@predyc.com','andres.gonzalez@predyc.com','desarrollo@predyc.com']"
+            [responsable]="'guillermo.moran@predyc.com'" [origen]="this.utmSource"
+            [lugar]="'Landing LMS'"></app-reunion-form>
+        </div>
+
+    </header>
+
+    <section class="customers-list">
+        <img *ngFor="let logo of logosEmpresas; let i = index"
+            style="width: 10%; padding-left: 1rem; padding-right: 1rem;" [src]="logo"
+            [alt]="'clientes de predictiva21 '+i">
+    </section>
+    <!-- <section class="plan-training fw pdt10">
+        <app-plan-training></app-plan-training>
+    
+    </section> -->
+    <section class="plan-generator fw centertext">
+        <app-plan-generator></app-plan-generator>
+    </section>
+    <section class="cursos pdt40 fw" style="background-color: #f9f9f9;">
+        <app-courses-home></app-courses-home>
+    </section>
+    <section class="LMS fw">
+        <app-lms-home></app-lms-home>
+    </section>
+    <section class="RH fw pdt20" style="background-color: #f2f2f2;">
+        <app-rh-info></app-rh-info>
+    </section>
+    <section class="RH fw">
+        <app-plan-diagnostico></app-plan-diagnostico>
+    </section>
+
+    <section class="asistencia-img centertext pdt40 " style="background-color: #f2f2f2;">
+        <div class="fw  pdl40 pdr40  centertext colCenter">
+            <h2 class="ftxl gray-10 mgt20 ft600 w-70 ">Asistencia dedicada de nuestro equipo para ayudarte a dar
+                seguimiento y controlar tu equipo
+            </h2>
+            <p class="gray-8 ft14 mgt20   w-70">Hacemos el Onboarding de tu equipo viendo las necesidades de cada
+                persona,
+                luego en conjunto contigo hacemos control y seguimiento para que cada persona complete su plan de
+                estudio.
+            </p>
+        </div>
+        <img alt="imgagen asistencia" style="width: 90%; padding: 1rem; " class="mgb30 mgt30" [src]="asistencia">
+    </section>
+
+    <section style="background-color: white;">
+        <app-cards-pricing></app-cards-pricing>
+
+
+    </section>
+
+
+    <section class="empresas-predyc pd40 " style="background-color: #f2f2f2;">
+        <div class="centertext ft18 ft750 gray-6 ">
+            Empresas que confían en Predyc
+        </div>
+        <div class="customers-list2 ">
+            <img *ngFor="let logo of logosEmpresas; let i = index"
+                style="width: 10%; padding-left: 1rem; padding-right: 1rem;" [src]="logo"
+                [alt]="'clientes de predictiva21 '+i">
+        </div>
+
+        <div class="row mg20 pd20 grid-80 ">
+
+            <a href="https://youtu.be/GBHYTCMyMGM?si=5cAav9z161G58Ugg" target="_blank"
+                style="display: block; position: relative;">
+                <img style="width: 37vw; border-radius: 8px;" src="assets/images/demo/carlos-lozano.webp"
+                    alt="Carlos Lozano">
+                <div class="play-overlay">
+                    <img class="play-icon" src="assets/images/icons/play-btn.svg" alt="Play Icon">
+                </div>
+            </a>
+
+
+            <div class=" ">
+                <div class=" ft16 ft750 gray-10 ">
+                    ICA Fluor O&M invierté en +5,000 horas de capacitación para su equipo de Mantenimiento, que incluye
+                    profesionales técnicos, supervisores y gerentes con PREDYC
+                </div>
+                <p class="ft12 mgt08">
+                    Una ventaja importante es la facilidad de tomar los cursos en línea. Desplazar al personal para
+                    recibir entrenamiento siempre ha sido un desafío debido a los costos y la logística involucrada,
+                    como vuelos y hoteles. Realizar el entrenamiento en línea ayuda a reducir estos gastos y facilita el
+                    proceso.
+                    <br><br>
+
+                    En colaboración con Predyc, establecimos los temas que cada persona debe conocer y estudiar.
+                    Diseñamos un plan en el que los técnicos, supervisores y gerentes dedican un tiempo específico cada
+                    mes al estudio. Dividimos esto en un año, asegurando que cada persona tenga claras sus asignaciones
+                    de formación.
+
+                </p>
+
+            </div>
+        </div>
+
+    </section>
+
+    <app-demo-request-popup *ngIf="isPopupVisible" (close)="hidePopup()"></app-demo-request-popup>
+
+
+    <footer></footer>
+</div>

@@ -1,0 +1,32 @@
+<div class="containerLaptop">
+    <div class="laptopContent">
+        <div class="row">
+            <div class="col-8">
+                
+                <img [src]="videopredyc" class="img-fluid w-100" alt="Video Predyc">
+            </div>
+            <div class="col-4">
+                <div class="tituloCurso ft600 ft12 gray-9 mgt10 mgl10" style="text-align:left!important;">
+                    {{ course.title }}
+                </div>
+                <div class="clasesCurso">
+                    <!-- Aquí va el contenido de los módulos -->
+                    <div class="moduloClase" *ngFor="let module of modules; let i = index">
+                        <div class="moduloHeader" (click)="toggleModule(i)">
+                            <div class="cuadrito ft11 ft500">{{ i + 1 }}</div>
+                            <div class="column w-90 align-start">
+                                <div class="tituloClase ft500 ft10 gray-9" style="line-height: 1.2;">{{ module.titulo }}</div>
+                            </div>
+                        </div>
+                        <div class="claseDetalle mgt10" *ngIf="selectedModuleIndex === i">
+                            <!-- Aquí van las clases de cada módulo -->
+                            <div *ngFor="let clase of module.clases" class="clase border-b  align-start">
+                                <div class="claseTitulo barracourse ft8 gray-8">{{ clase.titulo }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>          
+            </div>
+        </div>
+    </div>
+</div>

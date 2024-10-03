@@ -1,0 +1,20 @@
+<div class="fw column mgb20" style="padding-left: 16px; padding-right: 16px;" >
+   
+
+    <div class="fw  mgt20 column">
+      <h2 class="ft18 gray-10 ft600 w-90" style="text-align: left; font-family: Inter-bold">
+        <span class="ft22 ft600 blue-5">+80</span> Cursos Técnicos para Mantenimiento y Confiabilidad
+      </h2>
+    </div>
+    <p class="gray-8 ft14 mgt05 w-90" style="text-align: left; font-family: Inter-medium;">
+      En Predyc tomamos el listado de personas/cargos de tu equipo de mantenimiento y asignamos los cursos que necesitan.    </p>
+    <div class="grid-container fw mgt20">
+      <div [routerLink]="'/cursos/' + course.id" target="_blank" class="course-card" *ngFor="let course of courses">
+        <img [src]="course.image" class="radius6" style="width: 100%; aspect-ratio: 1/1;" alt="{{ course.name }}">
+        <div class="course-info">
+          <h3 class="ft12 ft500 gray-9 mgt05 centertext">{{ course.name }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  

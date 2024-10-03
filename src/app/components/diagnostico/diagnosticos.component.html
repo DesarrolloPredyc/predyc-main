@@ -1,0 +1,8 @@
+<ng-container *ngIf="isMobile; else desktopContent">
+  <!-- <app-free-courses-mobile></app-free-courses-mobile> -->
+    <app-diagnosticos-mobile></app-diagnosticos-mobile>
+</ng-container>
+<ng-template #desktopContent>
+  <app-diagnosticos-desktop></app-diagnosticos-desktop>
+</ng-template>
+  

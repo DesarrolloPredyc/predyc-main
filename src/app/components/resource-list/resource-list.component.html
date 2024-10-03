@@ -1,0 +1,47 @@
+<div class="fw backBlue5 pd40" fxLayout="column" fxLayoutAlign=" start">
+    <div fxLayoutAlign="space-between center" class="fw">
+        <div fxLayout="column" class="pdl40" fxLayoutAlign="start ">
+            <span class=" w-60 texto ft30 gray-1">Descubre nuestros 
+                <span class="ft600 ft30 blue-2 pdb10"> Recursos descargables</span>  
+            </span>
+            <div class="fw" fxLayoutAlign="center center">
+                <span class="gray-1 ft16 pdt10 ft500"> Descarga tus herramientas indispensables y llevar tus habilidades al siguiente nivel</span>
+            </div>
+    
+        </div>
+        <!-- <div class="pdl20" fxLayout="column" fxLayoutAlign="end" > -->
+            <img [src]="recursosimg" style="width: 25%;"  class="pdr20" alt="">
+        <!-- </div> -->
+    </div>
+</div>
+<div class="fw backWhite pdt40 pdb40" fxLayout="column" fxLayoutAlign=" center">
+    <div class="w-80">
+        <div class="fw" fxLayout="column" fxLayoutAlign="center center">
+            <ng-container *ngFor="let free of freebies; let i = index" >
+                <div *ngIf="i % 3 === 0" class="fw" fxLayout="row" fxLayoutGap="3rem" style="margin-bottom: 30px;">
+                    <ng-container *ngFor="let j of [0, 1, 2]">
+                        <div *ngIf="(i + j) < freebies.length" class="w-30" >
+                            <div class="radius20 shadow-animation borderlight fw backGray2 column-sb" style="overflow: hidden; height: 400px; border: none;">
+                                <div class="">
+                                    <img [src]="freebies[i + j].photoUrl ? freebies[i + j].photoUrl : 'assets/images/default/default-user-image.jpg'" class="fw" alt="">
+                                    <div class="pdl10 pdr05 fw">
+                                        <span class="mgt10 ft500 gray-9 ft14">{{freebies[i + j].name}}</span>
+                                        <div class="w-30 pdl10 mgt08 pdl05 pdr05" style="background-color: rgba(147, 205, 255, 0.214); border-color:rgb(78, 172, 255); border-radius: 20px;">
+                                            <p class="blue-5 ft10 ft500">PLANTILLA</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pd10">
+                                    <a class=" fw" style="display: flex; justify-content: flex-end;" routerLink="/recursos/{{freebies[i + j].customUrl?freebies[i+j].customUrl:free.id}}">
+                                        <button class="blueButton shadow-animation">Descargar</button>
+                                    </a>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

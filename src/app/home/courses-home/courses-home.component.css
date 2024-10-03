@@ -1,0 +1,32 @@
+.grid-container {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); */
+  grid-template-columns: repeat(5, minmax(170px, 1fr));
+  gap: 20px; /* Espacio entre las tarjetas */
+  justify-items: center; /* Alinea las tarjetas horizontalmente en el centro */
+  padding: 10px; /* Espacio interior */
+}
+
+.course-card {
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  width: 100%; /* Asegura que la tarjeta tome el 100% del ancho disponible */
+  max-width: 250px; /* Limita el ancho máximo de la tarjeta */
+}
+
+.course-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.course-info {
+  padding: 10px;
+}
+
+.course-info h3 {
+  margin-top: 0;
+}

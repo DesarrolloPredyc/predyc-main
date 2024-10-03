@@ -1,0 +1,266 @@
+<div style="overflow-x: hidden;" [fxShow]="true" [fxShow.lt-md]="false">
+    <div *ngIf="!hasError" fxLayout="row" fxLayoutAlign="center center" class="fh" style="padding-top: 60px;">
+        <div style="width: 80%;" fxLayout="column" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center" style="width: 100%;">
+                <div fxFlex="50" style="height: 80vh;" fxLayoutAlign="start center">
+                    <div fxLayout="column" fxLayoutAlign="" class="w-60">
+                        <span class="ft22 ft600 gray-9">{{result?.nombre | titlecase}}, haz obtenido un {{result?.score}}% en tu diagnóstico {{result?.title}}</span>
+                        <!-- <span class="ft22 ft500">{{result?.title}}</span> -->
+                        <span class="ft14 pdt10">
+                            Si quieres realizar un diagnóstico profundo para tu equipo de mantenimiento
+                            <a (click)="isPopupVisible= true" class="blueLink">habla con un asesor.</a>
+                        </span>
+                        <button (click)="copiaExitosa()" class="blueButton mgt20" style="width: 200px !important; padding: 10px 20px; display: flex; align-items: center; justify-content: center;">
+                          Compartir resultado <img [src]="icon.share" alt="" class="pdl05 makeWhite h16px" style="margin-left: 10px;">
+                        </button>
+                    </div>
+                </div>
+                <div fxFlex="50" style="height: 80vh;" fxLayoutAlign="center center">
+                    <!-- Contenido del lado derecho (vacío o algo que desees agregar) -->
+                    <div fxLayout="column" class="w-80" fxLayoutAlign="center center">
+                        La calificación promedio de esta prueba es de {{result?.averageScore}}%
+                        <div class="chart-container mgt10">
+                            <canvas id="chartD"></canvas>
+                        </div>
+                        <div class="badge-container pd10 pdt20"
+                            style="margin-top: -120px; display: flex; align-items: center">
+                            <!-- Leyenda para Plan de estudios -->
+                            <div style="display: flex; align-items: center; margin-right: 20px">
+                                <span style="height: 15px; width: 15px; background-color: rgba(175, 239, 159); display: inline-block; margin-right: 5px; border-radius: 3px"></span>
+                                <span>Óptimo</span>
+                            </div>
+                            <!-- Leyenda para Progreso -->
+                            <div style="display: flex; align-items: center">
+                                <span style="height: 15px; width: 15px; background-color: rgb(54, 162, 235); display: inline-block; margin-right: 5px; border-radius: 3px"></span>
+                                <span>Resultado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="center" style="width: 60%;" class="pdb40">
+
+                <div class="fw pdb20" fxLayout="column" fxLayoutAlign="center center" >
+                    <span class="ft18 ft600 gray-9">Revisa tus respuestas</span>
+                    <!-- <div class="" style="width: 120px; height: 4px; background-color: #f4b03e; margin-top: 8px;"></div> Línea debajo del texto -->
+                </div>
+                <div *ngFor="let question of result?.answers; let i = index" class="{{ question.invalid ? 'containerQuestions--invalid' : '' }} containerQuestions pd10">
+                    <ng-container>
+                      <div fxLayout="row" fxLayoutAlign="space-between center" class="fw mgb10 pdb05 border-bl">
+                        <div fxLayout="row" class="fw" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                          <div
+                            class="gray-8 radius4 ft12 pd03 h28px"
+                            [ngClass]="{
+                              'backBlue1 ft500 blue-5': question.type.value === 'true-false',
+                              'backPurple1 ft500 purple-5': question.type.value === 'single_choice',
+                              'backRed1 ft500 red-5': question.type.value === 'multiple_choice',
+                              backGray1: question.type.value !== 'true-false' && question.type.value !== 'single_choice' && question.type.value !== 'multiple_choice'
+                            }"
+                            style="border: 0px !important"
+                          >
+                            {{question.type.displayName }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="fw" *ngIf="question?.image?.url">
+                        <div fxLayoutAlign="center center">
+                          <div class="position-relative">
+                            <img [src]="question.image.url" alt="" style="width: auto; max-height: 300px; object-fit: contain;" class="radius6 mgt10">
+                            <!-- Badge con imagen SVG -->
+                            <div class="badge-icon cursorPointer" (click)="openImageInNewTab(question.image.url)">
+                              <img [src]="icon.zoomIn" alt="Lupa" class="badge-img">
+                            </div>
+                          </div>
+                        </div>
+                      </div>              
+                      <div *ngIf="question.type.value == questionTypesModel.TYPE_SINGLE_CHOICE_VALUE">
+                        <span class="ft14 ft500">{{ i + 1 }}. {{ question.text }} </span>
+                        <div class="mgt10" fxLayout="column">
+                          <div fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let option of question.answerItems; let optionIndex = index" class="mgt05">
+                            <div class="pdl05 pdr05 radius4" [ngClass]="{ backGreen1: option.isCorrect &&  option.answer,backRed1: !option.isCorrect &&  option.answer}">
+                              <span
+                                [ngClass]="{
+                                  'white-text': isSuccess === true && option.answer
+                                }">
+                                {{ optionIndex + 1 }}. {{ option.text }}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="question.type.value == questionTypesModel.TYPE_MULTIPLE_CHOICE_VALUE">
+                        <p class="ft500 ft14">{{ i + 1 }}. {{ question.text }}</p>
+                        <div fxLayout="column">
+                          <div fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let option of question.answerItems; let optionIndex = index" class="mgt05">
+                            <div class="pdl05 pdr05 radius4" [ngClass]="{ backGreen1: option.isCorrect &&  option.answer,backRed1: !option.isCorrect &&  option.answer }">
+                              <span
+                                [ngClass]="{
+                                  'white-text': isSuccess === true && option.answer
+                                }"
+                                >{{ optionIndex + 1 }}. {{ option.text }}</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>          
+                      <div *ngIf="question.type.value == questionTypesModel.TYPE_TRUE_OR_FALSE_VALUE">
+                        <span class="ft14 ft500">{{ i + 1 }}. {{ question.text }} </span>
+                        <div class="mgt10" fxLayout="column">
+                          <div fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let option of question.answerItems; let optionIndex = index" class="mgt05">
+                            <div class="pdl05 pdr05 radius4" [ngClass]="{ backGreen1: option.isCorrect &&  option.answer,backRed1: !option.isCorrect &&  option.answer}">
+                              <span
+                                [ngClass]="{
+                                  'white-text': isSuccess === true && option.answer
+                                }"
+                                >{{ optionIndex + 1 }}. {{ option.text }}</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="fw mgt10" *ngIf="question?.explanation">
+                        <div class="ft500 ft12 gray-8" style="white-space: pre-wrap"><span class="ft600">Explicación: </span> {{ question?.explanation }}</div>
+                      </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="hasError" fxLayout="row" fxLayoutAlign="center center" class="pdt60 fh">
+      <div style="width: 80%; height: 90vh;" fxLayout="column" fxLayoutAlign="center center">
+        <span class="ft500 ft30">Resultado no encontrado</span>
+      </div>
+  </div>
+</div>
+
+<div style="overflow-x: hidden;" [fxShow]="false" [fxShow.lt-md]="true">
+    <div *ngIf="!hasError" fxLayout="row" fxLayoutAlign="center center" class="pdt60 fh">
+        <div style="width: 90%;" fxLayout="column" fxLayoutAlign="center center">
+            <div fxLayout="column" fxLayoutAlign="center" style="width: 100%;">
+                <div fxLayoutAlign=" center" class="mgt10">
+                    <div fxLayout="column" fxLayoutAlign="">
+                        <span class="ft22 ft600 pdt10 gray-9">{{result?.nombre | titlecase}}, haz obtenido un {{result?.score}}% en tu diagnóstico {{result?.title}}</span>
+                        <span class="ft18 ft500 pdt10">La calificación promedio de esta prueba es de {{result?.averageScore}}%</span>
+                        
+                        <div fxLayoutAlign="center center">
+                          <!-- Contenido del lado derecho (vacío o algo que desees agregar) -->
+                          <div fxLayout="column" class="fw">
+                              <div fxLayout="row" fxLayoutAlign="center center" class="chart-containerM mgt10">
+                                  <canvas id="chartM"></canvas>
+                              </div>
+                              <div class="badge-container pd10 pdt20"
+                                  style="margin-top: -95px; display: flex; align-items: center">
+                                  <!-- Leyenda para Plan de estudios -->
+                                  <div style="display: flex; align-items: center; margin-right: 20px">
+                                    <span style="height: 15px; width: 15px; background-color: rgba(175, 239, 159); display: inline-block; margin-right: 5px; border-radius: 3px"></span>
+                                    <span>Óptimo</span>
+                                  </div>
+                                  <!-- Leyenda para Progreso -->
+                                  <div style="display: flex; align-items: center">
+                                      <span style="height: 15px; width: 15px; background-color: rgb(54, 162, 235); display: inline-block; margin-right: 5px; border-radius: 3px"></span>
+                                      <span>Resultado</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                        
+                        <!-- <span class="ft22 ft500">{{result?.title}}</span> -->
+                        <span class="ft14 pdt20">
+                            Si quieres realizar un diagnóstico profundo para tu equipo de mantenimiento s
+                            <a (click)="isPopupVisible= true" class="blueLink">habla con un asesor.</a>
+                        </span>
+                    </div>
+                </div>
+                <div fxLayout="column"  fxLayoutAlign="center center" >
+                  <button (click)="copiaExitosa()" class="blueButton mgt20" style="width: 200px !important; padding: 10px 20px; display: flex; align-items: center; justify-content: center;">
+                    Compartir resultado <img [src]="icon.share" alt="" class="pdl05 makeWhite h16px" style="margin-left: 10px;">
+                  </button>
+                </div>
+                <div fxLayout="column" fxLayoutAlign=" center" class="mgt10  pdb20 fw">
+                    <div class="fw pdb20 pdt20" fxLayout="column"  fxLayoutAlign="center center">
+                        <span class="ft18 ft600 gray-9">Revisa tus respuesta</span>
+                        <!-- <div class="" style="width: 120px; height: 4px; background-color: #f4b03e; margin-top: 8px;"></div> Línea debajo del texto -->
+                    </div>
+                    <div *ngFor="let question of result?.answers; let i = index" class="{{ question.invalid ? 'containerQuestions--invalid' : '' }} containerQuestions pd10 fw">
+                        <ng-container>
+                          <div fxLayout="row" fxLayoutAlign="space-between center" class="fw mgb10 pdb05 border-bl">
+                            <div fxLayout="row" class="fw" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                              <div
+                                class="gray-8 radius4 ft12 pd03 h28px"
+                                [ngClass]="{
+                                  'backBlue1 ft500 blue-5': question.type.value === 'true-false',
+                                  'backPurple1 ft500 purple-5': question.type.value === 'single_choice',
+                                  'backRed1 ft500 red-5': question.type.value === 'multiple_choice',
+                                  backGray1: question.type.value !== 'true-false' && question.type.value !== 'single_choice' && question.type.value !== 'multiple_choice'
+                                }"
+                                style="border: 0px !important"
+                              >
+                                {{question.type.displayName }}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="fw mgb10" *ngIf="question.image?.url">
+                            <img [src]="question.image.url" alt="" style="width: 100%" class="radius6" />
+                          </div>
+                          <div *ngIf="question.type.value == questionTypesModel.TYPE_SINGLE_CHOICE_VALUE">
+                            <span class="ft14 ft500">{{ i + 1 }}. {{ question.text }} </span>
+                            <div class="mgt10" fxLayout="column">
+                              <div fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let option of question.answerItems; let optionIndex = index" class="mgt05">
+                                <div class="pdl05 pdr05 radius4" [ngClass]="{ backGreen1: option.isCorrect &&  option.answer,backRed1: !option.isCorrect &&  option.answer}">
+                                  <span
+                                    [ngClass]="{
+                                      'white-text': isSuccess === true && option.answer
+                                    }">
+                                    {{ optionIndex + 1 }}. {{ option.text }}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div *ngIf="question.type.value == questionTypesModel.TYPE_MULTIPLE_CHOICE_VALUE">
+                            <p class="ft500 ft14">{{ i + 1 }}. {{ question.text }}</p>
+                            <div fxLayout="column">
+                              <div fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let option of question.answerItems; let optionIndex = index" class="mgt05">
+                                <div class="pdl05 pdr05 radius4" [ngClass]="{ backGreen1: option.isCorrect &&  option.answer,backRed1: !option.isCorrect &&  option.answer }">
+                                  <span
+                                    [ngClass]="{
+                                      'white-text': isSuccess === true && option.answer
+                                    }"
+                                    >{{ optionIndex + 1 }}. {{ option.text }}</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>          
+                          <div *ngIf="question.type.value == questionTypesModel.TYPE_TRUE_OR_FALSE_VALUE">
+                            <span class="ft14 ft500">{{ i + 1 }}. {{ question.text }} </span>
+                            <div class="mgt10" fxLayout="column">
+                              <div fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let option of question.answerItems; let optionIndex = index" class="mgt05">
+                                <div class="pdl05 pdr05 radius4" [ngClass]="{ backGreen1: option.isCorrect &&  option.answer,backRed1: !option.isCorrect &&  option.answer}">
+                                  <span
+                                    [ngClass]="{
+                                      'white-text': isSuccess === true && option.answer
+                                    }"
+                                    >{{ optionIndex + 1 }}. {{ option.text }}</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="fw mgt10" *ngIf="question?.explanation">
+                            <div class="ft500 ft12 gray-8" style="white-space: pre-wrap"><span class="ft600">Explicación: </span> {{ question?.explanation }}</div>
+                          </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="hasError" fxLayout="row" fxLayoutAlign="center center" class="pdt60 fh">
+      <div style="width: 80%; height: 90vh;" fxLayout="column" fxLayoutAlign="center center">
+        <span class="ft500 ft30">Resultado no encontrado</span>
+      </div>
+  </div>
+</div>
+
+<app-demo-request-popup mailchimpDatail="diagnostico" *ngIf="isPopupVisible" (close)="hidePopup()"></app-demo-request-popup>

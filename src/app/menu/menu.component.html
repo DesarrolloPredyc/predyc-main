@@ -1,0 +1,76 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" class="menu">
+    <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign=" center" class="fh">
+        <div fxLayoutAlign="center center">
+            <img routerLink="/" [src]="icon.logoPredycBlackWebp" class="h32px cursorPointer" alt="">
+        </div>
+        <div class="link ft500 fh" fxLayout="row" fxLayoutAlign=" center">
+            <!-- <div class="fh pdl10 pdr10" fxLayoutAlign=" center">
+                <a  routerLink="/" class="link ft14 ft500">Home</a>
+            </div> -->
+            <div class="cursorPointer fh pdl05 pdr05" fxLayout="row" fxLayoutGap=".2rem" fxLayoutAlign=" center"
+                (mouseover)="showCourseFinder = true" (mouseleave)="showCourseFinder = false">
+                <div class="ft14 " >Explorar cursos</div>
+                <img [src]="icon.chevronDown" alt="">
+            </div>
+            <!-- cursos-gratis -->
+            <div routerLink="/cursos-gratis" class="cursorPointer fh pdl05 pdr05" fxLayout="row" fxLayoutGap=".2rem" fxLayoutAlign=" center" (mouseleave)="showCourseFinderFree = false">
+                <div class="ft14 " >Cursos gratis</div>
+            </div>
+            <!-- <div class="fh pdl10 pdr10" fxLayoutAlign=" center">
+                <a  routerLink="/recursos" routerLinkActive="active" class="link ft14 ft500">Recursos</a>
+            </div> -->
+            <!-- <div class="fh pdl05 pdr05" fxLayoutAlign=" center">
+                <a routerLink="/diagnosticos" class="link ft14 ft500">Diagnósticos</a>
+            </div> -->
+            <div class="fh pdl05 pdr05" fxLayoutAlign=" center">
+                <a routerLink="/blog" class="link ft14 ft500">Blog</a>
+            </div>
+            <div *ngIf="showEvent" routerLink="/mantenimiento-en-accion" class="event-card cursorPointer no-select mgl05" fxLayoutAlign=" center">
+                <img style="height: 24px !important;" src="/assets/images/mantenimiento/logoVerical.png" alt="">
+                <div *ngIf="showTime" class="mgl10 countdown-container">
+                    <div class="countdown-item">
+                        <div class="countdown-value">{{ days }}</div>
+                        <div class="countdown-label">DÍAS</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value">{{ hours }}</div>
+                        <div class="countdown-label">HORAS</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value">{{ minutes }}</div>
+                        <div class="countdown-label">MINUTOS</div>
+                    </div>
+                    <div class="countdown-item" style="padding-right: 0px;">
+                        <div class="countdown-value">{{ seconds }}</div>
+                        <div class="countdown-label">SEGUNDOS</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign=" center">
+        <a *ngIf="showEvent" >
+            <!-- <button class="blueButton" (click)="openDemoRequestDialog()">Contacta a un asesor</button> -->
+            <button (click)="scrollToForm()" class="yellowButton2 ft500 generalButton MENU-BTN-1  ">Hablar con un asesor</button>
+
+        </a>
+        <a href="https://app.predyc.com/auth/login" target="_blank" style="color:#ff9500" class=" ft16  ft500 MENU-BTN-AULA">Ir al Aula Virtual</a>
+    </div>
+</div>
+<div [ngClass]="showCourseFinder?'courseFinderShow':'courseFinderHide'" (mouseover)="showCourseFinder = true"
+    (mouseleave)="showCourseFinder = false">
+    <app-course-finder (closeEmit)="showCourseFinder = false"></app-course-finder>
+</div>
+<div [ngClass]="showCourseFinderFree?'courseFinderShow':'courseFinderHide'" (mouseover)="showCourseFinderFree = true"
+    (mouseleave)="showCourseFinderFree = false">
+    <app-course-finder  [free]="true"  (closeEmit)="showCourseFinderFree = false"></app-course-finder>
+</div>
+
+
+<!-- <div [ngClass]="showResourcesFinder?'courseFinderShow':'courseFinderHide'" (mouseover)="showResourcesFinder = true"
+    (mouseleave)="showResourcesFinder = false">
+    <app-resources-finder></app-resources-finder>
+</div> -->
+
+<app-demo-request-popup *ngIf="isPopupVisible" (close)="hidePopup()"></app-demo-request-popup>

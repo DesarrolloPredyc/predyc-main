@@ -1,0 +1,67 @@
+<header class="banner">
+    <summary class="summary">
+        <a href="#" target="_blank" style="display: block; position: relative;"> 
+            <img class="w-100" [src]="program?.photoUrl" alt="Imagen del curso">
+        </a>
+        <h1 class="mgt08 gray-1" style="font-size: 1.5rem!important; font-family: Inter-bold;">{{ program?.name }}</h1>
+        <div class="mgt10 lightText gray-3 ft12">
+            {{ program?.description }}
+        </div>
+        <a>
+            <button (click)="scrolltoForm()" class="fw mgt15  gray-10 ft500 yellowButton generalButton " type="submit">Solicitar demostración</button>
+        </a>
+        <button class="fw mgt08  gray-10 ft500  generalButton" (click)="downloadProgramInfo()" >Descargar ficha técnica</button>  
+
+    </summary>
+</header>
+
+<section class="course-content ">
+    
+    <section class="course-topics" *ngIf="program?.courses">
+        <h2 class="ft18 ft600 mgb10 gray-10" style="text-align: left; font-family: Inter-bold" >Contenido del plan</h2>
+        <ol  class="tablas-cursos" style="list-style-type:none; padding-bottom: 0; margin-left:0em; font-size: 16px;">
+          <li *ngFor="let course of program.courses" class="course-item">
+            <img *ngIf="course?.imagen" [src]="course?.imagen" alt="{{    course?.titulo }}" class="avatarSquare3 whiteborder radius6">
+            <div class="mgl10 course-details">
+              <h3 class="ft12  gray-10 ft700" style="font-family: 'Inter-bold';">{{course?.titulo }}</h3>
+              <p class="ft12 gray-10" style="font-family: 'Inter-light';">{{ course?.instructorData.nombre}}</p>
+            </div>
+          </li>
+        </ol>
+    </section>
+
+    <section class="instructores-section" *ngIf="program?.instructors">
+        <h2 class="ft18 ft600 mgb20 gray-10">Información de los instructores</h2>
+        <ol style="list-style-type:none; padding-bottom: 0; margin-left:0em; font-size: 16px;">
+            <li *ngFor="let instructor of program.instructors" class="course-item">
+                <img *ngIf="instructor.foto" class="avatarSquare5 radius6" [src]="instructor.foto" alt="Foto del instructor">
+                <div class="mgl10 course-details">
+                    <h3 class="ft12 gray-10 ft700" style="font-family: 'Inter-bold';">{{ instructor?.nombre }}</h3>
+                    <p class="ft12 gray-10" style="font-family: 'Inter-light';">{{ instructor?.resumen }}</p>
+                </div>
+            </li>
+        </ol>
+    </section>
+
+    <section class="certificado-info mgt40">
+        <div class="chipCertificado w-70 center ft500 ft14">Certificado emitido por Predyc</div>
+        <p class="certificado-text ft14 ">Fortalece tu perfil curricular con tus certificados obtenidos al completar tus cursos.</p>
+        <img class="w-100" [src]="icon.certificadoPredyc" alt="">
+    </section>
+
+    <!-- <section class="info-wa mgt20">
+        <div class=" wa-info centertext">
+            <img [src]="icon.whatsapp_green" class="h40px" alt="">
+            <h3 class="centertext  gray-9  ft16" style="font-family: 'Inter-bold'; ">Solicita info por Whatsapp </h3>
+            <p class=" centertext ft12 mgt08" style="color: rgb(0, 0, 0); text-align: left; " >Habla directamente con un asesor                </p>
+            <a target="_blank" href="https://wa.me/+529932872551?text=¿Me apoyan con más información sobre {{program?.name}}?">
+                <button class="yellowButton fw generalButton ft500 gray-10 mgt20 " style="  bottom: 20px!important; ">Hablar con ventas</button>
+            </a>
+        </div>
+    </section> -->
+</section>
+
+<app-floating-notification *ngIf="showNotification" [message]="notificationMessage"></app-floating-notification>
+
+
+<app-footer-mobile></app-footer-mobile>

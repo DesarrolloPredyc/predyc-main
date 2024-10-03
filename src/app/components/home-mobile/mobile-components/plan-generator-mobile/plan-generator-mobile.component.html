@@ -1,0 +1,51 @@
+<div class="fw pd10 pdt20  column">
+  <h2 class="ft18 gray-10 ft600 w-90" style="text-align: left; font-family: Inter-bold">
+    Un plan de capacitación personalizado para cada perfil técnico
+  </h2>
+  <p class="gray-8 ft14 mgt05 w-90" style="text-align: left; font-family: Inter-medium;">
+    Tomamos el listado de personas de mantenimiento y cargos y asignamos los cursos que necesitan.
+  </p>
+</div>
+
+<div class="plan-generator-mobile  pdb20 ">
+  <div class="course-carousel hideScroll  mgl10 " #scrollContainer  >
+      <div class="plan-details radius6  "  style=" border: 1px solid #fcc145; background-color: white; " *ngFor="let plan of trainingPlans">
+          <div class=" pdl10 pdt10 pdr10">
+              <div class="plan-header">
+                  <img [src]="plan.image" class="avatar" alt="">
+                  <div class="column">
+                      <span class="ft700 gray-10 ft16" style="font-family: Inter-medium;">{{ plan.usuario }}</span>
+                      <span class=" ft14 " style="color: var(--blue-5); font-family: Inter-medium; ">{{ plan.rol }}</span>
+                  </div>
+              </div>
+              <div class="column  information-plan">
+                <p class="plan-title ft16 "  style="font-family: Inter-bold;">{{ plan.title }}</p>
+
+                <!-- <p class="gray-8 ft14 mgt05 w-90" style="text-align: left; font-family: Inter-medium;"> -->
+
+                <p class="plan-summary ft14  " style="font-family: Inter-medium; text-align: left;" >{{ plan.summary }}</p>
+              </div>
+              
+              <div class="opcs-plan">
+                  <span class="plan-tiempos mgt10 mgb10 mgr10 ft14 ft500 gray-10">
+                      {{ plan.duration }} &nbsp;&nbsp;&nbsp;&nbsp; {{ plan.courseCount }} cursos
+                  </span>
+                  <!-- <button class="ft14 blueButton mgt10 radius4 mgr10 ">Solicitar demo</button> -->
+              </div>
+              <!-- <div class="horizontal-orangeline"></div> -->
+              <ul class="course-list pdt10 mgt20">
+                  <li class="rowFlexStart2 cursos-plan border-t-orange" *ngFor="let course of plan.courseList">
+                      <img [src]="course.courseImage" class="avatarSquare4 whiteborder radius6" alt="">
+                      <div class="column course-details">
+                          <span class="course-title  gray-10 ft12 ft600 "  style="font-family: Inter-bold;" >{{ course.title }}</span>
+                          <span class="course-title  gray-10 ft11 "  style="font-family: Inter-medium;" >Instructor: {{ course.instructor }}</span>
+
+                          
+                          <!-- <span class="course-instructor ft11 mgt03 gray-9"></span> -->
+                      </div>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</div>

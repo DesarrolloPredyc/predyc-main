@@ -1,0 +1,34 @@
+<!-- rh-info.component.html -->
+
+<div class="organization-chart">
+  <div class="profiles">
+    <div class="rowCenter gap1 profileMini ListHover2" 
+         *ngFor="let student of students" 
+         (click)="selectStudent(student)"
+         [ngClass]="{ 'selected-profile': selectedStudent === student }">
+      <div class="column">
+        <span class="ft500 gray-10">{{ student.name }}</span>
+        <span>{{ student.position }}</span>
+        <p>Progreso: {{ student.progress }}%</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="fw containerPerfil radius6 gap2 rowTop pd20">
+    <div class="column">
+      <span class="ft750 mgt10 ft14 gray-10">{{ selectedStudent?.name }}</span>
+      <span class="ft12 mgt10">{{ selectedStudent?.position }}</span>
+      <div class="opcs-plan">
+        <span class="plan-tiempos mgt10 ft14 ft500 gray-10 same-width">Progreso: {{ selectedStudent?.progress }}%</span>
+      </div>
+      <div *ngFor="let plan of selectedStudentCourses">
+        <span class="ft750 mgt10 ft14 gray-10">{{ plan.month }}</span>
+        <ul>
+          <li class="ft12 cursos-plan mgt10" *ngFor="let course of plan.courses">
+            {{ course.title }} - {{ course.status }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
