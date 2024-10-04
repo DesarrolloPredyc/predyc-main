@@ -44,6 +44,7 @@
     "ngx-owl-carousel-o": "^18.0.0",
     "ngx-quill": "^22.1.2",
     "parchment": "^3.0.0",
+    "qrcode": "^1.5.4",
     "quill-blot-formatter": "^1.0.5",
     "rxjs": "~7.8.0",
     "sitemap": "^8.0.0",

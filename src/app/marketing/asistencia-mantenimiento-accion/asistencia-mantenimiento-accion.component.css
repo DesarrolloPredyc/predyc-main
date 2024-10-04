@@ -687,3 +687,62 @@
   background-color: green !important;
   color: white;
 }
+
+
+.containerCertificado{
+  position: relative;
+  height: calc(100vh - 200px) !important;
+  min-height: calc(100vh - 200px) !important;
+  max-height: calc(100vh - 200px) !important;
+  aspect-ratio: 1.29/1;
+  background-size: cover !important;
+  z-index: 10;
+  border: 1px solid black;
+}
+
+.containerCertificadoMovil{
+  position: relative;
+  margin-top: 100px;
+  width: calc(85vw) !important;
+  min-width: calc(85vw) !important;
+  max-width: calc(85vw) !important;
+  aspect-ratio: 1.29/1;
+  background-size: cover !important;
+  z-index: 10;
+  border: 1px solid black;
+}
+.nombreEstudiante{
+  position: absolute;
+  top:40%;
+  left: 63%; /* Ajusta este valor según el ancho de la banda negra */
+  transform: translateX(-50%); /* Centrado horizontal, con desplazamiento desde la nueva posición */
+  width: 60%; /* Limitar el ancho máximo del texto */
+  text-align: center; /* Centrar el texto dentro del contenedor */
+}
+
+
+.textoCertificado{
+  position: absolute;
+  top:8%;
+  left: 63.5%;
+  transform: translateX(-50%); /* Centrado horizontal, con desplazamiento desde la nueva posición */
+  width: 60%; /* Limitar el ancho máximo del texto */
+}
+.textoCertificado2{
+  position: absolute;
+  top:16%;
+  left: 64%;
+  transform: translateX(-50%); /* Centrado horizontal, con desplazamiento desde la nueva posición */
+  width: 60%; /* Limitar el ancho máximo del texto */
+}
+
+.textoCertificado3{
+  position: absolute;
+  top:36%;
+  left: 55%;
+}
+
+.ftgtpc{
+  color: #12aaf5 !important;
+  font-size: 32px !important;
+}

@@ -40,8 +40,11 @@
                         </div>
                     </ng-container>
                     <ng-container *ngIf="userData">
-                        <div fxLayout="column" fxLayoutGap="10px"> <!-- Contenedor con diseño en columna -->
-                            <span  class="ft18 pdt20 gray-1">Hola {{userData.name | titlecase}}, por favor valida tu asistencia en los días del evento para poder recibir tu certificado al finalizar.</span>
+                        <div  fxLayout="column" fxLayoutGap="10px"> <!-- Contenedor con diseño en columna -->
+                            <span *ngIf="!userData.hasCertificate" class="ft18 pdt20 gray-1">{{userData.name | titlecase}}, por favor valida tu asistencia en los días del evento para poder recibir tu diploma al finalizar.</span>
+                            <span  *ngIf="userData.hasCertificate" c class="ft18 pdt20 gray-1">
+                                {{userData.name | titlecase}}, gracias por asistir al evento Mantenimiento en Acción. Abajo podrás encontrar tu diploma.
+                              </span> 
                         </div>
                     </ng-container>
                     <ng-container  *ngIf="showRegister" >
@@ -151,29 +154,62 @@
     </section>
 
     
-    <section  *ngIf="userReady" class="banner-pc-3" style="padding-top: 2rem !important;">
+    <section  *ngIf="userReady" class="banner-pc-3" style="padding-top: 2rem !important; padding-bottom: 6rem !important;">
         <!-- Contenedor para el título y las fechas -->
         <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex>
-            <!-- Contenedor para el icono y el título -->
-            <!-- <div fxLayout="row" fxLayoutAlign="start center" fxFlex="none">
-                <img [src]="icon.certificado" alt="eventsalt" class="h40px mgb10">
-            </div>
-            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="none" class="mgb10">
-                <span class="ft28 ft500">Tu certificado</span>
-            </div> -->
+
 
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="none" class="mgb10" style="align-items: center;">
                 <img [src]="icon.certificado" alt="eventsalt" class="h40px mgr10">
-                <span class="ft24 ft500">Tu certificado</span>
+                <span class="ft24 ft500">Diploma</span>
             </div>
 
             
     
-            <!-- Contenedor del certificado aún no disponible -->
-            <div  fxLayout="column" fxLayoutAlign="center center" fxFlex="none" 
+            <!-- Contenedor del diploma aún no disponible -->
+            <div *ngIf="!userData.hasCertificate" fxLayout="column" fxLayoutAlign="center center" fxFlex="none" 
                  style="background-color: #f0f0f0; border-radius: 10px; width: 90%; height: 40vh !important; margin: 0 auto; margin-top: 2rem !important;">
-                <span class="ft18 ft500">Certificado aún no disponible</span>
+                <span class="ft18 ft500">Diploma aún no disponible</span>
             </div>
+            <!-- Contenedor del diploma  -->
+            <ng-container *ngIf="userData.hasCertificate"> 
+                <div id="iconCertificadoMovil"  class="containerCertificadoMovil no-select" fxLayout="column" fxLayoutAlign="center center" fxFlex="none" 
+                    style="background: url('assets/images/certificado/fondo_certificado_mea.jpg'); 
+                    border-radius: 10px; max-width: 70% !important; margin: 0 auto; margin-top: 2rem !important;
+                    position: relative;"> <!-- Añadido position: relative para el certificado -->
+
+                    <div class="textoCertificado" fxLayout="column" fxLayoutAlign="center center" >
+                        <span class="ft750 gray-10" style="font-size: 18px;">DIPLOMA DE</span>
+                    </div>
+
+                    <div class="textoCertificado2" fxLayout="column" fxLayoutAlign="center center" >
+                        <span class="ft750 gray-10" style="font-size: 18px;">PARTICIPACIÓN</span>
+                    </div>
+
+<!-- 
+                    <div class="textoCertificado3" fxLayout="column" fxLayoutAlign="center center" >
+                        <span class="gray-10" style="font-size: 10px !important;">Damos fé de que</span>
+                    </div> -->
+
+
+                    <div class="nombreEstudiante" fxLayout="column">
+                        <span class="ftgtpc ft500 gray-10" style="font-size: 16px !important;">{{userData.name |titlecase}}</span>
+                    </div>
+                    
+                </div>
+
+
+                <!-- Contenedor para los botones alineados a la parte inferior derecha -->
+                <div fxLayout="column" fxLayoutGap=".5rem"> <!-- Alineación inferior derecha -->
+                    <button  (click)="downloadPDF()"  class="blueEventButton mgt20 ">Descargar PDF</button>
+                    <div (click)="copiarContacto('Enlace copiado','https://predyc.com/mantenimiento-en-accion?email=' + userData.email)" class="botonSecundario pdt0 pdb0 pdl03 pdr03 radius6" fxLayoutAlign="center center">
+                        <span class="blue-5 ft500 lnh1 t2" style="font-size: 14px; padding-top: 8px; padding-bottom: 8px;">Copiar enlace para compartir</span>
+                    </div>
+                </div>
+
+
+            </ng-container>
+            
         </div>
     </section>
     
@@ -255,18 +291,14 @@
                     </app-reunion-form>
                     </ng-container>
                     <ng-container *ngIf="userData">
-                        <div fxLayout="column" fxLayoutGap="10px"> <!-- Contenedor con diseño en columna -->
-                            <!-- <span class="ft18 pdt10 gray-1">
-                                Nombre: {{userData.name}}
-                            </span>
-                            <span class="ft18 pdt10 gray-1">
-                                Empresa: {{userData.empresa}}
-                            </span>
-                            <span class="ft18 pdt10 gray-1">
-                                Cargo: {{userData.cargo}}
-                            </span> -->
-                            <span  class="ft22 pdt20 gray-1">Hola {{userData.name | titlecase}}, por favor valida tu asistencia en los días del evento para poder recibir tu certificado al finalizar.</span>
+                        <div *ngIf="!userData.hasCertificate" fxLayout="column" fxLayoutGap="10px"> <!-- Contenedor con diseño en columna -->
+                            <span  class="ft22 pdt20 gray-1">{{userData.name | titlecase}}, por favor valida tu asistencia en los días del evento para poder recibir tu diploma al finalizar.</span>
                         </div>
+                        <div *ngIf="userData.hasCertificate" fxLayout="column" fxLayoutGap="10px"> <!-- Contenedor con diseño en columna -->
+                            <span class="ft22 pdt20 gray-1">
+                                {{userData.name | titlecase}}, gracias por asistir al evento Mantenimiento en Acción. Abajo podrás encontrar tu diploma.
+                              </span>                        
+                            </div>
                     </ng-container>
                 </div>
                 <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
@@ -434,7 +466,7 @@
         </div>
     </section>
     
-    <section *ngIf="userReady" class="banner-pc-3" style="padding-top: 2rem !important;">
+    <section *ngIf="userReady" class="banner-pc-3" style="padding-top: 2rem !important; padding-bottom: 8rem !important;">
         <!-- Contenedor para el título y las fechas -->
         <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex>
             <!-- Contenedor para el icono y el título -->
@@ -447,15 +479,54 @@
 
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="none" class="mgb10" style="align-items: center;">
                 <img [src]="icon.certificado" alt="eventsalt" class="h40px mgr10">
-                <span class="ft28 ft500">Tu certificado</span>
+                <span class="ft28 ft500">Diploma</span>
             </div>
     
     
             <!-- Contenedor del certificado aún no disponible -->
-            <div  fxLayout="column" fxLayoutAlign="center center" fxFlex="none" 
+            <div *ngIf="!userData.hasCertificate" fxLayout="column" fxLayoutAlign="center center" fxFlex="none" 
                  style="background-color: #f0f0f0; border-radius: 10px; width: 70%; height: 40vh !important; margin: 0 auto; margin-top: 2rem !important;">
-                <span class="ft18 ft500">Certificado aún no disponible</span>
+                <span class="ft18 ft500">Diploma aún no disponible</span>
             </div>
+
+            <!-- Contenedor del certificado  -->
+            <ng-container *ngIf="userData.hasCertificate"> 
+                <div  id="iconCertificado" class="containerCertificado no-select" fxLayout="column" fxLayoutAlign="center center" fxFlex="none" 
+                    style="background: url('assets/images/certificado/fondo_certificado_mea.jpg'); 
+                    border-radius: 10px; max-width: 70% !important; margin: 0 auto; margin-top: 2rem !important;
+                    position: relative;"> <!-- Añadido position: relative para el certificado -->
+
+                    <div class="textoCertificado" fxLayout="column" fxLayoutAlign="center center" >
+                        <span class="ft750 gray-10" style="font-size: 46px;">DIPLOMA DE</span>
+                    </div>
+
+                    <div class="textoCertificado2" fxLayout="column" fxLayoutAlign="center center" >
+                        <span class="ft750 gray-10" style="font-size: 46px;">PARTICIPACIÓN</span>
+                    </div>
+
+<!-- 
+                    <div class="textoCertificado3" fxLayout="column" fxLayoutAlign="center center" >
+                        <span class="gray-10" style="font-size: 18px !important;">Damos fé de que</span>
+                    </div> -->
+
+
+                    <div class="nombreEstudiante" fxLayout="column">
+                        <span class="ftgtpc ft500 gray-10">{{userData.name |titlecase}}</span>
+                    </div>
+                    
+
+                    <!-- Contenedor para los botones alineados a la parte inferior derecha -->
+                    <div fxLayout="row" fxLayoutGap=".5rem" style="position: absolute; bottom: -70px; right: 0px;"> <!-- Alineación inferior derecha -->
+                        <button (click)="downloadPDF()" class="blueEventButton">Descargar PDF</button>
+                        <div  (click)="copiarContacto('Enlace copiado','https://predyc.com/mantenimiento-en-accion?email=' + userData.email)" class="botonSecundario pdt0 pdb0 pdl03 pdr03 radius6" fxLayoutAlign="center center">
+                            <span class="blue-5 ft500 lnh1 t2" style="font-size: 14px;">Copiar enlace para compartir</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </ng-container>
+
         </div>
     </section>
     

@@ -43,3 +43,4 @@ Thumbs.db
 .firebase/*
 *.log
 */environments/*
+/src/environments/
