@@ -1,0 +1,104 @@
+.banner {
+    padding-top: 3rem;
+    width: 100%;
+    background-color: var(--backDark);
+    position: relative;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .summary {
+    width: 70%;
+    z-index: 2;
+  }
+  
+  
+  .container{
+    margin-top: 50px;
+    height: calc(105vhb - 60px);
+  }
+  
+  .destacadoBottom{
+    background-color: var(--gray-1);
+    padding: 1rem;
+    border-radius: 0px 0px 20px 20px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.028);
+  }
+  
+  .inputSearch{
+    border: none;
+  }
+  
+  .inputSearch:focus{
+    outline: none;
+  }
+  
+    .freebie{
+      min-height: 250px;
+      border-radius: 10px;
+      width: 100%;
+      background-color: var(--gray-2);
+    }
+  
+  .bannerOrange{
+    background: linear-gradient(70deg,#FFA723,#FCC501);
+    border-radius: 24px;
+    width: 100%;
+    padding: 2rem;
+  }
+  
+  
+    .mat-mdc-paginator {
+      background-color: unset;
+      color: black;
+    }
+  
+    ::ng-deep .mat-mdc-paginator-icon {
+      fill: black !important;
+    }
+    
+    ::ng-deep .mat-mdc-icon-button[disabled] .mat-mdc-paginator-icon {
+      fill: black !important;
+      opacity: 0.1;
+    }
+  .allTags:hover {
+    cursor: pointer;
+    background-color: var(--gray-2);
+  }
+  
+  .imgPrimaryArticle {
+    width: 100%;
+    height: 242px;
+    border-radius: 20px 20px 0 0;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .imgSecundaryArticle {
+    height: 80px;
+    width: 120px;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .imgOthersArticle {
+    height: 180px;
+    width: 295px;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .ellipsis-text {
+    display: inline-block; /* O usar block si necesitas que ocupe el 100% del ancho disponible */
+    max-width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  
+  

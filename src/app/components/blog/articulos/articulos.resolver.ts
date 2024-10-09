@@ -18,7 +18,7 @@ export const articlesResolver: ResolveFn<Observable<any>> = (route, state) => {
           // ogDescription: null,
           // ogImage: null,
           keywords: articleWithAuthorName['keyWords'],
-          canonical: `https://predyc.com/blog/${articleSlug}`,
+          canonical: `https://predyc.com/articulos/${articleSlug}`,
           articleWithAuthorName
       }
     })
