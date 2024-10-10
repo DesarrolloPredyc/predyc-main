@@ -86,7 +86,7 @@ export class ArticlesComponent {
 
   freebieSubscription: Subscription
 
-  articlesSource: 'all' | 'predyc'| 'predictiva' = 'predictiva'
+  articlesSource: 'all' | 'predyc'| 'predictiva' = 'predyc'
 
   ngOnInit() {
     this.combinedSubscription = combineLatest([
