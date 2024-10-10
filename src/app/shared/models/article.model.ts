@@ -21,6 +21,7 @@ export interface ArticleJson {
     orderNumber: number
     coursesRef: DocumentReference<Curso>[]
     relatedArticlesRef: DocumentReference<Article>[]
+    isFromPredy: boolean   // New property added here
 }
 
 export class Article {
@@ -47,7 +48,7 @@ export class Article {
         public orderNumber: number,
         public coursesRef: DocumentReference<Curso>[],
         public relatedArticlesRef: DocumentReference<Article>[],
-
+        public isFromPredy: boolean  // New property added to constructor
     ) {}
 
     public static fromJson(articleJson: ArticleJson): Article {
@@ -69,6 +70,7 @@ export class Article {
             articleJson.orderNumber,
             articleJson.coursesRef,
             articleJson.relatedArticlesRef,
+            articleJson.isFromPredy  // New property mapped in fromJson method
         )
     }
 
@@ -91,6 +93,7 @@ export class Article {
             orderNumber: this.orderNumber,
             coursesRef: this.coursesRef,
             relatedArticlesRef: this.relatedArticlesRef,
+            isFromPredy: this.isFromPredy  // New property added in toJson method
         }
     }
 }

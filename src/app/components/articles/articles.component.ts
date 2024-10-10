@@ -86,9 +86,11 @@ export class ArticlesComponent {
 
   freebieSubscription: Subscription
 
+  articlesSource: 'all' | 'predyc'| 'predictiva' = 'predictiva'
+
   ngOnInit() {
     this.combinedSubscription = combineLatest([
-      this.articleService.getAllNonDraftArticlesWithData$(),
+      this.articleService.getAllNonDraftArticlesWithData$(this.articlesSource),
       this.authorService.getAuthors$(),
       this.articleService.getAllArticleTags$()
     ]).subscribe(([articles, authors, allTags]) => {
