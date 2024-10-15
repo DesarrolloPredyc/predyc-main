@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentReference } from '@angular/fire/compat/firestore';
-import { Observable, combineLatest, map, of, switchMap, throwError } from 'rxjs';
+import { Observable, combineLatest, from, map, of, switchMap, throwError } from 'rxjs';
 import { Article, ArticleCategory, ArticleCategoryJson, ArticleData, ArticleJson, ArticleTag, ArticleTagJson } from '../models/article.model';
 import { CategoryJson } from '../models/category.model';
 import { Curso } from '../models/course.model';
@@ -69,8 +69,21 @@ export class ArticleService {
     return this.afs.collection<ArticleJson>(Article.collection, ref => ref.orderBy("orderNumber", "asc")).valueChanges();
   }
   
-  getNonDraftArticles$(): Observable<ArticleJson[]> {
-    return this.afs.collection<ArticleJson>(Article.collection, ref => ref.orderBy("orderNumber", "asc").where("isDraft", "==", false)).valueChanges();
+  // getNonDraftArticles$(): Observable<ArticleJson[]> {
+  //   return this.afs.collection<ArticleJson>(Article.collection, ref => ref.orderBy("orderNumber", "asc").where("isDraft", "==", false)).valueChanges();
+  // } 
+
+  getNonDraftArticles$(source: 'all' | 'predyc'| 'predictiva'): Observable<ArticleJson[]> {
+    if (source === 'predyc') return this.afs.collection<ArticleJson>(
+      Article.collection, ref => ref.orderBy("orderNumber", "asc").where("isDraft", "==", false).where("isFromPredyc", "==", true)
+    ).valueChanges();
+
+    else if (source === 'predictiva') return this.afs.collection<ArticleJson>(
+      Article.collection, ref => ref.orderBy("orderNumber", "asc").where("isDraft", "==", false).where("isFromPredyc", "==", false)
+    ).valueChanges();
+
+    else return this.afs.collection<ArticleJson>(Article.collection, ref => ref.orderBy("orderNumber", "asc").where("isDraft", "==", false)).valueChanges();
+    
   } 
 
   getArticleWithDataById$(articleId: string): Observable<ArticleData> {
@@ -135,8 +148,8 @@ export class ArticleService {
     );
   }
 
-  getAllNonDraftArticlesWithData$(): Observable<ArticleData[]> {
-    return this.getNonDraftArticles$().pipe(
+  getAllNonDraftArticlesWithData$(source: 'all' | 'predyc'| 'predictiva'): Observable<ArticleData[]> {
+    return this.getNonDraftArticles$(source).pipe(
       switchMap((articles: ArticleJson[]) => {
         const articleWithDataObservables = articles.map(article =>
           this.getArticleWithDataById$(article.id)

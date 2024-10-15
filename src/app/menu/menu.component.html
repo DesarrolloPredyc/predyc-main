@@ -7,25 +7,31 @@
             <!-- <div class="fh pdl10 pdr10" fxLayoutAlign=" center">
                 <a  routerLink="/" class="link ft14 ft500">Home</a>
             </div> -->
-            <div class="cursorPointer fh pdl05 pdr05" fxLayout="row" fxLayoutGap=".2rem" fxLayoutAlign=" center"
+            <!-- <div class="cursorPointer fh pdl05 pdr05" fxLayout="row" fxLayoutGap=".2rem" fxLayoutAlign=" center"
                 (mouseover)="showCourseFinder = true" (mouseleave)="showCourseFinder = false">
                 <div class="ft14 " >Explorar cursos</div>
                 <img [src]="icon.chevronDown" alt="">
-            </div>
+            </div> -->
             <!-- cursos-gratis -->
-            <div routerLink="/cursos-gratis" class="cursorPointer fh pdl05 pdr05" fxLayout="row" fxLayoutGap=".2rem" fxLayoutAlign=" center" (mouseleave)="showCourseFinderFree = false">
+            <!-- <div routerLink="/cursos-gratis" class="cursorPointer fh pdl05 pdr05" fxLayout="row" fxLayoutGap=".2rem" fxLayoutAlign=" center" (mouseleave)="showCourseFinderFree = false">
                 <div class="ft14 " >Cursos gratis</div>
-            </div>
+            </div> -->
             <!-- <div class="fh pdl10 pdr10" fxLayoutAlign=" center">
                 <a  routerLink="/recursos" routerLinkActive="active" class="link ft14 ft500">Recursos</a>
             </div> -->
             <!-- <div class="fh pdl05 pdr05" fxLayoutAlign=" center">
                 <a routerLink="/diagnosticos" class="link ft14 ft500">Diagnósticos</a>
             </div> -->
-            <div class="fh pdl05 pdr05" fxLayoutAlign=" center">
+            <!-- <div class="fh pdl05 pdr05" fxLayoutAlign=" center">
                 <a routerLink="/blog" class="link ft14 ft500">Blog</a>
+            </div> -->
+            <div class="fh pdl05 pdr05" fxLayoutAlign=" center">
+                <a routerLink="/revista" class="link ft14 ft500">Revista</a>
             </div>
-            <div *ngIf="showEvent" routerLink="/mantenimiento-en-accion" class="event-card cursorPointer no-select mgl05" fxLayoutAlign=" center">
+            <div class="fh pdl05 pdr05" fxLayoutAlign=" center">
+                <a routerLink="/articulos" class="link ft14 ft500">Articulos</a>
+            </div>
+            <!-- <div *ngIf="showEvent" routerLink="/mantenimiento-en-accion" class="event-card cursorPointer no-select mgl05" fxLayoutAlign=" center">
                 <img style="height: 24px !important;" src="/assets/images/mantenimiento/logoVerical.png" alt="">
                 <div *ngIf="showTime" class="mgl10 countdown-container">
                     <div class="countdown-item">
@@ -45,18 +51,17 @@
                         <div class="countdown-label">SEGUNDOS</div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>
-    <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign=" center">
+    <!-- <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign=" center">
         <a *ngIf="showEvent" >
-            <!-- <button class="blueButton" (click)="openDemoRequestDialog()">Contacta a un asesor</button> -->
             <button (click)="scrollToForm()" class="yellowButton2 ft500 generalButton MENU-BTN-1  ">Hablar con un asesor</button>
 
         </a>
         <a href="https://app.predyc.com/auth/login" target="_blank" style="color:#ff9500" class=" ft16  ft500 MENU-BTN-AULA">Ir al Aula Virtual</a>
-    </div>
+    </div> -->
 </div>
 <div [ngClass]="showCourseFinder?'courseFinderShow':'courseFinderHide'" (mouseover)="showCourseFinder = true"
     (mouseleave)="showCourseFinder = false">

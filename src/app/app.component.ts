@@ -167,7 +167,7 @@ export class AppComponent {
           if (data.canonical) {
             this.seo.setCanonicalURL(data.canonical)
           } else {
-            this.seo.setCanonicalURL("https://predyc.com")
+            this.seo.setCanonicalURL("http://revista.predictiva21.com")
           }
         })
       }

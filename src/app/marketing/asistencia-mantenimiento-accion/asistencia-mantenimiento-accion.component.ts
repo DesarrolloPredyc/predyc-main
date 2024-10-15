@@ -23,7 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { formLead, ReunionFormComponent } from '../../shared/reunion-form/reunion-form.component';
-import { interval } from 'rxjs';
+import { firstValueFrom, interval } from 'rxjs';
 import { SVG } from '@svgdotjs/svg.js';
 import { gsap } from 'gsap';
 import Swiper from 'swiper';
@@ -31,6 +31,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { Location } from '@angular/common';
 import { UserService } from '../../shared/services/user.service';
 import { EventoService } from '../../shared/services/evento.service';
+import { AngularFireFunctions } from '@angular/fire/compat/functions';
+import jspdf, { ImageOptions } from 'jspdf';
+import * as QRCode from 'qrcode';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+
 
 @Component({
   selector: 'app-asistencia-mantenimiento-accion',
@@ -114,8 +120,9 @@ export class AsistenciagMantenimientoAccionComponent implements OnInit{
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, public icon: IconService, private route: ActivatedRoute, private location: Location, 
   private userService: UserService,
-  private eventoService:EventoService
-
+  private eventoService:EventoService,
+  private functions: AngularFireFunctions,
+  private _snackBar: MatSnackBar,
 )
   {
     // Inicializa todos los elementos como inactivos
@@ -161,10 +168,27 @@ export class AsistenciagMantenimientoAccionComponent implements OnInit{
     else{
       this.userData.assistanceData = [objAsistencia]
     }
+
+
     this.updateCountdown()
     await this.eventoService.updateAssistanceData(this.userData.id,objAsistencia )
 
 
+    console.log('datosAsistencia',this.userData.assistanceData)
+
+    if(this.userData?.assistanceData?.length == this.slides.length){// todas las clases confirmadas
+
+      // generar certificado estoy aqui
+
+      if(!this.userData.hasCertificate){
+        this.userData.hasCertificate = true
+        await firstValueFrom(this.functions.httpsCallable("createEventCertificate")({
+          idEventoRegister: this.userData.id,
+        }))
+        await this.eventoService.updateAssistanceData(this.userData.id,objAsistencia )
+        console.log('userData',this.userData)
+      }
+    }
 
   }
 
@@ -228,12 +252,26 @@ export class AsistenciagMantenimientoAccionComponent implements OnInit{
       this.utmMedium = params['utm_medium'];
       this.utmCampaign = params['utm_campaign'];
       this.utmContent = params['utm_content'];
+      const mailUser = params['email'];
+
+      if(mailUser){
+        this.reunionFormInit = false
+        this.reunionForm = new FormGroup({
+          emailProfesional: new FormControl(mailUser, [Validators.required, Validators.email]),
+        });
+
+        this.onSubmit('iconCertificado')
+
+        
+      }
+      else{
+        this.reunionForm = new FormGroup({
+          emailProfesional: new FormControl('', [Validators.required, Validators.email]),
+        });
+      }
 
     });
 
-    this.reunionForm = new FormGroup({
-      emailProfesional: new FormControl('', [Validators.required, Validators.email]),
-    });
 
     this.reunionFormInit = true
     
@@ -292,7 +330,7 @@ export class AsistenciagMantenimientoAccionComponent implements OnInit{
       title: 'Buenas prácticas para un proceso de Gestión de Mantenimiento',
       description: 'Esta primera sesión, dirigida por Gyogi Mitsuta, se centra en las mejores prácticas para la gestión eficaz del mantenimiento en la industria. Se explorará cómo implementar procesos sistemáticos y estructurados para mejorar la confiabilidad de los equipos y la eficiencia operacional. A través de la exposición de metodologías los participantes aprenderán cómo optimizar sus operaciones de mantenimiento para reducir costos y mejorar la seguridad y el rendimiento de los activos, siempre alineados con las normativas internacionales vigentes.',
       ctaText: 'Confirmar asistencia',
-      registrationDeadline: this.calculateDeadline('2024-10-03T01:00:00Z', 26), // 1 de octubre a las 7 PM
+      registrationDeadline: this.calculateDeadline('2024-10-05T06:00:00Z', 26), // 6 de octubre a las 12 AM
       minimumDate: this.calculateDeadline('2024-10-01T01:00:00Z', 0), // 30 de septiembre a las 6 PM
     },
     {
@@ -306,7 +344,7 @@ export class AsistenciagMantenimientoAccionComponent implements OnInit{
       title: 'Gestión de Mantenimiento en el día a día',
       description: 'En esta sesión especial, Juan Carlos Córdova nos llevará a la práctica en la gestión de mantenimiento diaria. Discutiremos cómo las metodologías de mantenimiento se implementan efectivamente en el campo para transformar la teoría en acciones concretas que maximizan la eficiencia y la productividad. Juan Carlos compartirá su experiencia para ilustrar cómo se pueden superar los desafíos comunes y aprovechar las oportunidades en el mantenimiento. Esta charla está diseñada para ofrecer a los profesionales del mantenimiento una visión de las herramientas prácticas y técnicas probadas por Juan Carlos para llevar su gestión de mantenimiento al siguiente nivel.',
       ctaText: 'Confirmar asistencia',
-      registrationDeadline: this.calculateDeadline('2024-10-03T01:00:00Z', 26), // 2 de octubre a las 7 PM
+      registrationDeadline: this.calculateDeadline('2024-10-05T06:00:00Z', 26), // 6 de octubre a las 12 AM
       minimumDate: this.calculateDeadline('2024-10-02T01:00:00Z', 0), // 1 de octubre a las 6 PM
     },
     {
@@ -320,7 +358,7 @@ export class AsistenciagMantenimientoAccionComponent implements OnInit{
       title: 'Diagnóstico de la Gestión de Mantenimiento',
       description: 'En nuestra tercera sesión Guillermo Morán abordará los aspectos fundamentales para realizar un diagnóstico efectivo de la gestión de mantenimiento en diversas industrias. Este taller se centrará en identificar y analizar los puntos críticos que afectan la eficiencia y efectividad del mantenimiento, ofreciendo una mirada profunda a las metodologías para evaluar prácticas actuales y detectar áreas de mejora. Los participantes aprenderán a utilizar herramientas y técnicas avanzadas para medir la madurez de sus procesos de mantenimiento, con el objetivo de optimizar recursos, prolongar la vida útil de los activos y mejorar la rentabilidad general de sus operaciones. El enfoque será en cómo las evaluaciones pueden conducir a transformaciones significativas en la gestión de mantenimiento.',
       ctaText: 'Confirmar asistencia',
-      registrationDeadline: this.calculateDeadline('2024-10-03T01:00:00Z', 26), // 3 de octubre a las 7 PM
+      registrationDeadline: this.calculateDeadline('2024-10-05T06:00:00Z', 26), // 6 de octubre a las 12 AM
       minimumDate: this.calculateDeadline('2024-10-03T01:00:00Z', 0), // 2 de octubre a las 6 PM
     },
   ];
@@ -361,6 +399,22 @@ export class AsistenciagMantenimientoAccionComponent implements OnInit{
   isDescriptionVisible = false;
   toggleDescription() {
     this.isDescriptionVisible = !this.isDescriptionVisible;
+  }
+
+  titleCaseWithExceptions = (str: string) => {
+    const exceptions = []; // Palabras que no se deben cambiar
+    const uppercaseWords = ['dni:']; // Palabras que deben ser convertidas a mayúsculas completas
+    
+    return str.split(' ').map(word => {
+      console.log(word)
+      if (exceptions.includes(word)) {
+      return word; // No cambiar la palabra
+      } else if (uppercaseWords.includes(word)) {
+      return word.toUpperCase(); // Convertir la palabra a mayúsculas completas
+      } else {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(); // Cambiar a Title Case
+      }
+    }).join(' ');
   }
 
 
@@ -860,7 +914,7 @@ export class AsistenciagMantenimientoAccionComponent implements OnInit{
   showInitMailForm = true
   userData
 
-  onSubmit(): void {
+  onSubmit(scrollto = 'iconCronograma'): void {
     if (this.reunionForm.valid) {
       //console.log('Form data:', this.reunionForm.value);
 
@@ -877,29 +931,37 @@ export class AsistenciagMantenimientoAccionComponent implements OnInit{
           this.updateCountdown()
           this.userReady = true
 
-          setTimeout(() => {
-            const element = document.getElementById(`iconCronograma`);
-            const elementMovil = document.getElementById(`iconCronogramaMovil`);
-            let offsetPosition
-            if(element && element.offsetParent !== null){
-              const offset = 90; // Ajuste del offset para considerar el header fijo
-              const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-              offsetPosition = elementPosition - offset;
-          
-            }
-            else if (elementMovil && elementMovil.offsetParent !== null){
-              const offset = 90; // Ajuste del offset para considerar el header fijo
-              const elementPosition = elementMovil.getBoundingClientRect().top + window.scrollY;
-              offsetPosition = elementPosition - offset;
-            }
+          if (isPlatformBrowser(this.platformId)) {
 
-            //console.log(element,elementMovil)
+            setTimeout(() => {
+              const element = document?.getElementById(`${scrollto}`);
+              const elementMovil = document?.getElementById(`${scrollto}Movil`);
+              let offsetPosition
+              if(element && element.offsetParent !== null){
+                const offset = 90; // Ajuste del offset para considerar el header fijo
+                const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+                offsetPosition = elementPosition - offset;
+            
+              }
+              else if (elementMovil && elementMovil.offsetParent !== null){
+                const offset = 90; // Ajuste del offset para considerar el header fijo
+                const elementPosition = elementMovil.getBoundingClientRect().top + window.scrollY;
+                offsetPosition = elementPosition - offset;
+              }
+  
+              //console.log(element,elementMovil)
+  
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth',
+              });
+            }, 150);
 
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth',
-            });
-          }, 100);
+
+          }
+
+
+
         }
         else{
           this.showInitMailForm = false
@@ -1048,5 +1110,108 @@ export class AsistenciagMantenimientoAccionComponent implements OnInit{
       });
     
   }
+
+  backCertificado = 'assets/images/certificado/fondo_certificado_mea.jpg'
+
+
+
+  async generateQrImage(certificadoId: string): Promise<string> {
+    const url = `https://predyc.com/mantenimiento-en-accion?email=${certificadoId}`;
+    return QRCode.toDataURL(url, { width: 80 });
+  }
+
+
+  copiarContacto(message: string = 'Correos copiados', texto,action: string = '') {
+    navigator.clipboard.writeText(texto).then(() => {
+      this._snackBar.open(message, action, {
+        duration: 1000,
+        panelClass: ['gray-snackbar'],
+      });
+    }).catch(err => {
+      console.error('Error al copiar al portapapeles: ', err);
+    });
+  }
+
+
+  async downloadPDF() {
+    var doc = new jspdf('l', 'mm', [297, 229]);
+    doc.addImage(this.backCertificado, 'JPG', 0, 0, 297, 229,'','FAST')
+    
+    doc.setFontSize(27)
+    //23, 169, 
+    doc.setTextColor(23, 169, 245)
+    doc.setFont('helvetica', 'bold')
+    if(this.userData.name.length>=40){
+      doc.setFontSize(this.userData.name.length/1.8) // mejorar 
+    }
+    const offsetX = 40;
+    const textWidth = doc.getTextWidth(this.userData.name);
+    const centerX = (297 - textWidth) / 2 + (offsetX+2);
+
+    doc.setFont('helvetica', 'bold')
+    doc.text(this.titleCaseWithExceptions(this.userData.name), centerX, 95); // Nombre del usuario centrado con offset
+
+
+    doc.setFontSize(35)
+    doc.setTextColor(29, 34, 36)
+    doc.text('DIPLOMA DE', 150, 30); // Nombre del usuario centrado con offset
+    doc.text('PARTICIPACIÓN', 140, 45); // Nombre del usuario centrado con offset
+
+
+    // Generar la imagen QR
+    const qrImage = await this.generateQrImage(this.userData.email);
+
+    // Obtener la altura y el ancho de la página del PDF
+    const pageHeight = doc.internal.pageSize.height;
+    const pageWidth = doc.internal.pageSize.width;
+
+    // Definir el código de certificado (el ID dinámico)
+    const codigoCertificado = this.userData.idCertificate; // ID del certificado dinámico
+
+    // Agregar el texto del código de certificado justo a la izquierda del QR
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(183, 191, 198)
+    doc.text('Código de diploma: ' + codigoCertificado, pageWidth - 80, 225) // Nombre usuario
+
+    // Agregar la imagen del QR en la esquina inferior derecha
+    doc.addImage(qrImage, 'PNG', pageWidth - 18, pageHeight - 18, 18, 18, '', 'FAST'); // Posicionar el QR en la esquina inferior derecha
+
+
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(13)
+    doc.setTextColor(29, 34, 36)
+    // doc.text('Damos fé de que', centerX+15, 80); // Nombre del usuario centrado con offset
+    doc.save("Diploma "+this.userData.name+" - "+this.tituloCurso+'.pdf')
+  }
+
+  tituloCurso = 'mantenimiento en acción'
+
+cargarImagen(logoSrc: string, maxAncho: number = 50, maxAlto: number = 40): Promise<{ width: number, height: number }> {
+  return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = logoSrc;
+      img.onload = () => {
+          let width = img.naturalWidth;
+          let height = img.naturalHeight;
+          const aspectRatio = width / height;
+
+          if (width > maxAncho) {
+              width = maxAncho;
+              height = width / aspectRatio;
+          }
+
+          if (height > maxAlto) {
+              height = maxAlto;
+              width = height * aspectRatio;
+          }
+
+          resolve({ width, height });
+      };
+      img.onerror = (error) => {
+          reject(error);
+      };
+  });
+}
 
 }

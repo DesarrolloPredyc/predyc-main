@@ -76,9 +76,11 @@ export class BlogMobileComponent implements OnInit, AfterViewInit, OnDestroy {
 
   freebieSubscription: Subscription
 
+  articlesSource: 'all' | 'predyc'| 'predictiva' = 'predyc'
+
   ngOnInit() {
     this.combinedSubscription = combineLatest([
-      this.articleService.getAllNonDraftArticlesWithData$(),
+      this.articleService.getAllNonDraftArticlesWithData$(this.articlesSource),
       this.authorService.getAuthors$(),
       this.articleService.getAllArticleTags$()
     ]).subscribe(([articles, authors, allTags]) => {

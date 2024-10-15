@@ -1,25 +1,24 @@
-import { AfterViewInit, Component, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
-import { IconService } from '../../../services/icon.service';
-import { FlexLayoutServerModule } from '@angular/flex-layout/server';
+import { CommonModule } from '@angular/common';
+import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { FooterComponent } from '../../footer/footer.component';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Subscription, combineLatest } from 'rxjs';
-import { ArticleService } from '../../../shared/services/article.service';
-import { environment } from '../../../../environments/environment';
-import { AuthorService } from '../../../shared/services/author.service';
-import { DocumentReference } from '@angular/fire/compat/firestore';
-import { ArticleTag, ArticleTagJson } from '../../../shared/models/article.model';
+import { IconService } from '../../services/icon.service';
+import { combineLatest, Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { SearchInputBoxComponent } from '../../../shared/widgets/search-input-box/search-input-box.component';
-import { FilterListComponent } from '../../../shared/widgets/filter-list/filter-list.component';
-import { FreebieService } from '../../../shared/services/freebie.service';
-import { Freebie } from '../../../shared/models/freebie.model';
-import { AuthorJson } from '../../../shared/models/author.model';
-import { SeoService } from '../../../services/seo.service';
-
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { environment } from '../../../environments/environment';
+import { DocumentReference } from '@angular/fire/compat/firestore';
+import { SeoService } from '../../services/seo.service';
+import { ArticleTagJson } from '../../shared/models/article.model';
+import { Freebie } from '../../shared/models/freebie.model';
+import { ArticleService } from '../../shared/services/article.service';
+import { AuthorService } from '../../shared/services/author.service';
+import { FreebieService } from '../../shared/services/freebie.service';
+import { FlexLayoutServerModule } from '@angular/flex-layout/server';
+import { FooterComponent } from '../footer/footer.component';
+import { SearchInputBoxComponent } from '../../shared/widgets/search-input-box/search-input-box.component';
+import { FilterListComponent } from '../../shared/widgets/filter-list/filter-list.component';
+import { AuthorJson } from '../../shared/models/author.model';
 
 export interface ArticlePreview {
   authorName: string,
@@ -43,14 +42,13 @@ interface AuthorWithArticleQty extends AuthorJson {
 }
 
 @Component({
-  selector: 'app-blog-desktop',
+  selector: 'app-articles',
   standalone: true,
-  imports: [CommonModule, FlexLayoutServerModule, FlexLayoutModule, FooterComponent, RouterModule, SearchInputBoxComponent, FilterListComponent, MatPaginator],
-  providers:[IconService],
-  templateUrl: './blog.component.html',
-  styleUrl: './blog.component.css'
+  imports: [CommonModule, FlexLayoutModule, FlexLayoutServerModule, FooterComponent, RouterModule, SearchInputBoxComponent, FilterListComponent, MatPaginator],
+  templateUrl: './articles.component.html',
+  styleUrl: './articles.component.css'
 })
-export class BlogDesktopComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ArticlesComponent {
   constructor(
     public icon: IconService,
     public articleService: ArticleService,
@@ -88,7 +86,7 @@ export class BlogDesktopComponent implements OnInit, AfterViewInit, OnDestroy {
 
   freebieSubscription: Subscription
 
-  articlesSource: 'all' | 'predyc'| 'predictiva' = 'predyc'
+  articlesSource: 'all' | 'predyc'| 'predictiva' = 'predictiva'
 
   ngOnInit() {
     this.combinedSubscription = combineLatest([
@@ -250,6 +248,7 @@ export class BlogDesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     if (this.combinedSubscription) this.combinedSubscription.unsubscribe()
     if (this.freebieSubscription) this.freebieSubscription.unsubscribe()
+    if (this.queryParamsSubscription) this.queryParamsSubscription.unsubscribe()
   }
 
 }

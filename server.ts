@@ -41,8 +41,8 @@ export function app(): express.Express {
       const responses = await Promise.all(
         [
           fetch(environment.cloudFunc + '/getArticlesSlug'), 
-          fetch(environment.cloudFunc + '/getAllCourseIds'), 
-          fetch(environment.cloudFunc + '/getAllFreebiesIds')
+          // fetch(environment.cloudFunc + '/getAllCourseIds'), 
+          // fetch(environment.cloudFunc + '/getAllFreebiesIds')
         ]
       )
       const responsesJson = await Promise.all(responses.map(response => response.json()))
@@ -53,10 +53,10 @@ export function app(): express.Express {
       const pipeline = sitemapStream.pipe(createGzip());
 
       routes.forEach(route => {
-        if(route.path === "**"){
+        if (route.path === "**"){
           return
         }
-        if (route.path === "blog") {
+        if (route.path === "articulos") {
 
           sitemapStream.write({
             changefreq: EnumChangefreq.MONTHLY,
@@ -73,51 +73,51 @@ export function app(): express.Express {
                 changefreq: EnumChangefreq.MONTHLY,
                 lastmod: formatTimestamp(blogPost.updatedAt),
                 // priority: 0.7,
-                url: `${environment.hostUrl}/blog/${blogPost.slug}`,
+                url: `${environment.hostUrl}/articulos/${blogPost.slug}`,
               });
             }
           });
 
         } 
-        else if (route.path === "cursos/:id") {
+        // else if (route.path === "cursos/:id") {
 
-          // Fetch courses id from Firestore
-          const coursesSnapshot = responsesJson[1]
+        //   // Fetch courses id from Firestore
+        //   const coursesSnapshot = responsesJson[1]
 
-          coursesSnapshot.forEach(course => {
-            if (!course.proximamente) {
-              sitemapStream.write({
-                changefreq: EnumChangefreq.MONTHLY,
-                lastmod: formatTimestamp(course.updatedAt),
-                // priority: 0.7,
-                url: `${environment.hostUrl}/cursos/${course.customUrl}`,
-              });
-            }
-          });
+        //   coursesSnapshot.forEach(course => {
+        //     if (!course.proximamente) {
+        //       sitemapStream.write({
+        //         changefreq: EnumChangefreq.MONTHLY,
+        //         lastmod: formatTimestamp(course.updatedAt),
+        //         // priority: 0.7,
+        //         url: `${environment.hostUrl}/cursos/${course.customUrl}`,
+        //       });
+        //     }
+        //   });
 
-        }
-        else if (route.path === "recursos/:custom-url") {
+        // }
+        // else if (route.path === "recursos/:custom-url") {
 
-          // Fetch freebie from Firestore
-          const freebiesSnapshot = responsesJson[2]
+        //   // Fetch freebie from Firestore
+        //   const freebiesSnapshot = responsesJson[2]
 
-          freebiesSnapshot.forEach(freebie => {
+        //   freebiesSnapshot.forEach(freebie => {
 
-            sitemapStream.write({
-              changefreq: EnumChangefreq.MONTHLY,
-              lastmod: formatTimestamp(freebie.updatedAt),
-              // priority: 0.7,
-              url: `${environment.hostUrl}/recursos/${freebie.id}`,
-            });
-          });
+        //     sitemapStream.write({
+        //       changefreq: EnumChangefreq.MONTHLY,
+        //       lastmod: formatTimestamp(freebie.updatedAt),
+        //       // priority: 0.7,
+        //       url: `${environment.hostUrl}/recursos/${freebie.id}`,
+        //     });
+        //   });
 
-        }
-        else if (route.path === "programas/:id") {
-          // Do nothing
-        }
-        else if (route.path === "**") {
-          // Do nothing
-        }
+        // }
+        // else if (route.path === "programas/:id") {
+        //   // Do nothing
+        // }
+        // else if (route.path === "**") {
+        //   // Do nothing
+        // }
         else {
           sitemapStream.write({
             changefreq: EnumChangefreq.MONTHLY,
