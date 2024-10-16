@@ -1,4 +1,4 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser, registerLocaleData } from '@angular/common';
 import { Component, ElementRef, HostListener, Inject, LOCALE_ID, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -9,7 +9,9 @@ import { SeoService } from '../../../services/seo.service';
 import { ArticleService, ArticleWithAuthorName } from '../../../shared/services/article.service';
 import { AuthorService } from '../../../shared/services/author.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import localeEs from '@angular/common/locales/es';
 
+registerLocaleData(localeEs);
 
 @Component({
   selector: 'app-article-detail',

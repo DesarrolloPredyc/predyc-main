@@ -65,6 +65,38 @@ export class ArticleService {
         )}))
   }
 
+  async getArticleWithAuthorNameBySlugNew(slug: string): Promise<any> {
+    try {
+      // Paso 1: Traer el artículo de la colección 'articles' usando el campo 'slug'
+      const articleSnapshot = await this.afs.collection('article', ref => ref.where('slug', '==', slug)).get().toPromise();
+      
+      if (articleSnapshot.empty) {
+        throw new Error('Artículo no encontrado');
+      }
+  
+      // Como solo esperamos un artículo, obtenemos el primero
+      const article = articleSnapshot.docs[0].data() as ArticleData;
+  
+      // Paso 2: Devolver el objeto con los datos ya presentes en el artículo
+
+      let datos =  {
+        ...article,
+        tags:article.articleTagsData,
+        pillars:article.pillarsData,
+        categories:article.categoriesData,
+        courses:article.cursosDatos,
+        author:article.authorData,
+        authorName: article.authorData.name,
+        authorId: article.authorData.id
+      }
+      return datos
+    } catch (error) {
+      console.error('Error obteniendo el artículo:', error);
+      throw error;
+    }
+  }
+  
+
   getArticles$(): Observable<ArticleJson[]> {
     return this.afs.collection<ArticleJson>(Article.collection, ref => ref.orderBy("orderNumber", "asc")).valueChanges();
   }
