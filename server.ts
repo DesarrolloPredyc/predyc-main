@@ -40,7 +40,7 @@ export function app(): express.Express {
 
       const responses = await Promise.all(
         [
-          fetch(environment.cloudFunc + '/getArticlesSlug'), 
+          fetch(environment.cloudFunc + '/getPredictivaArticlesSlug'), 
           // fetch(environment.cloudFunc + '/getAllCourseIds'), 
           // fetch(environment.cloudFunc + '/getAllFreebiesIds')
         ]
